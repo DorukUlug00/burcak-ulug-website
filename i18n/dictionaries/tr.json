@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "title": "Prof. Dr. Elif Aksoy — Kardiyoloji, İstanbul",
+    "description": "İstanbul'da acele edilmeyen kardiyoloji muayeneleri. İlk muayeneden kontrollere kadar bizzat takip edilir."
+  },
+  "brand": {
+    "role": "Kardiyoloji"
+  },
+  "nav": {
+    "about": "Hakkımda",
+    "expertise": "Uzmanlık alanları",
+    "conditions": "Hastalıklar",
+    "research": "Araştırmalar",
+    "patientInfo": "Hasta bilgileri",
+    "contact": "İletişim"
+  },
+  "hero": {
+    "eyebrow": "Girişimsel kardiyoloji · İstanbul",
+    "prefix": "Prof. Dr.",
+    "givenName": "Elif",
+    "familyName": "Aksoy",
+    "lede": "Her muayene acele edilmeden ve bizzat yürütülür — ilk muayeneden kontrollere kadar, bundan sonra ne olacağını tam olarak bilerek ayrılırsınız.",
+    "book": "Randevu alın",
+    "call": "Kliniği arayın"
+  },
+  "credentials": {
+    "professor": {
+      "label": "Kardiyoloji profesörü",
+      "detail": "Üniversite öğretim üyesi"
+    },
+    "board": {
+      "label": "Yeterlilik belgeli",
+      "detail": "Girişimsel kardiyoloji yan dalı"
+    },
+    "languages": {
+      "label": "Türkçe & İngilizce",
+      "detail": "Muayeneler her iki dilde"
+    }
+  },
+  "a11y": {
+    "primaryNav": "Ana menü",
+    "openMenu": "Menüyü aç",
+    "changeLanguage": "Dili değiştir",
+    "portraitAlt": "Prof. Dr. Elif Aksoy kliniğinde"
+  }
+}

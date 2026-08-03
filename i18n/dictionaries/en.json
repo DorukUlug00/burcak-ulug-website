@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "title": "Prof. Dr. Elif Aksoy — Cardiology, Istanbul",
+    "description": "Unhurried cardiology consultations in Istanbul, handled personally from your first examination through to follow-up."
+  },
+  "brand": {
+    "role": "Cardiology"
+  },
+  "nav": {
+    "about": "About",
+    "expertise": "Expertise",
+    "conditions": "Conditions",
+    "research": "Research",
+    "patientInfo": "Patient info",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Interventional cardiology · Istanbul",
+    "prefix": "Prof. Dr.",
+    "givenName": "Elif",
+    "familyName": "Aksoy",
+    "lede": "Every consultation is unhurried and handled personally — from your first examination through to follow-up, so you leave knowing exactly what happens next.",
+    "book": "Book a consultation",
+    "call": "Call the clinic"
+  },
+  "credentials": {
+    "professor": {
+      "label": "Professor of cardiology",
+      "detail": "University teaching faculty"
+    },
+    "board": {
+      "label": "Board certified",
+      "detail": "Interventional subspecialty"
+    },
+    "languages": {
+      "label": "Turkish & English",
+      "detail": "Consultations in both"
+    }
+  },
+  "a11y": {
+    "primaryNav": "Primary",
+    "openMenu": "Open menu",
+    "changeLanguage": "Change language",
+    "portraitAlt": "Prof. Dr. Elif Aksoy in her clinic"
+  }
+}

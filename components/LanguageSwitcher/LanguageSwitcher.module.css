@@ -1,0 +1,56 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 2.75rem;
+  padding-inline: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(238, 244, 242, 0.14);
+  background: rgba(5, 22, 28, 0.45);
+  color: rgba(238, 244, 242, 0.82);
+  backdrop-filter: blur(14px);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.wrapper:hover {
+  border-color: rgba(95, 216, 204, 0.5);
+  color: #eef4f2;
+}
+
+.wrapper[data-pending] {
+  opacity: 0.6;
+}
+
+.value {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* The native select sits invisibly on top so the control stays keyboard
+   accessible and opens the platform picker on mobile. */
+.select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+}
+
+.select:focus-visible {
+  outline: 2px solid #5fd8cc;
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+/* The dropdown itself renders with OS chrome, so give the options readable
+   colours rather than white-on-white. */
+.select option {
+  color: #05161c;
+  background: #eef4f2;
+}
