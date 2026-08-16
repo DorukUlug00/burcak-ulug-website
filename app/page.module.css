@@ -1,32 +1,36 @@
 .page {
-  /* Palette sampled from the reference: warm nude ground, gold-to-cream
-     display gradient, deep navy for actions. */
-  --sand-deep: #b98d70;
+  --sand-deep: #9c7259;
   --sand: #d8b699;
   --sand-light: #e8d3bf;
   --cream: #faf5ee;
   --cream-deep: #f2e7d9;
-  --ink: #2f2620;
-  --ink-soft: #6d5f53;
-  --gold: #dfa64c;
-  --gold-mid: #f0cf92;
-  --gold-pale: #fbf0d6;
-  --navy: #0b3a57;
-  --navy-deep: #06293e;
-  --hairline: rgba(47, 38, 32, 0.14);
-  --hairline-light: rgba(250, 245, 238, 0.28);
 
-  /* Avenir Next where it exists (macOS, iOS, or a licensed webfont); Nunito
-     Sans everywhere else. */
-  --sans: "Avenir Next", "Avenir Next LT Pro", Avenir, var(--font-sans), system-ui, sans-serif;
+  /* Darker typography */
+  --ink: #17120f;
+  --ink-soft: #40362f;
+
+  --gold: #b77a27;
+  --gold-mid: #c88b36;
+  --gold-pale: #e3bb72;
+
+  --navy: #092f46;
+  --navy-deep: #041f30;
+
+  --hairline: rgba(23, 18, 15, 0.16);
+  --hairline-light: rgba(23, 18, 15, 0.25);
+
+  --primary-font: var(--font-abril), Georgia, serif;
+  --secondary-font: var(--font-archivo), Arial, sans-serif;
 
   --gutter: clamp(1.25rem, 5vw, 5rem);
 
   min-height: 100svh;
   background: var(--cream);
   color: var(--ink);
-  font-family: var(--sans);
+
+  font-family: var(--secondary-font);
   font-weight: 400;
+
   -webkit-font-smoothing: antialiased;
 }
 
@@ -187,9 +191,16 @@
 .heroBody {
   position: relative;
   z-index: 2;
+
   margin-top: auto;
-  padding: clamp(3rem, 9vw, 6rem) var(--gutter) clamp(2.5rem, 6vw, 4.5rem);
-  max-width: 46rem;
+
+  width: 100%;
+  max-width: 62rem;
+
+  padding:
+    clamp(3rem, 9vw, 6rem)
+    var(--gutter)
+    clamp(2.5rem, 6vw, 4.5rem);
 }
 
 .eyebrow {
@@ -202,47 +213,83 @@
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 
-/* The signature: the name at display size in Avenir Next Light, filled with
-   the gold-to-cream gradient from the reference. */
 .name {
-  margin: clamp(1rem, 2.2vw, 1.5rem) 0 0;
-  font-size: clamp(3.25rem, 12vw, 9.5rem);
-  font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: 0.005em;
-  text-transform: uppercase;
-  color: var(--gold-mid);
-}
+  margin: clamp(0.8rem, 2vw, 1.4rem) 0 0;
 
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .nameLine {
-    background: linear-gradient(104deg, var(--gold) 0%, #f2d59c 46%, var(--gold-pale) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+  font-family: var(--primary-font);
+
+  /*
+    Responsive sizing so "Tümerdem Uluğ"
+    remains inside the viewport.
+  */
+  font-size: clamp(2.65rem, 7vw, 6.75rem);
+
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+
+  text-transform: none;
+
+  /* Darker than the previous gold */
+  color: #211915;
+
+  max-width: 100%;
 }
 
 .namePrefix {
   display: block;
-  margin-bottom: 1rem;
-  font-size: clamp(0.6875rem, 1vw, 0.8125rem);
-  font-weight: 300;
+
+  margin-bottom: clamp(0.65rem, 1.5vw, 1rem);
+
+  font-family: var(--secondary-font);
+  font-size: clamp(1.2rem, 2vw, 1.85rem);
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: 0.26em;
-  color: rgba(250, 245, 238, 0.72);
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: #30251f;
+
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) 0.08s both;
 }
 
 .nameLine {
   display: block;
+
+  /*
+    Prevent "Tümerdem Uluğ" from breaking into
+    two separate lines.
+  */
+  white-space: nowrap;
+
+  max-width: 100%;
+
+  font-family: var(--primary-font);
+
+  color: #211915;
+
   animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 0.14s both;
 }
 
-/* Regular against Light — the surname carries the weight. */
 .nameLineHeavy {
   font-weight: 400;
   animation-delay: 0.22s;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .nameLine {
+    background: linear-gradient(
+      104deg,
+      var(--gold) 0%,
+      #f2d59c 46%,
+      var(--gold-pale) 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 .lede {
@@ -510,6 +557,33 @@
   color: var(--gold);
 }
 
+.nav,
+.brandRole,
+.eyebrow,
+.actions,
+.strip,
+.sectionEyebrow,
+.sectionIntro,
+.procedureSummary,
+.procedureMore {
+  font-family: var(--secondary-font);
+}
+
+.brandName,
+.name,
+.sectionTitle,
+.procedureName {
+  font-family: var(--primary-font);
+}
+
+.brandName {
+  font-family: var(--primary-font);
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #201915;
+}
+
 /* ---------------- motion ---------------- */
 
 @keyframes rise {
@@ -603,5 +677,17 @@
   .page *::after {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: clamp(2.35rem, 10.5vw, 3.15rem);
+    letter-spacing: -0.035em;
+  }
+
+  .heroBody {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 }
