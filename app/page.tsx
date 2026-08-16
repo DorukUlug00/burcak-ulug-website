@@ -85,55 +85,7 @@ export default function Home() {
         <StickyNav monogram={brand.monogram} name={brand.name} items={nav} />
 
 
-        <header className={styles.header}>
-          <a href="/" className={styles.brand}>
-            <span className={styles.monogram}>{brand.monogram}</span>
-
-            <span className={styles.brandText}>
-              <span className={styles.brandName}>{brand.name}</span>
-              <span className={styles.brandRole}>{brand.role}</span>
-            </span>
-          </a>
-
-          <div className={styles.headerActions}>
-            <nav className={styles.nav} aria-label="Ana menü">
-              {nav.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={styles.navLink}
-                >
-                  {item.label}
-                </a>
-              ))}
-
-              <a href="#contact" className={styles.navCta}>
-                İletişim
-              </a>
-            </nav>
-
-            <button
-              type="button"
-              className={styles.menuButton}
-              aria-label="Menüyü aç"
-            >
-              <svg
-                width="18"
-                height="12"
-                viewBox="0 0 18 12"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M0 1h18M0 6h18M0 11h12"
-                  stroke="currentColor"
-                  strokeWidth="1.4"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </header>
+        
 
         <div className={styles.heroBody}>
           <p className={styles.eyebrow}>{hero.eyebrow}</p>

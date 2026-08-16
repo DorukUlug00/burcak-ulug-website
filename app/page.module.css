@@ -280,9 +280,9 @@
 @supports (background-clip: text) or (-webkit-background-clip: text) {
   .nameLine {
     background: linear-gradient(
-      104deg,
-      var(--gold) 0%,
-      #f2d59c 46%,
+      120deg,
+      var(--gold) 20%,
+      #f2d6a0 50%,
       var(--gold-pale) 100%
     );
 
