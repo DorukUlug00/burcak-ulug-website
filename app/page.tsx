@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import StickyNav from "../components/StickyNav/StickyNav";
-
+import Procedures from "../components/Procedures/Procedures";
 
 import styles from "./page.module.css";
 
@@ -30,30 +30,6 @@ const CONTENT = {
     phone: "+900000000000",
     imageAlt: "Prof. Dr. Burçak Tümerdem Uluğ",
   },
-
-  credentials: [
-    {
-      label: "Cerrahi Profesörü",
-      detail: "Üniversite öğretim üyesi",
-    },
-    {
-      label: "Uzman Hekim",
-      detail: "Plastik ve rekonstrüktif cerrahi",
-    },
-    {
-      label: "Türkçe ve İngilizce",
-      detail: "Her iki dilde muayene",
-    },
-  ],
-
-  procedures: {
-    eyebrow: "Cerrahi İşlemler",
-    title: "En Sık Uyguladığım Ameliyatlar",
-    intro:
-      "Her ameliyat, hastanın anatomik özellikleri, ihtiyaçları ve beklentileri doğrultusunda kişiye özel olarak planlanır.",
-    readMore: "Detaylı Bilgi",
-    items: [],
-  },
 };
 
 const CREDENTIAL_ICONS: ReactNode[] = [
@@ -63,10 +39,14 @@ const CREDENTIAL_ICONS: ReactNode[] = [
 ];
 
 export default function Home() {
-  const { brand, nav, hero, credentials, procedures } = CONTENT;
+  const { brand, nav, hero } = CONTENT;
 
   return (
     <main className={styles.page}>
+      {/* Navbar artık hero'nun DIŞINDA: sayfa boyunca sabit kalır
+          ve hiçbir bölüm üzerine binemez. */}
+      <StickyNav monogram={brand.monogram} name={brand.name} items={nav} />
+
       <section className={styles.hero}>
         <div className={styles.media}>
           <Image
@@ -82,11 +62,6 @@ export default function Home() {
 
         <div className={styles.scrim} aria-hidden="true" />
 
-        <StickyNav monogram={brand.monogram} name={brand.name} items={nav} />
-
-
-        
-
         <div className={styles.heroBody}>
           <p className={styles.eyebrow}>{hero.eyebrow}</p>
 
@@ -95,9 +70,7 @@ export default function Home() {
 
             <span className={styles.nameLine}>{hero.givenName}</span>
 
-            <span
-              className={`${styles.nameLine} ${styles.nameLineHeavy}`}
-            >
+            <span className={`${styles.nameLine} ${styles.nameLineHeavy}`}>
               {hero.familyName}
             </span>
           </h1>
@@ -108,91 +81,15 @@ export default function Home() {
               <LongArrow />
             </a>
 
-            <a
-              href={`tel:${hero.phone}`}
-              className={styles.secondaryAction}
-            >
+            <a href={`tel:${hero.phone}`} className={styles.secondaryAction}>
               <PhoneIcon />
               {hero.call}
             </a>
           </div>
         </div>
-
-        <ul className={styles.strip}>
-          {credentials.map((item, index) => (
-            <li key={item.label} className={styles.credential}>
-              <span className={styles.credentialIcon}>
-                {CREDENTIAL_ICONS[index]}
-              </span>
-
-              <span className={styles.credentialText}>
-                <span className={styles.credentialLabel}>
-                  {item.label}
-                </span>
-
-                <span className={styles.credentialDetail}>
-                  {item.detail}
-                </span>
-              </span>
-            </li>
-          ))}
-        </ul>
       </section>
 
-      <section className={styles.procedures} id="procedures">
-        <div className={styles.sectionHead}>
-          <p className={styles.sectionEyebrow}>
-            {procedures.eyebrow}
-          </p>
-
-          <h2 className={styles.sectionTitle}>
-            {procedures.title}
-          </h2>
-
-          <p className={styles.sectionIntro}>
-            {procedures.intro}
-          </p>
-        </div>
-
-        <div className={styles.procedureGrid}>
-          {procedures.items.map((item) => (
-            <article key={item.name} className={styles.procedureCard}>
-              <div className={styles.procedureMedia}>
-                <Image
-                  src={item.image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 900px) 46vw, 100vw"
-                  className={styles.procedureImage}
-                />
-              </div>
-
-              <div className={styles.procedureBody}>
-                <h3 className={styles.procedureName}>
-                  <a
-                    href={item.href}
-                    className={styles.procedureLink}
-                  >
-                    {item.name}
-                  </a>
-                </h3>
-
-                <p className={styles.procedureSummary}>
-                  {item.summary}
-                </p>
-
-                <span
-                  className={styles.procedureMore}
-                  aria-hidden="true"
-                >
-                  {procedures.readMore}
-                  <LongArrow />
-                </span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <Procedures />
     </main>
   );
 }
