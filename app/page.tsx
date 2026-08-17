@@ -5,6 +5,7 @@ import Procedures from "../components/Procedures/Procedures";
 import Cv from "../components/CV/Cv"
 
 import styles from "./page.module.css";
+import Media from "@/components/Media/Media";
 
 const CONTENT = {
   brand: {
@@ -92,6 +93,7 @@ export default function Home() {
 
       <Procedures />
       <Cv />
+      <Media />
     </main>
   );
 }
