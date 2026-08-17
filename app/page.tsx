@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import StickyNav from "../components/StickyNav/StickyNav";
 import Procedures from "../components/Procedures/Procedures";
+import Cv from "../components/CV/Cv"
 
 import styles from "./page.module.css";
 
@@ -90,6 +91,7 @@ export default function Home() {
       </section>
 
       <Procedures />
+      <Cv />
     </main>
   );
 }
