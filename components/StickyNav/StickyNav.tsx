@@ -64,31 +64,49 @@ export default function StickyNav({
 
   const visible = !isHome || scrolledPast;
 
-  /* Alt menü: masaüstünde hover, dokunmatikte tıklama ile açılır.
-     Açık olan öğenin href'ini tutuyoruz (aynı anda tek menü). */
+  /* Açık menüler: 1. seviye (Ameliyatlar) ve 2. seviye (Yüz Estetiği).
+     Aynı anda her seviyeden tek menü açık olur. */
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [openSub, setOpenSub] = useState<string | null>(null);
+
+  function closeAll() {
+    setOpenMenu(null);
+    setOpenSub(null);
+  }
 
   /* Escape ile kapat. */
   useEffect(() => {
     if (!openMenu) return;
 
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpenMenu(null);
+      if (event.key === "Escape") closeAll();
     }
 
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [openMenu]);
 
+  /* Dışarı tıklayınca kapat (dokunmatik için). */
+  useEffect(() => {
+    if (!openMenu) return;
+
+    function onPointerDown(event: PointerEvent) {
+      const target = event.target as HTMLElement;
+      if (!target.closest(`.${styles.navItem}`)) closeAll();
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [openMenu]);
+
   /* Sayfa değişince açık menüyü kapat. */
   useEffect(() => {
-    setOpenMenu(null);
+    closeAll();
   }, [pathname]);
 
   function isActive(href: string) {
     return (
-      isRoute(href) &&
-      (pathname === href || pathname.startsWith(`${href}/`))
+      isRoute(href) && (pathname === href || pathname.startsWith(`${href}/`))
     );
   }
 
@@ -129,12 +147,11 @@ export default function StickyNav({
 
         <nav className={styles.nav} aria-label="Sabit menü">
           {items.map((item) => {
-            const active = isActive(item.href);
-
             const linkClass = `${styles.navLink} ${
-              active ? styles.navLinkActive : ""
+              isActive(item.href) ? styles.navLinkActive : ""
             }`;
 
+            /* Alt menüsü olmayan basit öğe. */
             if (!item.children?.length) {
               return (
                 <div key={item.href} className={styles.navItem}>
@@ -151,12 +168,12 @@ export default function StickyNav({
                 className={styles.navItem}
                 /* Masaüstü: fare ile aç/kapat. */
                 onMouseEnter={() => setOpenMenu(item.href)}
-                onMouseLeave={() => setOpenMenu(null)}
+                onMouseLeave={() => closeAll()}
                 /* Klavye: odak gruptan çıkınca kapat. */
                 onFocus={() => setOpenMenu(item.href)}
                 onBlur={(event) => {
                   if (!event.currentTarget.contains(event.relatedTarget)) {
-                    setOpenMenu(null);
+                    closeAll();
                   }
                 }}
               >
@@ -172,12 +189,16 @@ export default function StickyNav({
                     aria-label={`${item.label} alt menüsünü ${
                       open ? "kapat" : "aç"
                     }`}
-                    onClick={() => setOpenMenu(open ? null : item.href)}
+                    onClick={() => {
+                      setOpenSub(null);
+                      setOpenMenu(open ? null : item.href);
+                    }}
                   >
                     <CaretIcon />
                   </button>
                 </span>
 
+                {/* ---------- 2. seviye: kategoriler (yatay şerit) ---------- */}
                 <div
                   className={`${styles.submenu} ${
                     open ? styles.submenuOpen : ""
@@ -185,18 +206,66 @@ export default function StickyNav({
                   inert={!open || undefined}
                 >
                   <ul className={styles.submenuList}>
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        {renderLink(
-                          child,
-                          `${styles.submenuLink} ${
-                            isActive(child.href)
-                              ? styles.submenuLinkActive
-                              : ""
-                          }`,
-                        )}
-                      </li>
-                    ))}
+                    {item.children.map((category) => {
+                      const subOpen = openSub === category.href;
+
+                      const categoryClass = `${styles.submenuLink} ${
+                        isActive(category.href) ? styles.submenuLinkActive : ""
+                      }`;
+
+                      return (
+                        <li
+                          key={category.href}
+                          className={styles.subItem}
+                          onMouseEnter={() => setOpenSub(category.href)}
+                        >
+                          <span className={styles.subItemRow}>
+                            {renderLink(category, categoryClass)}
+
+                            {category.children?.length ? (
+                              <button
+                                type="button"
+                                className={styles.subCaret}
+                                aria-expanded={subOpen}
+                                aria-label={`${category.label} işlemlerini ${
+                                  subOpen ? "kapat" : "aç"
+                                }`}
+                                onClick={() =>
+                                  setOpenSub(subOpen ? null : category.href)
+                                }
+                              >
+                                <CaretIcon />
+                              </button>
+                            ) : null}
+                          </span>
+
+                          {/* ---------- 3. seviye: işlemler (dikey liste) ---------- */}
+                          {category.children?.length ? (
+                            <div
+                              className={`${styles.subPanel} ${
+                                subOpen ? styles.subPanelOpen : ""
+                              }`}
+                              inert={!subOpen || undefined}
+                            >
+                              <ul className={styles.subPanelList}>
+                                {category.children.map((leaf) => (
+                                  <li key={`${category.href}-${leaf.href}`}>
+                                    {renderLink(
+                                      leaf,
+                                      `${styles.leafLink} ${
+                                        pathname === leaf.href
+                                          ? styles.leafLinkActive
+                                          : ""
+                                      }`,
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ) : null}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>

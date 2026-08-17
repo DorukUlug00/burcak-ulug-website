@@ -1,76 +1,61 @@
-.sentinel {
-  height: 1px;
-  margin-top: -1px;
-  pointer-events: none;
-}
+/* ============================================================
+   SABİT MENÜ — tam dosya
+   ============================================================ */
 
 .bar {
+  --ink: #1c1a18;
+  --paper: #fbfaf8;
+  --muted: #6d6660;
+  --rule: #e2ddd6;
+
   position: fixed;
-  inset: 0 0 auto;
-  z-index: 40;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Sayfadaki her şeyin üstünde kalır. */
+  z-index: 100;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
+  gap: 24px;
 
-  padding: 0.8rem var(--gutter, clamp(1.25rem, 5vw, 5rem));
+  padding: 0 clamp(16px, 4vw, 48px);
+  min-height: 68px;
 
-  background: color-mix(in srgb, var(--cream, #faf5ee) 88%, transparent);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  backdrop-filter: blur(16px) saturate(140%);
-  border-bottom: 1px solid var(--hairline, rgba(23, 18, 15, 0.16));
-  color: var(--ink, #17120f);
+  background: rgba(251, 250, 248, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
 
-  /* Hidden state */
-  transform: translateY(-100%);
+  /* Görünmeden önce yukarıda bekler. */
   opacity: 0;
-  visibility: hidden;
-
-  transition:
-    transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1),
-    opacity 0.3s ease,
-    visibility 0s linear 0.5s;
+  transform: translateY(-100%);
+  transition: opacity 300ms ease, transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .visible {
-  transform: none;
   opacity: 1;
-  visibility: visible;
-  transition:
-    transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1),
-    opacity 0.35s ease,
-    visibility 0s;
+  transform: translateY(0);
 }
 
-/* Thin gold hairline that draws itself in under the bar. */
-.bar::after {
-  content: "";
+/* Hero'nun bittiği noktayı işaretler; bar bunu geçince belirir.
+   Hero yüksekliğin farklıysa `top` değerini ona göre ayarla. */
+.sentinel {
   position: absolute;
-  inset: auto 0 -1px;
+  top: 50vh;
+  left: 0;
+  width: 1px;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    var(--gold, #b77a27),
-    var(--gold-pale, #e3bb72) 45%,
-    transparent
-  );
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) 0.15s;
+  pointer-events: none;
 }
 
-.visible::after {
-  transform: none;
-}
-
-/* ---------------- brand ---------------- */
+/* ---------------- Marka ---------------- */
 
 .brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  min-width: 0;
+  gap: 10px;
   color: inherit;
   text-decoration: none;
 }
@@ -78,114 +63,102 @@
 .monogram {
   display: grid;
   place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  flex-shrink: 0;
-  border: 1px solid var(--hairline, rgba(23, 18, 15, 0.16));
-  color: var(--navy, #092f46);
-  font-family: var(--secondary-font, Arial, sans-serif);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
 }
 
 .brandName {
-  font-family: var(--primary-font, Georgia, serif);
-  font-size: 0.9375rem;
-  line-height: 1.2;
-  color: var(--navy, #092f46);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-/* ---------------- links ---------------- */
+/* ---------------- Menü ---------------- */
 
 .nav {
-  display: none;
+  display: flex;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: center;
+  gap: clamp(10px, 1.6vw, 26px);
 }
 
 .navLink {
-  position: relative;
-  padding: 0.5rem 0.7rem;
-  font-family: var(--secondary-font, Arial, sans-serif);
-  font-size: 0.6875rem;
+  display: block;
+  padding: 22px 0;
+
+  font-size: 0.68rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--ink-soft, #40362f);
+  color: var(--muted);
   text-decoration: none;
-  transition: color 0.2s ease;
+  white-space: nowrap;
+
+  transition: color 200ms ease;
 }
 
-.navLink::after {
-  content: "";
-  position: absolute;
-  inset: auto 0.7rem 0.15rem;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.3, 1);
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--ink);
 }
 
-.navLink:hover {
-  color: var(--gold, #b77a27);
+.navLinkActive {
+  color: var(--ink);
 }
 
-.navLink:hover::after {
-  transform: none;
-  transform-origin: left;
-}
+/* ---------------- Sağ taraf ---------------- */
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .cta {
-  padding: 0.7rem 1.35rem;
-  background: var(--navy, #092f46);
-  color: var(--cream, #faf5ee);
-  font-family: var(--secondary-font, Arial, sans-serif);
-  font-size: 0.6875rem;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 20px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  white-space: nowrap;
+  color: var(--ink);
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  white-space: nowrap;
+
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
-.cta:hover {
-  background: var(--navy-deep, #041f30);
+.cta:hover,
+.cta:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .menuButton {
-  display: grid;
-  place-items: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border: 1px solid var(--hairline, rgba(23, 18, 15, 0.16));
-  background: transparent;
-  color: var(--navy, #092f46);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink);
   cursor: pointer;
 }
 
-.bar a:focus-visible,
-.bar button:focus-visible {
-  outline: 2px solid var(--navy, #092f46);
-  outline-offset: 3px;
-}
-
 /* ============================================================
-   ALT MENÜ — bu bloğu mevcut StickyNav.module.css'in SONUNA ekle.
-   Dosyanın geri kalanına dokunma.
+   1. SEVİYE SARMALAYICI
    ============================================================ */
 
-/* Menü öğesi sarmalayıcısı. Alt menü buna göre konumlanır. */
 .navItem {
   position: relative;
 }
@@ -196,8 +169,8 @@
   gap: 5px;
 }
 
-/* Aşağı ok düğmesi — dokunmatik ve klavye için. */
-.caretButton {
+.caretButton,
+.subCaret {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -210,22 +183,27 @@
   transition: transform 250ms ease, opacity 250ms ease;
 }
 
-.caretButton:hover {
+.caretButton:hover,
+.subCaret:hover {
   opacity: 1;
 }
 
-.caretButton[aria-expanded="true"] {
+.caretButton[aria-expanded="true"],
+.subCaret[aria-expanded="true"] {
   opacity: 1;
   transform: rotate(180deg);
 }
 
-.caretButton:focus-visible {
+.caretButton:focus-visible,
+.subCaret:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
   border-radius: 4px;
 }
 
-/* ---------------- Açılan panel ---------------- */
+/* ============================================================
+   2. SEVİYE — kategoriler (yatay şerit)
+   ============================================================ */
 
 .submenu {
   position: absolute;
@@ -235,7 +213,7 @@
 
   /* Menü ile panel arasında görünmez köprü:
      fare boşluğa girince menü kapanmasın. */
-  padding-top: 14px;
+  padding-top: 6px;
 
   opacity: 0;
   visibility: hidden;
@@ -248,8 +226,7 @@
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);
-  transition: opacity 200ms ease, transform 200ms ease,
-    visibility 0s linear 0s;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
 }
 
 .submenuList {
@@ -258,95 +235,178 @@
   padding: 0;
   list-style: none;
 
-  background: #fbfaf8;
-  border: 1px solid #e2ddd6;
-  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
   box-shadow: 0 18px 40px rgba(28, 26, 24, 0.14);
-  overflow: hidden;
   white-space: nowrap;
+  /* overflow: hidden YOK — 3. seviye panelinin dışarı taşması gerekiyor. */
 }
 
 .submenuList > li + li {
-  border-left: 1px solid #e2ddd6;
+  border-left: 1px solid var(--rule);
+}
+
+.subItem {
+  position: relative;
+}
+
+.subItemRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 12px;
+  transition: background-color 200ms ease;
+}
+
+.subItemRow:hover {
+  background: #efece7;
 }
 
 .submenuLink {
   display: block;
-  padding: 13px 20px;
+  padding: 13px 8px 13px 20px;
 
   font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1c1a18;
+  color: var(--ink);
   text-decoration: none;
-
-  transition: background-color 200ms ease;
-}
-
-.submenuLink:hover,
-.submenuLink:focus-visible {
-  background: #efece7;
 }
 
 .submenuLinkActive {
-  background: #1c1a18;
-  color: #fbfaf8;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
-.submenuLinkActive:hover,
-.submenuLinkActive:focus-visible {
-  background: #1c1a18;
+/* ============================================================
+   3. SEVİYE — işlemler (dikey liste)
+   ============================================================ */
+
+.subPanel {
+  position: absolute;
+  top: 100%;
+  left: -1px;
+  z-index: 6;
+  min-width: calc(100% + 2px);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 180ms ease, transform 180ms ease,
+    visibility 0s linear 180ms;
 }
 
-/* ---------------- Dar ekran ---------------- */
+.subPanelOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 0s;
+}
 
-/* Yatay şerit dar ekrana sığmaz: alt alta diz.
-   (Hamburger menü devreye girene kadar geçici çözüm.) */
+.subPanelList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 0;
+  box-shadow: 0 18px 40px rgba(28, 26, 24, 0.14);
+}
+
+.subPanelList > li + li {
+  border-top: 1px solid #ece8e2;
+}
+
+.leafLink {
+  display: block;
+  padding: 11px 22px;
+
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #4a4540;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.leafLink:hover,
+.leafLink:focus-visible {
+  background: #efece7;
+  color: var(--ink);
+}
+
+.leafLinkActive {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.leafLinkActive:hover,
+.leafLinkActive:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ============================================================
+   DAR EKRAN
+   ============================================================ */
+
 @media (max-width: 1100px) {
+  /* Kategori şeridi yatay sığmaz: alt alta diz. */
   .submenuList {
     flex-direction: column;
-    border-radius: 14px;
   }
 
   .submenuList > li + li {
     border-left: 0;
-    border-top: 1px solid #e2ddd6;
+    border-top: 1px solid var(--rule);
   }
 
-  .submenuLink {
-    padding: 12px 18px;
+  /* 3. seviye yana açılsın, aşağı değil. */
+  .subPanel {
+    top: -1px;
+    left: 100%;
+    min-width: 220px;
+  }
+
+  .subPanelList {
+    border-top: 1px solid var(--rule);
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .submenu,
-  .caretButton {
-    transition: none;
+@media (max-width: 900px) {
+  .bar {
+    grid-template-columns: auto auto;
+    justify-content: space-between;
   }
-}
 
-@media (min-width: 1024px) {
-  .nav {
-    display: flex;
+  /* Menü hamburger'a taşınır. */
+  .nav,
+  .cta {
+    display: none;
   }
 
   .menuButton {
-    display: none;
+    display: inline-flex;
   }
-}
 
-@media (max-width: 480px) {
-  .cta {
-    display: none;
+  .brandName {
+    max-width: 46vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bar,
-  .bar::after,
-  .navLink,
-  .navLink::after {
-    transition: none !important;
+  .submenu,
+  .subPanel,
+  .caretButton,
+  .subCaret {
+    transition: none;
   }
 }
