@@ -7,20 +7,14 @@ import Cv from "../components/CV/Cv"
 import styles from "./page.module.css";
 import Media from "@/components/Media/Media";
 
+import { BRAND, NAV } from "@/lib/site";
+
 const CONTENT = {
   brand: {
     monogram: "Dr.",
     name: "Prof. Dr. Burçak Tümerdem Ulug",
     role: "Plastik, Rekonstrüktif ve Estetik Cerrahi",
   },
-
-  nav: [
-    { label: "Hakkında", href: "#about" },
-    { label: "Uzmanlık Alanları", href: "#expertise" },
-    { label: "Ameliyatlar", href: "#procedures" },
-    { label: "Akademik Çalışmalar", href: "#research" },
-    { label: "Hasta Bilgilendirme", href: "#patient-info" },
-  ],
 
   hero: {
     eyebrow: "Plastik ve Estetik Cerrahi · İstanbul",
@@ -34,20 +28,15 @@ const CONTENT = {
   },
 };
 
-const CREDENTIAL_ICONS: ReactNode[] = [
-  <CapIcon />,
-  <ShieldIcon />,
-  <SpeechIcon />,
-];
 
 export default function Home() {
-  const { brand, nav, hero } = CONTENT;
+  const { hero } = CONTENT;
 
   return (
     <main className={styles.page}>
       {/* Navbar artık hero'nun DIŞINDA: sayfa boyunca sabit kalır
           ve hiçbir bölüm üzerine binemez. */}
-      <StickyNav monogram={brand.monogram} name={brand.name} items={nav} />
+      <StickyNav monogram={BRAND.monogram} name={BRAND.name} items={NAV} />
 
       <section className={styles.hero}>
         <div className={styles.media}>

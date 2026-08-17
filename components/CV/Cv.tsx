@@ -20,7 +20,7 @@ const CONTENT = {
   ctaHref: "/ozgecmis",
 
   image: {
-    src: "/cv-portrait.png",
+    src: "/doctor/white-shirt.png",
     alt: "Prof. Dr. Burçak Tümerdem Uluğ",
   },
 };

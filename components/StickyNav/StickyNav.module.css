@@ -180,6 +180,152 @@
   outline-offset: 3px;
 }
 
+/* ============================================================
+   ALT MENÜ — bu bloğu mevcut StickyNav.module.css'in SONUNA ekle.
+   Dosyanın geri kalanına dokunma.
+   ============================================================ */
+
+/* Menü öğesi sarmalayıcısı. Alt menü buna göre konumlanır. */
+.navItem {
+  position: relative;
+}
+
+.navItemRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Aşağı ok düğmesi — dokunmatik ve klavye için. */
+.caretButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: transform 250ms ease, opacity 250ms ease;
+}
+
+.caretButton:hover {
+  opacity: 1;
+}
+
+.caretButton[aria-expanded="true"] {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+
+.caretButton:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------------- Açılan panel ---------------- */
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 5;
+
+  /* Menü ile panel arasında görünmez köprü:
+     fare boşluğa girince menü kapanmasın. */
+  padding-top: 14px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -6px);
+  transition: opacity 200ms ease, transform 200ms ease,
+    visibility 0s linear 200ms;
+}
+
+.submenuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  transition: opacity 200ms ease, transform 200ms ease,
+    visibility 0s linear 0s;
+}
+
+.submenuList {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  background: #fbfaf8;
+  border: 1px solid #e2ddd6;
+  border-radius: 999px;
+  box-shadow: 0 18px 40px rgba(28, 26, 24, 0.14);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.submenuList > li + li {
+  border-left: 1px solid #e2ddd6;
+}
+
+.submenuLink {
+  display: block;
+  padding: 13px 20px;
+
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1c1a18;
+  text-decoration: none;
+
+  transition: background-color 200ms ease;
+}
+
+.submenuLink:hover,
+.submenuLink:focus-visible {
+  background: #efece7;
+}
+
+.submenuLinkActive {
+  background: #1c1a18;
+  color: #fbfaf8;
+}
+
+.submenuLinkActive:hover,
+.submenuLinkActive:focus-visible {
+  background: #1c1a18;
+}
+
+/* ---------------- Dar ekran ---------------- */
+
+/* Yatay şerit dar ekrana sığmaz: alt alta diz.
+   (Hamburger menü devreye girene kadar geçici çözüm.) */
+@media (max-width: 1100px) {
+  .submenuList {
+    flex-direction: column;
+    border-radius: 14px;
+  }
+
+  .submenuList > li + li {
+    border-left: 0;
+    border-top: 1px solid #e2ddd6;
+  }
+
+  .submenuLink {
+    padding: 12px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submenu,
+  .caretButton {
+    transition: none;
+  }
+}
+
 @media (min-width: 1024px) {
   .nav {
     display: flex;
