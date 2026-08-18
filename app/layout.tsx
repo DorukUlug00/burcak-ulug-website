@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Abril_Fatface, Archivo } from "next/font/google";
 import "./globals.css";
+import StickyNav from "@/components/StickyNav/StickyNav";
+import Footer from "@/components/Footer/Footer";
+import { BRAND, NAV } from "@/lib/site";
 
 const abril = Abril_Fatface({
   weight: "400",
@@ -28,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={`${abril.variable} ${archivo.variable}`}>
+        <StickyNav monogram={BRAND.monogram} name={BRAND.name} items={NAV} />
         {children}
+        <Footer />
       </body>
     </html>
   );

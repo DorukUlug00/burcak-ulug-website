@@ -36,7 +36,6 @@ export default function Home() {
     <main className={styles.page}>
       {/* Navbar artık hero'nun DIŞINDA: sayfa boyunca sabit kalır
           ve hiçbir bölüm üzerine binemez. */}
-      <StickyNav monogram={BRAND.monogram} name={BRAND.name} items={NAV} />
 
       <section className={styles.hero}>
         <div className={styles.media}>

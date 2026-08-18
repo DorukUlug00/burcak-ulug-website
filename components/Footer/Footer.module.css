@@ -1,0 +1,208 @@
+/* Renkler globals.css'teki değişkenlerden gelir.
+   Yedek değerler, değişken tanımlı değilse diye bırakıldı. */
+
+.footer {
+  --footer-ink: var(--ink, #2c211a);
+  --footer-soft: color-mix(in srgb, var(--footer-ink) 66%, transparent);
+  --footer-faint: color-mix(in srgb, var(--footer-ink) 42%, transparent);
+  --footer-rule: var(--hairline, rgba(44, 33, 26, 0.14));
+  --footer-accent: var(--gold, #b08b52);
+
+  margin-top: clamp(4rem, 10vw, 7rem);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  background: var(--sand-pale, #f7f2ec);
+  border-top: 1px solid var(--footer-rule);
+  color: var(--footer-ink);
+  font-size: 0.9375rem;
+}
+
+.inner {
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter, clamp(1.25rem, 5vw, 4rem));
+}
+
+/* ---------------- üst bölüm ---------------- */
+
+.columns {
+  display: grid;
+  gap: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.brandCol {
+  max-width: 34ch;
+}
+
+.brandLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.monogram {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--footer-accent);
+}
+
+.brandName {
+  display: block;
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+.brandRole {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--footer-soft);
+}
+
+.brandNote {
+  margin: 1.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+  color: var(--footer-soft);
+}
+
+.colTitle {
+  margin: 0 0 1.1rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--footer-faint);
+}
+
+.list,
+.social,
+.bottomLinks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list > li + li {
+  margin-top: 0.6rem;
+}
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--footer-rule);
+}
+
+.link {
+  color: var(--footer-soft);
+  text-decoration: none;
+  line-height: 1.65;
+  transition: color 160ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--footer-accent);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--footer-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------------- yasal uyarı ---------------- */
+
+.notice {
+  display: grid;
+  gap: 0.75rem 3rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: clamp(1.75rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--footer-rule);
+}
+
+.noticeTitle {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--footer-accent);
+}
+
+.noticeBody > p {
+  margin: 0;
+  max-width: 82ch;
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  text-wrap: pretty;
+  color: var(--footer-faint);
+}
+
+.noticeBody > p + p {
+  margin-top: 0.7rem;
+}
+
+/* ---------------- telif satırı ---------------- */
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem 2rem;
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--footer-rule);
+}
+
+.copyright {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--footer-soft);
+}
+
+.ip {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--footer-faint);
+}
+
+.bottomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.8125rem;
+}
+
+/* ---------------- kırılma noktaları ---------------- */
+
+@media (min-width: 720px) {
+  .columns {
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+  }
+
+  .notice {
+    grid-template-columns: minmax(9rem, 12rem) 1fr;
+  }
+
+  .noticeTitle {
+    padding-top: 0.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition: none;
+  }
+}
