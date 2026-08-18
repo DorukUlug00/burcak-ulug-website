@@ -1,173 +1,258 @@
+/* Renkler globals.css'te tanımlıysa oradan gelir; değilse yedeğe düşer.
+   Değişken adları çakışmasın diye hepsi --c- ön ekli. */
+
 .page {
-  --ink: #1c1a18;
-  --muted: #6d6660;
-  --rule: #e2ddd6;
+  --c-ink: var(--ink, #241c16);
+  --c-muted: color-mix(in srgb, var(--c-ink) 62%, transparent);
+  --c-faint: color-mix(in srgb, var(--c-ink) 40%, transparent);
+  --c-rule: var(--hairline, rgba(36, 28, 22, 0.13));
+  --c-gold: var(--gold, #b08b52);
+  --c-bg: var(--sand-pale, #f7f2ec);
+  --c-panel: #fffdfa;
+  --c-panel-deep: #efe7db;
 
   min-height: 70vh;
   /* Sticky navbar'ın altında kalmaması için geniş üst boşluk. */
-  padding: clamp(120px, 16vh, 200px) clamp(20px, 6vw, 88px)
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
     clamp(64px, 9vw, 128px);
-  background: #fbfaf8;
-  color: var(--ink);
+  background: var(--c-bg);
+  color: var(--c-ink);
 }
 
 /* ---------------- Başlık ---------------- */
 
 .head {
-  max-width: 46rem;
-  padding-bottom: clamp(28px, 4vw, 48px);
-  border-bottom: 1px solid var(--rule);
+  display: grid;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: end;
+  max-width: 1180px;
+  padding-bottom: clamp(32px, 4vw, 52px);
+  border-bottom: 1px solid var(--c-rule);
 }
 
 .eyebrow {
   margin: 0 0 14px;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--c-gold);
 }
 
 .title {
   margin: 0;
-  font-size: clamp(2rem, 4.4vw, 3.4rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
+/* İkinci kelime kendi satırında ve italik — başlığa ritim veriyor. */
+.titleAccent {
+  display: block;
+  font-style: italic;
+  color: var(--c-gold);
+}
+
 .intro {
+  margin: 0;
+  max-width: 42ch;
+  font-size: 1rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+/* ---------------- Açık / kapalı rozeti ---------------- */
+
+.statusOpen,
+.statusClosed {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin: 20px 0 0;
-  max-width: 40rem;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--muted);
+  padding: 8px 16px 8px 12px;
+  border: 1px solid var(--c-rule);
+  border-radius: 999px;
+  background: var(--c-panel);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
 }
 
-/* ---------------- Yerleşim ---------------- */
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: currentColor;
+}
 
-.grid {
+.statusOpen {
+  color: #4a6b47;
+}
+
+.statusClosed {
+  color: var(--c-muted);
+}
+
+.statusHint {
+  padding-left: 10px;
+  border-left: 1px solid var(--c-rule);
+  color: var(--c-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------- Birincil kanallar ---------------- */
+
+.actions {
   display: grid;
-  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-  gap: clamp(32px, 5vw, 72px);
-  align-items: start;
-  margin-top: clamp(36px, 5vw, 64px);
+  gap: 1px;
   max-width: 1180px;
+  margin-top: clamp(36px, 5vw, 56px);
+  background: var(--c-rule);
+  border: 1px solid var(--c-rule);
 }
 
-/* ---------------- Sol sütun ---------------- */
-
-.channels {
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
+/* Karolar tek çizgiyle ayrılıyor: kenarlık yerine 1px'lik boşluk sızıyor. */
+.tile {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 18px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--rule);
+  gap: 6px;
+  padding: clamp(24px, 3vw, 34px);
+  background: var(--c-panel);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background 220ms ease,
+    transform 220ms ease;
 }
 
-.row:first-child {
-  padding-top: 0;
+.tile:hover,
+.tile:focus-visible {
+  background: var(--c-panel-deep);
 }
 
-.rowIcon {
+.tile:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: -2px;
+}
+
+.tileIcon {
   display: grid;
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid var(--rule);
+  margin-bottom: 14px;
+  border: 1px solid var(--c-rule);
   border-radius: 999px;
-  color: var(--muted);
+  color: var(--c-gold);
+  transition: border-color 220ms ease;
 }
 
-.rowBody {
-  min-width: 0;
+.tile:hover .tileIcon,
+.tile:focus-visible .tileIcon {
+  border-color: var(--c-gold);
 }
 
-.label {
-  margin: 0 0 6px;
+.tileLabel {
   font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--c-faint);
 }
 
-.values {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.value {
-  font-size: 1.05rem;
-  line-height: 1.5;
-  color: var(--ink);
-  text-decoration: none;
+.tileValue {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
   word-break: break-word;
-  border-bottom: 1px solid transparent;
-  align-self: flex-start;
-  transition: border-color 200ms ease;
 }
 
-.value:hover,
-.value:focus-visible {
-  border-color: var(--ink);
+.tileNote {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--c-muted);
 }
 
-/* ---------------- Sağ kart ---------------- */
+/* ---------------- Alt yerleşim ---------------- */
 
-.card {
-  padding: clamp(24px, 3vw, 36px);
-  background: #f3f0ec;
-  border: 1px solid var(--rule);
+.grid {
+  display: grid;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+  max-width: 1180px;
+  margin-top: clamp(24px, 3vw, 40px);
 }
 
-.cardBlock + .cardBlock {
-  margin-top: 28px;
-  padding-top: 28px;
-  border-top: 1px solid var(--rule);
+/* ---------------- Harita ---------------- */
+
+.mapPanel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--c-rule);
+  background: var(--c-panel-deep);
 }
 
-.cardTitle {
+.map {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 46vw, 560px);
+  border: 0;
+  /* Google'ın mavi-yeşili sitenin sıcak paletiyle çarpışıyor;
+     hafif bir sepya onu araziye yediriyor. */
+  filter: sepia(0.28) saturate(0.82) contrast(1.03);
+}
+
+.addressCard {
+  padding: clamp(22px, 3vw, 30px);
+  background: var(--c-panel);
+  border-top: 1px solid var(--c-rule);
+}
+
+.blockTitle {
   margin: 0 0 12px;
   font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--c-faint);
 }
 
 .address {
   margin: 0;
   font-size: 1.05rem;
   font-style: normal;
-  line-height: 1.6;
+  line-height: 1.65;
+}
+
+.directions {
+  margin: 10px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--c-muted);
 }
 
 .mapLink {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 20px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--c-rule);
   font-size: 0.7rem;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--c-ink);
   text-decoration: none;
   transition: border-color 200ms ease;
 }
 
 .mapLink:hover,
 .mapLink:focus-visible {
-  border-color: var(--ink);
+  border-color: var(--c-gold);
+  color: var(--c-gold);
 }
 
 .arrow {
@@ -179,7 +264,18 @@
   transform: translateX(6px);
 }
 
-/* ---------------- Saatler ---------------- */
+/* ---------------- Yan sütun ---------------- */
+
+.side {
+  display: grid;
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.card {
+  padding: clamp(22px, 3vw, 30px);
+  background: var(--c-panel);
+  border: 1px solid var(--c-rule);
+}
 
 .hours {
   margin: 0;
@@ -192,48 +288,113 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
+  padding: 9px 0;
   font-size: 0.98rem;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .hoursRow + .hoursRow {
-  margin-top: 8px;
+  border-top: 1px solid var(--c-rule);
 }
 
 .hoursTime {
   font-variant-numeric: tabular-nums;
-  color: var(--muted);
+  color: var(--c-muted);
   white-space: nowrap;
 }
 
-/* ---------------- Ara butonu ---------------- */
+.cardNote {
+  margin: 16px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-rule);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
 
-.cta {
+.linkList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkRow {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
-  margin-top: 28px;
-  padding: 16px 24px;
-  background: var(--ink);
-  border-radius: 999px;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #fbfaf8;
+  padding: 10px 0;
+  color: var(--c-ink);
+  font-size: 0.95rem;
   text-decoration: none;
-  transition: opacity 200ms ease;
+  word-break: break-word;
+  transition: color 200ms ease;
 }
 
-.cta:hover,
-.cta:focus-visible {
-  opacity: 0.85;
+.linkRow svg {
+  flex: none;
+  color: var(--c-faint);
+  transition: color 200ms ease;
 }
 
-/* ---------------- Uyarlama ---------------- */
+.linkRow:hover,
+.linkRow:focus-visible,
+.linkRow:hover svg,
+.linkRow:focus-visible svg {
+  color: var(--c-gold);
+}
 
-@media (max-width: 900px) {
+.privacy {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--c-faint);
+}
+
+.inlineLink {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.inlineLink:hover,
+.inlineLink:focus-visible {
+  color: var(--c-gold);
+}
+
+/* ---------------- Kırılma noktaları ---------------- */
+
+@media (min-width: 720px) {
+  .actions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .head {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+
   .grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  }
+
+  /* Geniş ekranda adres kartı haritanın üstüne biniyor. */
+  .addressCard {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    width: min(340px, calc(100% - 48px));
+    border: 1px solid var(--c-rule);
+    box-shadow: 0 18px 40px -24px rgba(36, 28, 22, 0.45);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }

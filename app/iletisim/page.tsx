@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { CONTACT, MAPS_URL } from "../../lib/site";
+import { BRAND, CONTACT, MAPS_URL } from "../../lib/site";
+import OpenStatus from "./OpenStatus";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -10,74 +11,135 @@ export const metadata: Metadata = {
 };
 
 const INTRO =
-  "Estetik, Plastik ve Rekonstrüktif Cerrahi alanına giren her konuda danışma, muayene, girişim ve ameliyatlarla ilgili bilgi için:";
+  "Estetik, Plastik ve Rekonstrüktif Cerrahi alanına giren her konuda danışma, muayene, girişim ve ameliyatlarla ilgili bilgi için aşağıdaki kanallardan ulaşabilirsiniz.";
+
+/* DOLDURULACAK: gerçek yürüme tarifi. Örn. hangi iskeleye/metro çıkışına
+   kaç dakika, otopark var mı. Uydurmadım — bilgiyi sen ver. */
+const DIRECTIONS = "DOLDURULACAK: Toplu taşıma ve otopark bilgisi.";
+
+/* Adres araması, anahtar gerektirmeyen gömme biçiminde. */
+const MAP_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(
+  `${CONTACT.address.line} ${CONTACT.address.district}`,
+)}&z=16&output=embed`;
+
+/* Google'ın yerel işletme kartı için okuduğu yapısal veri.
+   url alanını kendi alan adınla doğrula. */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  name: BRAND.name,
+  medicalSpecialty: "PlasticSurgery",
+  url: "https://www.burcaktumerdemulug.com/iletisim",
+  telephone: CONTACT.phoneRaw,
+  email: CONTACT.emails[0],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: CONTACT.address.line,
+    addressLocality: "Kadıköy",
+    addressRegion: "İstanbul",
+    addressCountry: "TR",
+  },
+  sameAs: [CONTACT.instagramUrl, CONTACT.facebookUrl],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "10:00",
+      closes: "18:00",
+    },
+  ],
+};
 
 export default function IletisimPage() {
   return (
     <main className={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* ---------------- Başlık ---------------- */}
       <header className={styles.head}>
-        <p className={styles.eyebrow}>İletişim</p>
+        <div className={styles.headMain}>
+          <p className={styles.eyebrow}>İletişim</p>
 
-        <h1 className={styles.title}>Randevu ve İletişim</h1>
+          <h1 className={styles.title}>
+            Randevu ve
+            <span className={styles.titleAccent}>iletişim</span>
+          </h1>
+        </div>
 
-        <p className={styles.intro}>{INTRO}</p>
+        <div className={styles.headAside}>
+          <p className={styles.intro}>{INTRO}</p>
+
+          <OpenStatus />
+        </div>
       </header>
 
+      {/* ---------------- Birincil kanallar ---------------- */}
+      <section className={styles.actions} aria-label="Hızlı iletişim">
+        <a href={`tel:${CONTACT.phoneRaw}`} className={styles.tile}>
+          <span className={styles.tileIcon} aria-hidden="true">
+            <PhoneIcon />
+          </span>
+
+          <span className={styles.tileLabel}>Telefon</span>
+
+          <span className={styles.tileValue}>{CONTACT.phoneDisplay}</span>
+
+          <span className={styles.tileNote}>Randevu ve bilgi için arayın</span>
+        </a>
+
+        <a
+          href={CONTACT.whatsappUrl}
+          className={styles.tile}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.tileIcon} aria-hidden="true">
+            <WhatsAppIcon />
+          </span>
+
+          <span className={styles.tileLabel}>WhatsApp</span>
+
+          <span className={styles.tileValue}>{CONTACT.phoneDisplay}</span>
+
+          <span className={styles.tileNote}>Yazılı görüşmeyi tercih edenler için</span>
+        </a>
+
+        <a href={`mailto:${CONTACT.emails[0]}`} className={styles.tile}>
+          <span className={styles.tileIcon} aria-hidden="true">
+            <MailIcon />
+          </span>
+
+          <span className={styles.tileLabel}>E-posta</span>
+
+          <span className={styles.tileValue}>{CONTACT.emails[0]}</span>
+
+          <span className={styles.tileNote}>Ayrıntılı sorular ve belgeler</span>
+        </a>
+      </section>
+
       <div className={styles.grid}>
-        {/* ---------------- Sol: iletişim kanalları ---------------- */}
-        <section className={styles.channels} aria-label="İletişim bilgileri">
-          <Row label="Tel" icon={<PhoneIcon />}>
-            <a href={`tel:${CONTACT.phoneRaw}`} className={styles.value}>
-              {CONTACT.phoneDisplay}
-            </a>
-          </Row>
+        {/* ---------------- Harita ve adres ---------------- */}
+        <section className={styles.mapPanel} aria-label="Klinik konumu">
+          <iframe
+            className={styles.map}
+            src={MAP_EMBED}
+            title="Klinik konumu — Google Haritalar"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
 
-          <Row label="WhatsApp" icon={<WhatsAppIcon />}>
-            <a
-              href={CONTACT.whatsappUrl}
-              className={styles.value}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {CONTACT.phoneDisplay}
-            </a>
-          </Row>
-
-          <Row label="Instagram" icon={<InstagramIcon />}>
-            <a
-              href={CONTACT.instagramUrl}
-              className={styles.value}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {CONTACT.instagramHandle}
-            </a>
-          </Row>
-
-          <Row label="Facebook" icon={<FacebookIcon />}>
-            <a
-              href={CONTACT.facebookUrl}
-              className={styles.value}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {CONTACT.facebookHandle}
-            </a>
-          </Row>
-
-          <Row label="E-posta" icon={<MailIcon />}>
-            {CONTACT.emails.map((mail) => (
-              <a key={mail} href={`mailto:${mail}`} className={styles.value}>
-                {mail}
-              </a>
-            ))}
-          </Row>
-        </section>
-
-        {/* ---------------- Sağ: adres ve saatler ---------------- */}
-        <aside className={styles.card}>
-          <div className={styles.cardBlock}>
-            <h2 className={styles.cardTitle}>Adres</h2>
+          <div className={styles.addressCard}>
+            <h2 className={styles.blockTitle}>Adres</h2>
 
             <address className={styles.address}>
               {CONTACT.address.line}
@@ -85,19 +147,24 @@ export default function IletisimPage() {
               {CONTACT.address.district}
             </address>
 
+            <p className={styles.directions}>{DIRECTIONS}</p>
+
             <a
               href={MAPS_URL}
               className={styles.mapLink}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>Haritada Aç</span>
+              <span>Yol tarifi al</span>
               <LongArrow />
             </a>
           </div>
+        </section>
 
-          <div className={styles.cardBlock}>
-            <h2 className={styles.cardTitle}>Çalışma Saatleri</h2>
+        {/* ---------------- Saatler ve diğer kanallar ---------------- */}
+        <aside className={styles.side}>
+          <div className={styles.card}>
+            <h2 className={styles.blockTitle}>Çalışma saatleri</h2>
 
             <ul className={styles.hours}>
               {CONTACT.hours.map((slot) => (
@@ -106,42 +173,69 @@ export default function IletisimPage() {
                   <span className={styles.hoursTime}>{slot.time}</span>
                 </li>
               ))}
+
+              <li className={styles.hoursRow}>
+                <span>Pazar</span>
+                <span className={styles.hoursTime}>Kapalı</span>
+              </li>
+            </ul>
+
+            <p className={styles.cardNote}>
+              Muayene randevu ile yapılır. Ameliyat günlerinde telefonla
+              ulaşmakta güçlük yaşarsanız WhatsApp üzerinden mesaj bırakın.
+            </p>
+          </div>
+
+          <div className={styles.card}>
+            <h2 className={styles.blockTitle}>Sosyal medya</h2>
+
+            <ul className={styles.linkList}>
+              <li>
+                <a
+                  href={CONTACT.instagramUrl}
+                  className={styles.linkRow}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon />
+                  <span>{CONTACT.instagramHandle}</span>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href={CONTACT.facebookUrl}
+                  className={styles.linkRow}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FacebookIcon />
+                  <span>{CONTACT.facebookHandle}</span>
+                </a>
+              </li>
+
+              {CONTACT.emails.slice(1).map((mail) => (
+                <li key={mail}>
+                  <a href={`mailto:${mail}`} className={styles.linkRow}>
+                    <MailIcon />
+                    <span>{mail}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <a href={`tel:${CONTACT.phoneRaw}`} className={styles.cta}>
-            <PhoneIcon />
-            <span>Kliniği Ara</span>
-          </a>
+          <p className={styles.privacy}>
+            İlettiğiniz kişisel veriler yalnızca randevu ve bilgilendirme
+            amacıyla işlenir. Ayrıntı için{" "}
+            <a href="/kvkk" className={styles.inlineLink}>
+              KVKK Aydınlatma Metni
+            </a>
+            .
+          </p>
         </aside>
       </div>
     </main>
-  );
-}
-
-/* ---------------- Satır ---------------- */
-
-function Row({
-  label,
-  icon,
-  children,
-}: {
-  label: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className={styles.row}>
-      <span className={styles.rowIcon} aria-hidden="true">
-        {icon}
-      </span>
-
-      <div className={styles.rowBody}>
-        <p className={styles.label}>{label}</p>
-
-        <div className={styles.values}>{children}</div>
-      </div>
-    </div>
   );
 }
 
