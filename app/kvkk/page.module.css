@@ -1,0 +1,138 @@
+/* Tek sütun, tek akış. Hukuki metin olduğu için süs yok:
+   iş, uzun okumada gözü yormamak. */
+
+.page {
+  --c-ink: var(--ink, #241c16);
+  --c-muted: color-mix(in srgb, var(--c-ink) 72%, transparent);
+  --c-faint: color-mix(in srgb, var(--c-ink) 44%, transparent);
+  --c-rule: var(--hairline, rgba(36, 28, 22, 0.13));
+  --c-gold: var(--gold, #b08b52);
+  --c-bg: var(--sand-pale, #f7f2ec);
+
+  min-height: 70vh;
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(80px, 10vw, 140px);
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+
+/* Yaklaşık 68 karakterlik satır: uzun metinde göz satır başını
+   kaybetmeden dönebiliyor. */
+.document {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+/* ---------------- Başlık ---------------- */
+
+.head {
+  padding-bottom: clamp(26px, 3.5vw, 38px);
+  border-bottom: 1px solid var(--c-rule);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.eyebrow::after {
+  content: "";
+  width: clamp(40px, 7vw, 80px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+  font-weight: 300;
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.updated {
+  margin: 18px 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--c-faint);
+}
+
+/* ---------------- Metin ---------------- */
+
+.intro {
+  margin: clamp(28px, 4vw, 40px) 0 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.section {
+  margin-top: clamp(30px, 4vw, 44px);
+}
+
+/* Ara başlıklar metnin akışını kesmeyecek kadar küçük;
+   yalnızca gözün nerede olduğunu bilmesi için var. */
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+}
+
+.heading::before {
+  content: "";
+  flex: none;
+  width: 20px;
+  height: 1px;
+  background: var(--c-gold);
+}
+
+.paragraph {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.06rem);
+  /* Uzun paragraflarda satır arası biraz açık olmalı, yoksa
+     göz alt satıra atlarken kayıyor. */
+  line-height: 1.95;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.paragraph + .paragraph {
+  margin-top: 1.15em;
+}
+
+/* ---------------- Kırılma noktaları ---------------- */
+
+@media (max-width: 620px) {
+  /* Dar ekranda iki yana yaslama kelime aralarını açıyor;
+     sola yaslı daha okunaklı. */
+  .paragraph {
+    text-align: left;
+    hyphens: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    transition: none !important;
+  }
+}
