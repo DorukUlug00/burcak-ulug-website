@@ -85,7 +85,7 @@ export default function IletisimPage() {
 
       {/* ---------------- Birincil kanallar ---------------- */}
       <section className={styles.actions} aria-label="Hızlı iletişim">
-        <a href={`tel:${CONTACT.phoneRaw}`} className={styles.tile}>
+        <a /*href={`tel:${CONTACT.phoneRaw}`}*/ className={styles.tile}>
           <span className={styles.tileIcon} aria-hidden="true">
             <PhoneIcon />
           </span>
