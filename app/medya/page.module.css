@@ -1,0 +1,552 @@
+/* Diğer sayfalarla aynı jeton yaklaşımı: globals.css varsa oradan,
+   yoksa yedek değerden. */
+
+.page {
+  --c-ink: var(--ink, #241c16);
+  --c-muted: color-mix(in srgb, var(--c-ink) 62%, transparent);
+  --c-faint: color-mix(in srgb, var(--c-ink) 40%, transparent);
+  --c-rule: var(--hairline, rgba(36, 28, 22, 0.13));
+  --c-gold: var(--gold, #b08b52);
+  --c-bg: var(--sand-pale, #f7f2ec);
+  --c-panel: #fffdfa;
+  --c-panel-deep: #efe7db;
+
+  position: relative;
+  min-height: 70vh;
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(64px, 9vw, 128px);
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+
+/* Çok hafif bir kağıt dokusu — düz zemin görsellerin yanında
+   fazla steril duruyordu. */
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.09'/%3E%3C/svg%3E");
+}
+
+.page > * {
+  position: relative;
+}
+
+/* ---------------- Başlık ---------------- */
+
+.head {
+  display: grid;
+  gap: clamp(20px, 4vw, 56px);
+  align-items: end;
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.eyebrow::after {
+  content: "";
+  width: clamp(40px, 8vw, 88px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.titleAccent {
+  display: block;
+  padding-left: clamp(24px, 6vw, 96px);
+  font-style: italic;
+  color: var(--c-gold);
+}
+
+.intro {
+  margin: 0 0 6px;
+  max-width: 38ch;
+  font-size: 1rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+/* ---------------- Süzgeç ---------------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1180px;
+  margin: clamp(32px, 5vw, 52px) auto 0;
+  padding-top: clamp(20px, 3vw, 28px);
+  border-top: 1px solid var(--c-rule);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter,
+.filterActive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border: 1px solid var(--c-rule);
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--c-muted);
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease;
+}
+
+.filter:hover {
+  border-color: var(--c-gold);
+  color: var(--c-ink);
+}
+
+.filterActive {
+  background: var(--c-ink);
+  border-color: var(--c-ink);
+  color: var(--c-bg);
+}
+
+.filter:focus-visible,
+.filterActive:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 2px;
+}
+
+.filterCount {
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
+}
+
+/* ---------------- Gruplar ---------------- */
+
+.group {
+  max-width: 1180px;
+  margin: clamp(32px, 4vw, 52px) auto 0;
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 clamp(16px, 2vw, 22px);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+}
+
+/* Başlıktan sonra sayfa genişliğince ince çizgi. */
+.groupTitle::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--c-rule);
+}
+
+/* ---------------- Izgaralar ----------------
+   Video 16:9, dergi sayfası dik. İkisini aynı karoya sokmak yerine
+   her tür kendi ızgarasında kendi oranıyla duruyor. */
+
+.videoGrid,
+.photoGrid {
+  display: grid;
+  gap: clamp(14px, 1.6vw, 22px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.videoGrid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+}
+
+.photoGrid {
+  grid-template-columns: repeat(auto-fill, minmax(min(45%, 240px), 1fr));
+}
+
+.videoTile,
+.photoTile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--c-panel-deep);
+  isolation: isolate;
+}
+
+.videoTile {
+  aspect-ratio: 16 / 9;
+}
+
+/* Dergi sayfası oranı. */
+.photoTile {
+  aspect-ratio: 3 / 4;
+}
+
+/* Öne çıkan kayıt iki sütun kaplar. */
+.wide {
+  grid-column: span 2;
+}
+
+.surface {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.surface:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: -4px;
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+/* hqdefault 4:3 ve siyah bantlı gelir; hafif büyütme bantları
+   çerçevenin dışına atıyor. */
+.mediaCropped {
+  composes: media;
+  transform: scale(1.35);
+}
+
+/* Dergi taramasının üst kenarı daha önemli: alt kenardan kırp. */
+.photoTile .media {
+  object-position: top center;
+}
+
+.videoTile:hover .media,
+.photoTile:hover .media {
+  transform: scale(1.045);
+}
+
+.videoTile:hover .mediaCropped {
+  transform: scale(1.4);
+}
+
+.player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Künyenin okunması için alttan yukarı koyulaşan sıcak perde. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(28, 20, 14, 0.88) 0%,
+    rgba(28, 20, 14, 0.5) 30%,
+    rgba(28, 20, 14, 0.06) 62%,
+    rgba(28, 20, 14, 0) 80%
+  );
+  transition: opacity 400ms ease;
+}
+
+.videoTile:hover .scrim,
+.photoTile:hover .scrim {
+  opacity: 0.9;
+}
+
+.playBadge,
+.zoomBadge {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 253, 250, 0.55);
+  color: #fffdfa;
+  backdrop-filter: blur(3px);
+  transition:
+    background 260ms ease,
+    border-color 260ms ease,
+    transform 260ms ease,
+    opacity 260ms ease;
+}
+
+/* Oynatma düğmesi ortada: video karosunun okunması gereken ilk şeyi. */
+.playBadge {
+  left: 50%;
+  top: 50%;
+  width: clamp(52px, 5vw, 66px);
+  aspect-ratio: 1;
+  /* Üçgen optik olarak ortalansın diye 3px sağa. */
+  padding-left: 3px;
+  transform: translate(-50%, -50%);
+}
+
+.zoomBadge {
+  right: 14px;
+  top: 14px;
+  width: 36px;
+  height: 36px;
+  opacity: 0;
+}
+
+.videoTile:hover .playBadge,
+.surface:focus-visible .playBadge {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.photoTile:hover .zoomBadge,
+.surface:focus-visible .zoomBadge {
+  opacity: 1;
+}
+
+/* ---------------- Künye ---------------- */
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(14px, 1.8vw, 22px);
+  /* Tıklama alttaki butona geçsin. */
+  pointer-events: none;
+  color: #fffdfa;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  font-size: 0.66rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 253, 250, 0.7);
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.3vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+/* ---------------- Boş durum ---------------- */
+
+.empty {
+  max-width: 46ch;
+  margin: clamp(32px, 6vw, 64px) auto;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--c-muted);
+}
+
+.code {
+  padding: 2px 6px;
+  background: var(--c-panel-deep);
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* ---------------- Büyütülmüş fotoğraf ---------------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 5vw, 64px);
+  background: rgba(24, 17, 12, 0.94);
+  backdrop-filter: blur(6px);
+  animation: fade 240ms ease both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.lightboxFigure {
+  position: relative;
+  width: min(1100px, 100%);
+  height: min(76vh, 100%);
+  margin: 0;
+  animation: rise 320ms cubic-bezier(0.16, 0.84, 0.24, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.99);
+  }
+}
+
+.lightboxImage {
+  object-fit: contain;
+}
+
+.lightboxCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px 16px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+  color: rgba(255, 253, 250, 0.72);
+}
+
+.lightboxCaption strong {
+  font-weight: 400;
+  color: #fffdfa;
+}
+
+.counter {
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: rgba(255, 253, 250, 0.55);
+}
+
+.close,
+.prev,
+.next {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 253, 250, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: #fffdfa;
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.close:hover,
+.prev:hover,
+.next:hover {
+  background: rgba(255, 253, 250, 0.14);
+  border-color: rgba(255, 253, 250, 0.5);
+}
+
+.close:focus-visible,
+.prev:focus-visible,
+.next:focus-visible {
+  outline: 2px solid var(--gold, #b08b52);
+  outline-offset: 2px;
+}
+
+.close {
+  top: clamp(16px, 3vw, 32px);
+  right: clamp(16px, 3vw, 32px);
+}
+
+.prev,
+.next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: clamp(8px, 2vw, 28px);
+}
+
+.next {
+  right: clamp(8px, 2vw, 28px);
+}
+
+.next svg {
+  transform: rotate(180deg);
+}
+
+/* ---------------- Kırılma noktaları ---------------- */
+
+@media (min-width: 900px) {
+  .head {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+}
+
+@media (max-width: 819px) {
+  /* Tek ya da iki sütunda "wide" karo taşmasın. */
+  .wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .prev,
+  .next {
+    top: auto;
+    bottom: clamp(16px, 4vw, 28px);
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .lightbox,
+  .lightbox * {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .videoTile:hover .media,
+  .photoTile:hover .media {
+    transform: none;
+  }
+
+  .videoTile:hover .mediaCropped {
+    transform: scale(1.35);
+  }
+}
