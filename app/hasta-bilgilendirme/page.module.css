@@ -1,0 +1,253 @@
+/* Diğer sayfalarla aynı jeton yaklaşımı. Buradaki iş, hastanın
+   aradığı bilgiyi hızlı bulması: zaman etiketleri sol kenarda. */
+
+.page {
+  --c-ink: var(--ink, #241c16);
+  --c-muted: color-mix(in srgb, var(--c-ink) 70%, transparent);
+  --c-faint: color-mix(in srgb, var(--c-ink) 44%, transparent);
+  --c-rule: var(--hairline, rgba(36, 28, 22, 0.13));
+  --c-gold: var(--gold, #b08b52);
+  --c-bg: var(--sand-pale, #f7f2ec);
+
+  min-height: 70vh;
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(80px, 10vw, 140px);
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+
+.document {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+/* ---------------- Başlık ---------------- */
+
+.hero {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+  padding-bottom: clamp(24px, 3.5vw, 36px);
+}
+
+.head {
+  max-width: 62ch;
+}
+
+.heroFigure {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--c-ink) 8%, transparent);
+}
+
+/* Görselin içinde duran ince çerçeve — diğer sayfalarla aynı detay. */
+.heroFigure::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 253, 250, 0.32);
+  pointer-events: none;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.eyebrow::after {
+  content: "";
+  width: clamp(40px, 7vw, 80px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.titleAccent {
+  display: block;
+  font-style: italic;
+  color: var(--c-gold);
+}
+
+.intro {
+  margin: 24px 0 0;
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+/* ---------------- Bölümler ---------------- */
+
+.section {
+  display: grid;
+  gap: 10px;
+  padding: clamp(28px, 4vw, 44px) 0;
+  border-top: 1px solid var(--c-rule);
+}
+
+.section:first-of-type {
+  margin-top: clamp(12px, 2vw, 20px);
+}
+
+/* Zaman etiketi: sayfanın ritmini kuran şey bu. Hasta "kaç saat
+   aç kalacağım" diye baktığında gözü doğrudan buraya gidiyor. */
+.when {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: var(--c-gold);
+}
+
+.sectionBody {
+  max-width: 62ch;
+  min-width: 0;
+}
+
+.heading {
+  margin: 0 0 14px;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.paragraph {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.06rem);
+  line-height: 1.85;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.paragraph + .paragraph {
+  margin-top: 1.1em;
+}
+
+/* ---------------- Listeler ---------------- */
+
+.list {
+  margin: 1.1em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  padding: 9px 0 9px 26px;
+  border-top: 1px solid var(--c-rule);
+  font-size: clamp(0.98rem, 1.2vw, 1.04rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.item:last-child {
+  border-bottom: 1px solid var(--c-rule);
+}
+
+/* Nokta yerine kısa altın çizgi — sakin ve maddeyi öne çıkarıyor. */
+.item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.55em;
+  width: 12px;
+  height: 1px;
+  background: var(--c-gold);
+}
+
+/* ---------------- Kapanış ---------------- */
+
+.foot {
+  margin-top: clamp(28px, 4vw, 40px);
+  padding-top: clamp(22px, 3vw, 30px);
+  border-top: 1px solid var(--c-rule);
+  max-width: 62ch;
+}
+
+.note {
+  margin: 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--c-gold);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.contact {
+  margin: 20px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--c-faint);
+}
+
+.inlineLink {
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--c-rule);
+  text-underline-offset: 4px;
+  transition:
+    color 200ms ease,
+    text-decoration-color 200ms ease;
+}
+
+.inlineLink:hover,
+.inlineLink:focus-visible {
+  color: var(--c-gold);
+  text-decoration-color: currentColor;
+}
+
+/* ---------------- Kırılma noktaları ---------------- */
+
+@media (min-width: 820px) {
+  /* Başlık solda, görsel sağda. */
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.62fr);
+  }
+
+  /* Zaman etiketi kenar boşluğuna çıkıyor, metin tek hizada akıyor. */
+  .section {
+    grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
+    gap: 0 clamp(28px, 4vw, 56px);
+  }
+
+  .when {
+    padding-top: 0.5em;
+    text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    transition: none !important;
+  }
+}
