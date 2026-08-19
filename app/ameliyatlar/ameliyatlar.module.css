@@ -1,0 +1,537 @@
+/* Hem /ameliyatlar hem de /ameliyatlar/[islem] bu dosyayı kullanır.
+   Diğer sayfalarla aynı jeton yaklaşımı. */
+
+.page {
+  --c-ink: var(--ink, #241c16);
+  --c-muted: color-mix(in srgb, var(--c-ink) 66%, transparent);
+  --c-faint: color-mix(in srgb, var(--c-ink) 42%, transparent);
+  --c-rule: var(--hairline, rgba(36, 28, 22, 0.13));
+  --c-gold: var(--gold, #b08b52);
+  --c-bg: var(--sand-pale, #f7f2ec);
+  --c-panel: #fffdfa;
+  --c-panel-deep: #efe7db;
+
+  min-height: 70vh;
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(72px, 10vw, 140px);
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+
+.page > * {
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+}
+
+.eyebrow::after {
+  content: "";
+  width: clamp(40px, 7vw, 80px);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.titleAccent {
+  display: block;
+  font-style: italic;
+  color: var(--c-gold);
+}
+
+/* ================================================================
+   /ameliyatlar — dizin
+   Kutu yok: her satır ince bir çizgiyle ayrılıyor, iş tipografiye
+   ve boşluğa bırakılıyor.
+   ================================================================ */
+
+.indexHead {
+  padding-bottom: clamp(28px, 5vw, 56px);
+}
+
+.indexTitle {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.indexIntro {
+  margin: 28px 0 0;
+  max-width: 50ch;
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.75;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.group {
+  display: grid;
+  gap: clamp(18px, 3vw, 48px);
+  align-items: start;
+  padding: clamp(28px, 4vw, 48px) 0;
+  border-top: 1px solid var(--c-rule);
+  /* Menüden #meme-estetigi ile gelindiğinde başlık navbar altında
+     kalmasın. */
+  scroll-margin-top: 110px;
+}
+
+.groupTitle {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--c-gold);
+  text-wrap: balance;
+}
+
+.groupBlurb {
+  margin: 12px 0 0;
+  max-width: 34ch;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.generalLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.generalLink svg {
+  transition: transform 300ms ease;
+}
+
+.generalLink:hover,
+.generalLink:focus-visible {
+  color: var(--c-gold);
+}
+
+.generalLink:hover svg,
+.generalLink:focus-visible svg {
+  transform: translateX(5px);
+}
+
+/* ---------------- Satırlar ---------------- */
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 20px;
+  padding: clamp(16px, 2vw, 22px) 0;
+  border-bottom: 1px solid var(--c-rule);
+  color: inherit;
+  text-decoration: none;
+  /* İsim, fare üstündeyken hafifçe sağa kayıyor — tek hareket,
+     kutuya gerek yok. */
+  transition: padding-left 320ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.list > li:first-child .row {
+  border-top: 1px solid var(--c-rule);
+}
+
+.row:hover,
+.row:focus-visible {
+  padding-left: 14px;
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--c-gold);
+  outline-offset: 4px;
+}
+
+.rowText {
+  min-width: 0;
+}
+
+.rowTitle {
+  display: block;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  transition: color 200ms ease;
+}
+
+.row:hover .rowTitle,
+.row:focus-visible .rowTitle {
+  color: var(--c-gold);
+}
+
+/* Girişin ilk satırı: seçim yapmaya yetecek kadar, sayfayı
+   yormayacak kadar. */
+.rowLead {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  margin-top: 6px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--c-faint);
+}
+
+.rowArrow {
+  color: var(--c-rule);
+  transition:
+    color 220ms ease,
+    transform 320ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.row:hover .rowArrow,
+.row:focus-visible .rowArrow {
+  color: var(--c-gold);
+  transform: translateX(6px);
+}
+
+/* ================================================================
+   /ameliyatlar/[islem] — detay
+   ================================================================ */
+
+.detail {
+  --c-ink: var(--ink, #241c16);
+  --c-muted: color-mix(in srgb, var(--c-ink) 66%, transparent);
+  --c-faint: color-mix(in srgb, var(--c-ink) 42%, transparent);
+  --c-rule: var(--hairline, rgba(36, 28, 22, 0.13));
+  --c-gold: var(--gold, #b08b52);
+  --c-bg: var(--sand-pale, #f7f2ec);
+  --c-panel: #fffdfa;
+  --c-panel-deep: #efe7db;
+
+  display: block;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(72px, 10vw, 140px);
+  background: var(--c-bg);
+  color: var(--c-ink);
+}
+
+/* Yazı sayfasının zemini gövdeye kadar insin. */
+.detail::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--c-bg);
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+}
+
+.crumbLink {
+  color: var(--c-gold);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+
+.crumbLink:hover,
+.crumbLink:focus-visible {
+  opacity: 0.75;
+}
+
+.detailHead {
+  display: grid;
+  gap: clamp(26px, 4vw, 56px);
+  align-items: center;
+  padding-bottom: clamp(26px, 3.5vw, 40px);
+  border-bottom: 1px solid var(--c-rule);
+}
+
+.detailTitle {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 22px 0 0;
+  max-width: 54ch;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 300;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.detailFigure {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--c-panel-deep);
+}
+
+.detailFigure::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 253, 250, 0.32);
+  pointer-events: none;
+}
+
+.detailImage {
+  object-fit: cover;
+}
+
+/* ---------------- Künye satırı ---------------- */
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px;
+  margin: clamp(28px, 3.5vw, 40px) 0 0;
+  background: var(--c-rule);
+  border-block: 1px solid var(--c-rule);
+}
+
+.fact {
+  padding: clamp(16px, 2vw, 22px) clamp(12px, 1.6vw, 18px);
+  background: var(--c-bg);
+}
+
+.factLabel {
+  margin: 0 0 6px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+}
+
+.factValue {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------- Metin ---------------- */
+
+.section {
+  max-width: 66ch;
+  margin-top: clamp(30px, 4vw, 44px);
+  padding-top: clamp(22px, 3vw, 30px);
+  border-top: 1px solid var(--c-rule);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heading::before {
+  content: "";
+  flex: none;
+  width: 20px;
+  height: 1px;
+  background: var(--c-gold);
+}
+
+.paragraph {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.06rem);
+  line-height: 1.9;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.paragraph + .paragraph {
+  margin-top: 1.15em;
+}
+
+/* ---------------- Sık sorulanlar ---------------- */
+
+.faq {
+  margin: 0;
+}
+
+.faqItem {
+  padding: clamp(16px, 2vw, 20px) 0;
+  border-top: 1px solid var(--c-rule);
+}
+
+.faqItem:last-child {
+  border-bottom: 1px solid var(--c-rule);
+}
+
+.question {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.answer {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.8;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+/* ---------------- Kapanış ---------------- */
+
+.pending {
+  max-width: 54ch;
+  margin: clamp(30px, 4vw, 44px) 0 0;
+  padding: clamp(20px, 2.5vw, 26px);
+  background: var(--c-panel);
+  border: 1px solid var(--c-rule);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--c-muted);
+}
+
+.detailFoot {
+  margin-top: clamp(36px, 5vw, 56px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--c-rule);
+}
+
+.note {
+  max-width: 62ch;
+  margin: 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--c-gold);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  text-wrap: pretty;
+  color: var(--c-muted);
+}
+
+.siblings {
+  margin-top: clamp(28px, 3.5vw, 40px);
+}
+
+.siblingsTitle {
+  margin: 0 0 14px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+}
+
+.siblingList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.siblingLink {
+  display: inline-flex;
+  padding: 9px 18px;
+  border: 1px solid var(--c-rule);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: var(--c-muted);
+  text-decoration: none;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.siblingLink:hover,
+.siblingLink:focus-visible {
+  border-color: var(--c-gold);
+  color: var(--c-gold);
+}
+
+.inlineLink {
+  color: var(--c-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--c-rule);
+  text-underline-offset: 4px;
+}
+
+.inlineLink:hover,
+.inlineLink:focus-visible {
+  color: var(--c-gold);
+}
+
+/* ---------------- Kırılma noktaları ---------------- */
+
+@media (min-width: 860px) {
+  .group {
+    grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  }
+
+  /* Kategori başlığı, listesi akarken yerinde kalıyor. */
+  .groupHead {
+    position: sticky;
+    top: 110px;
+  }
+}
+
+@media (min-width: 900px) {
+  .detailHead {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.5fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    transition: none !important;
+  }
+}

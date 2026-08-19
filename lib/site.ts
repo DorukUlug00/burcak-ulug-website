@@ -165,5 +165,4 @@ export const NAV: NavItem[] = [
   },
   { label: "Hasta Bilgilendirme", href: "/hasta-bilgilendirme" },
   { label: "KVKK", href: "/kvkk" },
-  { label: "İletişim", href: "/iletisim" },
 ];
