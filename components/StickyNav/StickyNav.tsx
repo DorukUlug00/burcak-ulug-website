@@ -36,8 +36,12 @@ export default function StickyNav({
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  /* Ana sayfada bar hero geçilince belirir.
-     Diğer sayfalarda hero yok, bu yüzden en baştan görünür. */
+  /* Bar HER ZAMAN görünür. Değişen tek şey görünümü:
+       - ana sayfada hero üzerindeyken saydam, yazılar krem
+       - hero geçildikten sonra ve diğer sayfalarda krem zemin,
+         koyu yazı
+     Böylece menü hiçbir noktada kaybolmuyor ama hero görselini
+     de kapatmıyor. */
   const [scrolledPast, setScrolledPast] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -49,8 +53,8 @@ export default function StickyNav({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Only show once the sentinel has left through the TOP of the viewport,
-        // never while it's still below the fold.
+        /* Yalnızca sentinel ekranın ÜSTÜNDEN çıktığında katı hâle
+           geçer; henüz aşağıdayken değil. */
         setScrolledPast(
           !entry.isIntersecting && entry.boundingClientRect.top < 0,
         );
@@ -62,7 +66,7 @@ export default function StickyNav({
     return () => observer.disconnect();
   }, [isHome]);
 
-  const visible = !isHome || scrolledPast;
+  const solid = !isHome || scrolledPast;
 
   /* Açık menüler: 1. seviye (Ameliyatlar) ve 2. seviye (Yüz Estetiği).
      Aynı anda her seviyeden tek menü açık olur. */
@@ -130,16 +134,14 @@ export default function StickyNav({
 
   return (
     <>
-      {/* Sits exactly where the hero ends. Sadece ana sayfada gerekli. */}
+      {/* Hero'nun bittiği noktayı işaretler; bar burayı geçince
+          katı zemine döner. Sadece ana sayfada gerekli. */}
       {isHome ? (
         <div ref={sentinelRef} className={styles.sentinel} aria-hidden="true" />
       ) : null}
 
-      <div
-        className={`${styles.bar} ${visible ? styles.visible : ""}`}
-        // Keeps it out of the tab order and off screen readers while hidden.
-        inert={!visible || undefined}
-      >
+      {/* inert YOK: bar her zaman görünür ve her zaman erişilebilir. */}
+      <div className={`${styles.bar} ${solid ? styles.solid : ""}`}>
         <Link href="/" className={styles.brand}>
           <span className={styles.monogram}>{monogram}</span>
           <span className={styles.brandName}>{name}</span>

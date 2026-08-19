@@ -1,12 +1,29 @@
 /* ============================================================
    SABİT MENÜ — tam dosya
+
+   Bar her zaman ekranda. İki görünümü var:
+     .bar          -> saydam (ana sayfada hero üzerindeyken)
+     .bar.solid    -> krem zemin (hero geçilince ve diğer sayfalarda)
+
+   Renkler iki gruba ayrıldı:
+     --bar-*    duruma göre değişir (bar yazıları)
+     --panel-*  hiç değişmez (açılır menü kutuları her zaman
+                krem zemin + koyu yazı)
    ============================================================ */
 
 .bar {
-  --ink: #1c1a18;
-  --paper: #fbfaf8;
-  --muted: #6d6660;
-  --rule: #e2ddd6;
+  /* Açılır menüler — sabit */
+  --panel: #fbfaf8;
+  --panel-ink: #1c1a18;
+  --panel-muted: #6d6660;
+  --panel-rule: #e2ddd6;
+
+  /* Barın kendisi — saydam hâl */
+  --bar-bg: transparent;
+  --bar-ink: #fbfaf8;
+  --bar-muted: rgba(251, 250, 248, 0.82);
+  --bar-rule: rgba(251, 250, 248, 0.42);
+  --bar-border: transparent;
 
   position: fixed;
   top: 0;
@@ -23,27 +40,56 @@
   padding: 0 clamp(16px, 4vw, 48px);
   min-height: 68px;
 
-  background: rgba(251, 250, 248, 0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
-  color: var(--ink);
+  background: var(--bar-bg);
+  border-bottom: 1px solid var(--bar-border);
+  color: var(--bar-ink);
 
-  /* Görünmeden önce yukarıda bekler. */
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: opacity 300ms ease, transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    color 320ms ease,
+    backdrop-filter 320ms ease;
 }
 
-.visible {
+/* Saydam hâlde yazının açık görsellerde de okunması için
+   üstten aşağı çok hafif bir karartma. */
+.bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 14, 10, 0.42) 0%,
+    rgba(20, 14, 10, 0.16) 62%,
+    rgba(20, 14, 10, 0) 100%
+  );
   opacity: 1;
-  transform: translateY(0);
+  transition: opacity 320ms ease;
+  pointer-events: none;
 }
 
-/* Hero'nun bittiği noktayı işaretler; bar bunu geçince belirir.
+/* ---------------- Katı hâl ---------------- */
+
+.solid {
+  --bar-bg: rgba(251, 250, 248, 0.9);
+  --bar-ink: #1c1a18;
+  --bar-muted: #6d6660;
+  --bar-rule: #e2ddd6;
+  --bar-border: #e2ddd6;
+
+  backdrop-filter: blur(12px);
+}
+
+.solid::before {
+  opacity: 0;
+}
+
+/* Hero'nun bittiği noktayı işaretler; bar burayı geçince katı olur.
    Hero yüksekliğin farklıysa `top` değerini ona göre ayarla. */
 .sentinel {
   position: absolute;
-  top: 50vh;
+  top: calc(30svh - 68px);
   left: 0;
   width: 1px;
   height: 1px;
@@ -65,10 +111,11 @@
   place-items: center;
   width: 30px;
   height: 30px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--bar-rule);
   border-radius: 999px;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
+  transition: border-color 320ms ease;
 }
 
 .brandName {
@@ -95,7 +142,7 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--bar-muted);
   text-decoration: none;
   white-space: nowrap;
 
@@ -104,11 +151,11 @@
 
 .navLink:hover,
 .navLink:focus-visible {
-  color: var(--ink);
+  color: var(--bar-ink);
 }
 
 .navLinkActive {
-  color: var(--ink);
+  color: var(--bar-ink);
 }
 
 /* ---------------- Sağ taraf ---------------- */
@@ -123,24 +170,38 @@
   display: inline-flex;
   align-items: center;
   padding: 11px 20px;
-  border: 1px solid var(--ink);
+  border: 1px solid currentColor;
   border-radius: 999px;
 
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--bar-ink);
   text-decoration: none;
   white-space: nowrap;
 
-  transition: background-color 200ms ease, color 200ms ease;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease,
+    border-color 320ms ease;
 }
 
 .cta:hover,
 .cta:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--bar-ink);
+  /* Saydam hâlde krem üstüne koyu, katı hâlde koyu üstüne krem. */
+  color: var(--bar-bg, var(--panel));
+}
+
+.solid .cta:hover,
+.solid .cta:focus-visible {
+  color: var(--panel);
+}
+
+.bar:not(.solid) .cta:hover,
+.bar:not(.solid) .cta:focus-visible {
+  color: #1c1a18;
 }
 
 .menuButton {
@@ -148,11 +209,18 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--bar-rule);
   border-radius: 999px;
   background: none;
-  color: var(--ink);
+  color: var(--bar-ink);
   cursor: pointer;
+  transition: border-color 320ms ease;
+}
+
+.bar a:focus-visible,
+.bar button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* ============================================================
@@ -180,7 +248,9 @@
   color: inherit;
   opacity: 0.6;
   cursor: pointer;
-  transition: transform 250ms ease, opacity 250ms ease;
+  transition:
+    transform 250ms ease,
+    opacity 250ms ease;
 }
 
 .caretButton:hover,
@@ -218,7 +288,9 @@
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -6px);
-  transition: opacity 200ms ease, transform 200ms ease,
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
     visibility 0s linear 200ms;
 }
 
@@ -226,7 +298,10 @@
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);
-  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    visibility 0s linear 0s;
 }
 
 .submenuList {
@@ -235,15 +310,15 @@
   padding: 0;
   list-style: none;
 
-  background: var(--paper);
-  border: 1px solid var(--rule);
+  background: var(--panel);
+  border: 1px solid var(--panel-rule);
   box-shadow: 0 18px 40px rgba(28, 26, 24, 0.14);
   white-space: nowrap;
   /* overflow: hidden YOK — 3. seviye panelinin dışarı taşması gerekiyor. */
 }
 
 .submenuList > li + li {
-  border-left: 1px solid var(--rule);
+  border-left: 1px solid var(--panel-rule);
 }
 
 .subItem {
@@ -270,7 +345,8 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink);
+  /* Panel yazıları bardan bağımsız: her zaman koyu. */
+  color: var(--panel-ink);
   text-decoration: none;
 }
 
@@ -294,7 +370,9 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
-  transition: opacity 180ms ease, transform 180ms ease,
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
     visibility 0s linear 180ms;
 }
 
@@ -302,7 +380,10 @@
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 0s;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 0s linear 0s;
 }
 
 .subPanelList {
@@ -310,8 +391,8 @@
   padding: 0;
   list-style: none;
 
-  background: var(--paper);
-  border: 1px solid var(--rule);
+  background: var(--panel);
+  border: 1px solid var(--panel-rule);
   border-top: 0;
   box-shadow: 0 18px 40px rgba(28, 26, 24, 0.14);
 }
@@ -331,24 +412,26 @@
   text-decoration: none;
   white-space: nowrap;
 
-  transition: background-color 180ms ease, color 180ms ease;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 .leafLink:hover,
 .leafLink:focus-visible {
   background: #efece7;
-  color: var(--ink);
+  color: var(--panel-ink);
 }
 
 .leafLinkActive {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--panel-ink);
+  color: var(--panel);
 }
 
 .leafLinkActive:hover,
 .leafLinkActive:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--panel-ink);
+  color: var(--panel);
 }
 
 /* ============================================================
@@ -363,7 +446,7 @@
 
   .submenuList > li + li {
     border-left: 0;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--panel-rule);
   }
 
   /* 3. seviye yana açılsın, aşağı değil. */
@@ -374,7 +457,7 @@
   }
 
   .subPanelList {
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--panel-rule);
   }
 }
 
@@ -403,10 +486,13 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bar,
+  .bar::before,
   .submenu,
   .subPanel,
   .caretButton,
-  .subCaret {
-    transition: none;
+  .subCaret,
+  .cta,
+  .navLink {
+    transition: none !important;
   }
 }
