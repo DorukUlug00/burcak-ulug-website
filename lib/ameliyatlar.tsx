@@ -54,8 +54,11 @@ export type Content = {
   facts?: Fact[];
   sections?: Section[];
   faq?: Faq[];
-  /* public/ameliyatlar/ altındaki görsel. */
+  /* Başlığın arkasındaki tam genişlik görsel. public/ altındaki
+     yol yazılır: "/operations/background1.png". */
   image?: string;
+  /* Görsel yalnızca dekoratifse boş bırak — ekran okuyucular atlar.
+     Görselde bilgi taşıyan bir şey varsa mutlaka yaz. */
   imageAlt?: string;
 };
 
@@ -102,12 +105,14 @@ export const CATEGORIES: Category[] = [
   {
     slug: "yuz-estetigi",
     title: "Yüz Estetiği",
+    image: "/operations/background1.png",
     blurb: "Yüz ve göz çevresine yönelik cerrahi işlemler.",
     lead: "Yüz ve boyun bölgesindeki yaşlanma değişiklikleri, tek bir ameliyatla değil; alın, kaş, göz kapakları ve yüz-boyun konturunun birlikte değerlendirilmesiyle ele alınır. Aşağıdaki başlıklar, bu bölgeye yönelik ameliyatları ayrı ayrı anlatıyor.",
   },
   {
     slug: "burun-estetigi",
     title: "Burun Estetiği",
+    image: "/operations/background1.png",
     blurb: "Burun şekli ve solunum işlevine yönelik işlemler.",
     lead: "Burundaki kemik ve kıkırdak yapıların şekil bozukluklarını düzeltmeye yönelik cerrahidir. Burun şekli kişiye özgüdür; ameliyat planı yüz oranlarıyla birlikte yapılır.",
     facts: [{ label: "Anestezi", value: "Genel anestezi" }],
@@ -131,6 +136,7 @@ export const CATEGORIES: Category[] = [
   {
     slug: "kulak-estetigi",
     title: "Kulak Estetiği",
+    image: "/operations/background1.png",
     blurb: "Kulak şekli ve konumuna yönelik işlemler.",
     lead: "Kulak sayvanı veya kulak memesindeki yapısal, travmaya ya da önceki cerrahiye bağlı büyüklük ve şekil bozukluklarını düzeltmeye yönelik ameliyatların genel adıdır. Kepçe kulak deformitesi bu grupta sık ele alınan sorunlardandır.",
     facts: [
@@ -159,18 +165,21 @@ export const CATEGORIES: Category[] = [
   {
     slug: "meme-estetigi",
     title: "Meme Estetiği",
+    image: "/operations/background1.png",
     blurb: "Meme büyüklüğü, şekli ve onarımına yönelik ameliyatlar.",
     lead: "Meme hacmi, şekli ve simetrisine yönelik ameliyatlar ile meme kanseri tedavisi sonrası onarım cerrahisini kapsar. Uygun yöntem; mevcut doku, deri yapısı ve hedeflenen görünüme göre kişiye özel planlanır.",
   },
   {
     slug: "vucut-estetigi",
     title: "Vücut Estetiği",
+    image: "/operations/background1.png",
     blurb: "Gövde ve ekstremitelere yönelik şekillendirme ameliyatları.",
     lead: "Bölgesel yağ fazlalığı ve kilo değişimi sonrası oluşan deri sarkmalarına yönelik ameliyatları kapsar. Birden fazla yöntem çoğu zaman birlikte planlanır.",
   },
   {
     slug: "ameliyatsiz-yontemler",
     title: "Ameliyatsız Yöntemler",
+    image: "/operations/background1.png",
     blurb: "Cerrahi gerektirmeyen uygulamalar.",
   },
 ];
@@ -181,6 +190,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "yuz-germe",
     category: "yuz-estetigi",
     title: "Yüz Germe",
+    image: "/operations/background1.png",
     lead: "Yüz ve boyunda yaşlanmaya bağlı gevşeyen, sarkan deri ile derin dokuların yeniden konumlandırılması ve fazla derinin çıkarılmasıyla daha gergin bir yüz-boyun konturu oluşturmayı amaçlayan ameliyattır.",
     facts: [
       { label: "Anestezi", value: "Tercihen genel anestezi" },
@@ -207,6 +217,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "alin-germe",
     category: "yuz-estetigi",
     title: "Alın Germe",
+    image: "/operations/background1.png",
     lead: "Alın bölgesindeki gevşeme ve kırışıklıkların, ayrıca kaşların konumunun düzeltilmesine yönelik yüz gençleştirme ameliyatıdır.",
     facts: [
       { label: "Anestezi", value: "Tercihen genel anestezi" },
@@ -232,6 +243,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "goz-estetigi",
     category: "yuz-estetigi",
     title: "Göz Estetiği",
+    image: "/operations/background1.png",
     lead: "Üst ve alt göz kapaklarında yaşlanmaya bağlı gevşeme, deri fazlalığı ve torbalanma gibi değişikliklerin düzeltilmesini amaçlayan cerrahi girişimdir.",
     sections: [
       {
@@ -254,6 +266,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "kas-kaldirma",
     category: "yuz-estetigi",
     title: "Kaş Kaldırma",
+    image: "/operations/background1.png",
     lead: "Özellikle kaşın dış bölümündeki düşüklüğü düzeltmeyi ve göz çevresinde daha dengeli bir görünüm sağlamayı amaçlayan estetik girişimdir.",
     sections: [
       {
@@ -276,6 +289,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "yuz-implantlari",
     category: "yuz-estetigi",
     title: "Yüz İmplantları",
+    image: "/operations/background1.png",
     lead: "Yüz ve çene kemiklerinde yapısal, travma veya ameliyat sonrası ya da yaşlanmaya bağlı kontur eksikliklerini düzeltmek amacıyla kullanılan implant uygulamalarıdır. En sık çene ve elmacık kemiği bölgesinde kullanılır.",
     facts: [
       {
@@ -309,6 +323,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "meme-buyutme",
     category: "meme-estetigi",
     title: "Meme Büyütme",
+    image: "/operations/background1.png",
     lead: "Gelişimsel nedenler, hamilelik veya kilo kaybı sonrasında ortaya çıkan meme hacmi yetersizliğini düzeltmeyi amaçlayan cerrahi girişimdir.",
     facts: [
       { label: "Anestezi", value: "Genel anestezi" },
@@ -334,6 +349,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "meme-kucultme",
     category: "meme-estetigi",
     title: "Meme Küçültme",
+    image: "/operations/background1.png",
     lead: "Büyük ve sarkık memelerde fazla meme dokusu ile derinin çıkarılması, meme başının daha uygun bir konuma taşınması ve memenin yeniden biçimlendirilmesini amaçlayan ameliyattır.",
     facts: [
       { label: "Anestezi", value: "Genel anestezi" },
@@ -359,6 +375,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "meme-diklestirme",
     category: "meme-estetigi",
     title: "Meme Dikleştirme",
+    image: "/operations/background1.png",
     lead: "Hamilelik, emzirme, kilo değişimi, yaşlanma veya yapısal nedenlerle sarkan memenin yeniden şekillendirilerek daha yukarı ve dengeli bir konuma getirilmesini amaçlayan ameliyattır.",
     facts: [{ label: "Anestezi", value: "Genel anestezi" }],
     sections: [
@@ -382,6 +399,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "meme-rekonstruksiyonu",
     category: "meme-estetigi",
     title: "Meme Rekonstrüksiyonu",
+    image: "/operations/background1.png",
     lead: "Meme kanseri nedeniyle memenin bir kısmı veya tamamı alındıktan sonra memenin yeniden oluşturulmasına yönelik cerrahi yöntemlerin genel adıdır.",
     sections: [
       {
@@ -404,6 +422,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "jinekomasti",
     category: "meme-estetigi",
     title: "Jinekomasti",
+    image: "/operations/background1.png",
     lead: "Erkekte meme dokusunun belirginleşmesi veya büyümesi durumunun cerrahi olarak düzeltilmesine yönelik işlemdir.",
     sections: [
       {
@@ -428,6 +447,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "liposuction",
     category: "vucut-estetigi",
     title: "Liposuction",
+    image: "/operations/background1.png",
     lead: "Vücutta kontur bozukluğuna yol açan bölgesel yağ fazlalıklarının azaltılmasını amaçlayan vücut şekillendirme ameliyatıdır. İdeal kilosuna yakın ve cilt elastikiyeti iyi olan kişiler daha uygun adaylardır.",
     sections: [
       {
@@ -450,6 +470,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "karin-germe",
     category: "vucut-estetigi",
     title: "Karın Germe",
+    image: "/operations/background1.png",
     lead: "Karın bölgesindeki cilt ve cilt altı dokularda oluşan sarkmayı gidermek, gevşemiş karın duvarını toparlamak ve daha düz, gergin bir karın oluşturmak amacıyla yapılan ameliyattır. Özellikle doğumlar veya belirgin kilo değişimleri sonrasında tercih edilir.",
     facts: [{ label: "Anestezi", value: "Genel anestezi" }],
     sections: [
@@ -473,6 +494,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "bacak-ici-germe",
     category: "vucut-estetigi",
     title: "Bacak İçi Germe",
+    image: "/operations/background1.png",
     lead: "Kilo alıp verme, yer çekimi veya yapısal nedenlerle bacakların iç yüzünde oluşan cilt ve cilt altı doku sarkmasını azaltarak daha gergin bir kontur oluşturmayı amaçlayan ameliyattır.",
     facts: [{ label: "Aktif yaşama dönüş", value: "Yaklaşık 10 gün" }],
     sections: [
@@ -496,6 +518,7 @@ export const PROCEDURES: Procedure[] = [
     slug: "kol-germe",
     category: "vucut-estetigi",
     title: "Kol Germe",
+    image: "/operations/background1.png",
     lead: "Kilo değişimi, yer çekimi veya yapısal nedenlerle kolun iç kısmında oluşan deri ve cilt altı doku sarkmasını gidermeye yönelik ameliyattır.",
     sections: [
       {
@@ -579,118 +602,149 @@ type Props = {
 };
 
 export function ContentArticle({ content, crumbs, related }: Props) {
+  /* Görseli olan sayfalarda başlık, fotoğrafın üzerine biner;
+     olmayanlarda sade başlık kullanılır. */
+  const hasHero = Boolean(content.image);
+
+  const crumbTrail = crumbs.map((crumb, index) => (
+    <span key={crumb.label} className={styles.crumb}>
+      {index > 0 ? (
+        <span className={styles.crumbSep} aria-hidden="true">
+          /
+        </span>
+      ) : null}
+
+      {crumb.href ? (
+        <Link href={crumb.href} className={styles.crumbLink}>
+          {crumb.label}
+        </Link>
+      ) : (
+        /* Bulunulan sayfa — bağlantı değil, beyaz. */
+        <span className={styles.crumbCurrent} aria-current="page">
+          {crumb.label}
+        </span>
+      )}
+    </span>
+  ));
+
   return (
     <article className={styles.detail}>
-      <nav className={styles.crumbs} aria-label="Konum">
-        {crumbs.map((crumb, index) => (
-          <span key={crumb.label} className={styles.crumb}>
-            {index > 0 ? <span aria-hidden="true">/</span> : null}
+      {hasHero ? (
+        <header className={styles.hero}>
+          <Image
+            className={styles.heroImage}
+            src={content.image as string}
+            alt={content.imageAlt ?? ""}
+            fill
+            sizes="100vw"
+            priority
+          />
 
-            {crumb.href ? (
-              <Link href={crumb.href} className={styles.crumbLink}>
-                {crumb.label}
-              </Link>
-            ) : (
-              <span>{crumb.label}</span>
-            )}
-          </span>
-        ))}
-      </nav>
+          {/* Yazının okunması için alttan yukarı koyulaşan perde. */}
+          <span className={styles.heroScrim} aria-hidden="true" />
 
-      <header className={styles.detailHead}>
-        <div>
+          <nav
+            className={`${styles.crumbs} ${styles.crumbsHero}`}
+            aria-label="Konum"
+          >
+            {crumbTrail}
+          </nav>
+
+          <div className={styles.heroText}>
+            <h1 className={styles.heroTitle}>{content.title}</h1>
+
+            {content.lead ? (
+              <p className={styles.heroLead}>{content.lead}</p>
+            ) : null}
+          </div>
+        </header>
+      ) : (
+        <header className={styles.plainHead}>
+          <nav className={styles.crumbs} aria-label="Konum">
+            {crumbTrail}
+          </nav>
+
           <h1 className={styles.detailTitle}>{content.title}</h1>
 
           {content.lead ? <p className={styles.lead}>{content.lead}</p> : null}
-        </div>
+        </header>
+      )}
 
-        {content.image ? (
-          <figure className={styles.detailFigure}>
-            <Image
-              className={styles.detailImage}
-              src={content.image}
-              alt={content.imageAlt ?? ""}
-              fill
-              sizes="(max-width: 900px) 100vw, 38vw"
-              priority
-            />
-          </figure>
-        ) : null}
-      </header>
-
-      {content.facts?.length ? (
-        <dl className={styles.facts}>
-          {content.facts.map((fact) => (
-            <div key={fact.label} className={styles.fact}>
-              <dt className={styles.factLabel}>{fact.label}</dt>
-              <dd className={styles.factValue}>{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
-      ) : null}
-
-      {content.sections?.map((section) => (
-        <section key={section.heading} className={styles.section}>
-          <h2 className={styles.heading}>{section.heading}</h2>
-
-          {section.body.map((paragraph) => (
-            <p key={paragraph.slice(0, 28)} className={styles.paragraph}>
-              {paragraph}
-            </p>
-          ))}
-        </section>
-      ))}
-
-      {content.faq?.length ? (
-        <section className={styles.section}>
-          <h2 className={styles.heading}>Sık sorulan sorular</h2>
-
-          <dl className={styles.faq}>
-            {content.faq.map((entry) => (
-              <div key={entry.question} className={styles.faqItem}>
-                <dt className={styles.question}>{entry.question}</dt>
-                <dd className={styles.answer}>{entry.answer}</dd>
+      <div className={styles.body}>
+        {content.facts?.length ? (
+          <dl className={styles.facts}>
+            {content.facts.map((fact) => (
+              <div key={fact.label} className={styles.fact}>
+                <dt className={styles.factLabel}>{fact.label}</dt>
+                <dd className={styles.factValue}>{fact.value}</dd>
               </div>
             ))}
           </dl>
-        </section>
-      ) : null}
-
-      {/* İçerik henüz girilmemişse sayfa boş kalmasın. */}
-      {!hasContent(content) ? (
-        <p className={styles.pending}>
-          Bu sayfanın içeriği hazırlanıyor. Bilgi almak için{" "}
-          <Link href="/iletisim" className={styles.inlineLink}>
-            klinikle iletişime geçebilirsiniz
-          </Link>
-          .
-        </p>
-      ) : null}
-
-      <footer className={styles.detailFoot}>
-        {/* Her sayfaya otomatik ekleniyor; unutulma ihtimali kalmıyor. */}
-        <p className={styles.note}>
-          Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır; hekim
-          muayenesi, tanı veya tedavinin yerine geçmez. Uygulanacak yöntem ve
-          sonuçlar kişiden kişiye değişir.
-        </p>
-
-        {related && related.items.length > 0 ? (
-          <div className={styles.siblings}>
-            <p className={styles.siblingsTitle}>{related.title}</p>
-
-            <ul className={styles.siblingList}>
-              {related.items.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className={styles.siblingLink}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         ) : null}
-      </footer>
+
+        {content.sections?.map((section) => (
+          <section key={section.heading} className={styles.section}>
+            <h2 className={styles.heading}>{section.heading}</h2>
+
+            {section.body.map((paragraph) => (
+              <p key={paragraph.slice(0, 28)} className={styles.paragraph}>
+                {paragraph}
+              </p>
+            ))}
+          </section>
+        ))}
+
+        {content.faq?.length ? (
+          <section className={styles.section}>
+            <h2 className={styles.heading}>Sık sorulan sorular</h2>
+
+            <dl className={styles.faq}>
+              {content.faq.map((entry) => (
+                <div key={entry.question} className={styles.faqItem}>
+                  <dt className={styles.question}>{entry.question}</dt>
+                  <dd className={styles.answer}>{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
+
+        {/* İçerik henüz girilmemişse sayfa boş kalmasın. */}
+        {!hasContent(content) ? (
+          <p className={styles.pending}>
+            Bu sayfanın içeriği hazırlanıyor. Bilgi almak için{" "}
+            <Link href="/iletisim" className={styles.inlineLink}>
+              klinikle iletişime geçebilirsiniz
+            </Link>
+            .
+          </p>
+        ) : null}
+
+        <footer className={styles.detailFoot}>
+          {/* Her sayfaya otomatik ekleniyor; unutulma ihtimali kalmıyor. */}
+          <p className={styles.note}>
+            Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır; hekim
+            muayenesi, tanı veya tedavinin yerine geçmez. Uygulanacak yöntem ve
+            sonuçlar kişiden kişiye değişir.
+          </p>
+
+          {related && related.items.length > 0 ? (
+            <div className={styles.siblings}>
+              <p className={styles.siblingsTitle}>{related.title}</p>
+
+              <ul className={styles.siblingList}>
+                {related.items.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className={styles.siblingLink}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+        </footer>
+      </div>
     </article>
   );
 }

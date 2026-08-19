@@ -229,12 +229,11 @@
   --c-bg: var(--sand-pale, #f7f2ec);
   --c-panel: #fffdfa;
   --c-panel-deep: #efe7db;
+  /* Sabit menü yüksekliği. Navbar'ın yüksekliği değişirse burayı
+     güncelle: kırıntılar bunun altına konumlanıyor. */
+  --nav-h: 92px;
 
   display: block;
-  max-width: 1120px;
-  margin-inline: auto;
-  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
-    clamp(72px, 10vw, 140px);
   background: var(--c-bg);
   color: var(--c-ink);
 }
@@ -248,41 +247,127 @@
   background: var(--c-bg);
 }
 
-.crumb {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
+/* ---------------- Fotoğraflı başlık ---------------- */
 
-.crumbs {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 22px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--c-faint);
-}
-
-.crumbLink {
-  color: var(--c-gold);
-  text-decoration: none;
-  transition: opacity 200ms ease;
-}
-
-.crumbLink:hover,
-.crumbLink:focus-visible {
-  opacity: 0.75;
-}
-
-.detailHead {
+.hero {
+  position: relative;
+  /* İki satır: üstte kırıntılar, altta başlık. İkisi de normal
+     akışta olduğu için üst üste binmeleri mümkün değil. */
   display: grid;
-  gap: clamp(26px, 4vw, 56px);
-  align-items: center;
-  padding-bottom: clamp(26px, 3.5vw, 40px);
+  grid-template-rows: auto 1fr;
+  min-height: clamp(380px, 62vh, 660px);
+  /* Yan boşluk yok: hizayı içerideki iki blok kuruyor, böylece
+     başlık gövde metniyle aynı dikey çizgide başlıyor. */
+  padding: calc(var(--nav-h) + clamp(16px, 2.5vw, 30px)) 0
+    clamp(32px, 5vw, 60px);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--c-panel-deep);
+}
+
+.heroImage {
+  object-fit: cover;
+  /* Portrelerde yüz üstte kalır; manzarada ortalanır. */
+  object-position: center;
+  z-index: -1;
+}
+
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      to top,
+      rgba(26, 19, 13, 0.9) 0%,
+      rgba(26, 19, 13, 0.66) 30%,
+      rgba(26, 19, 13, 0.24) 62%,
+      rgba(26, 19, 13, 0.1) 100%
+    ),
+    /* Soldan sağa hafif bir koyulaşma: yazı hangi fotoğrafta
+       olursa olsun okunur kalsın. */
+    linear-gradient(
+      to right,
+      rgba(26, 19, 13, 0.55) 0%,
+      rgba(26, 19, 13, 0.18) 46%,
+      rgba(26, 19, 13, 0) 72%
+    );
+}
+
+/* Kırıntılar sol üstte. */
+.crumbsHero {
+  position: relative;
+  align-self: start;
+  /* Gövdeyle aynı sütun: max-width + aynı yan boşluk. */
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: var(--gutter, clamp(20px, 6vw, 88px));
+  color: rgba(255, 253, 250, 0.75);
+  text-shadow: 0 1px 12px rgba(26, 19, 13, 0.6);
+}
+
+/* Üst basamaklar soluk altın, bulunulan sayfa beyaz. */
+.crumbsHero .crumbLink {
+  color: var(--c-gold);
+  opacity: 0.95;
+}
+
+.crumbsHero .crumbLink:hover,
+.crumbsHero .crumbLink:focus-visible {
+  color: #fffdfa;
+  opacity: 1;
+}
+
+.crumbsHero .crumbCurrent {
+  color: #fffdfa;
+}
+
+.crumbsHero .crumbSep {
+  color: rgba(255, 253, 250, 0.45);
+}
+
+/* Başlık ve giriş: sol alt. */
+.heroText {
+  position: relative;
+  /* Gövdeyle aynı sütun. Okuma genişliğini içerideki başlık ve
+     paragraf kendi max-width'leriyle sınırlıyor. */
+  width: 100%;
+  max-width: 1120px;
+  align-self: end;
+  margin-inline: auto;
+  padding: clamp(24px, 4vw, 48px) var(--gutter, clamp(20px, 6vw, 88px)) 0;
+  color: #fffdfa;
+}
+
+.heroTitle {
+  margin: 0;
+  max-width: 46rem;
+  font-size: clamp(2.2rem, 5.6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  text-shadow: 0 1px 24px rgba(26, 19, 13, 0.35);
+}
+
+.heroLead {
+  margin: 18px 0 0;
+  max-width: 40rem;
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  font-weight: 300;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: rgba(255, 253, 250, 0.86);
+}
+
+/* ---------------- Fotoğrafsız başlık ---------------- */
+
+.plainHead {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: clamp(120px, 16vh, 200px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(26px, 3.5vw, 40px);
   border-bottom: 1px solid var(--c-rule);
 }
 
@@ -305,24 +390,56 @@
   color: var(--c-muted);
 }
 
-.detailFigure {
-  position: relative;
-  margin: 0;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--c-panel-deep);
+/* ---------------- Kırıntılar ---------------- */
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-faint);
 }
 
-.detailFigure::after {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(255, 253, 250, 0.32);
-  pointer-events: none;
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.detailImage {
-  object-fit: cover;
+.crumbLink {
+  color: var(--c-gold);
+  text-decoration: none;
+  transition:
+    color 200ms ease,
+    opacity 200ms ease;
+}
+
+.crumbLink:hover,
+.crumbLink:focus-visible {
+  opacity: 0.75;
+}
+
+/* Fotoğrafsız başlıkta da aynı ayrım. */
+.crumbCurrent {
+  color: var(--c-ink);
+}
+
+.crumbSep {
+  color: var(--c-faint);
+}
+
+/* ---------------- Gövde ---------------- */
+
+.body {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding: clamp(36px, 5vw, 64px) var(--gutter, clamp(20px, 6vw, 88px))
+    clamp(72px, 10vw, 140px);
 }
 
 /* ---------------- Künye satırı ---------------- */
@@ -331,7 +448,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1px;
-  margin: clamp(28px, 3.5vw, 40px) 0 0;
+  margin: 0;
   background: var(--c-rule);
   border-block: 1px solid var(--c-rule);
 }
@@ -362,6 +479,7 @@
 .section {
   max-width: 66ch;
   margin-top: clamp(30px, 4vw, 44px);
+  /* İlk bölüm künye satırının hemen altına gelmesin. */
   padding-top: clamp(22px, 3vw, 30px);
   border-top: 1px solid var(--c-rule);
 }
@@ -387,10 +505,11 @@
 
 .paragraph {
   margin: 0;
-  font-size: clamp(1rem, 1.2vw, 1.06rem);
-  line-height: 1.9;
+  font-size: clamp(1.06rem, 1.35vw, 1.2rem);
+  line-height: 1.85;
   text-wrap: pretty;
-  color: var(--c-muted);
+  /* Gövde metni okunmak için var: mürekkebe yakın bir ton. */
+  color: color-mix(in srgb, var(--c-ink) 88%, transparent);
 }
 
 .paragraph + .paragraph {
@@ -414,17 +533,17 @@
 
 .question {
   margin: 0 0 8px;
-  font-size: 1.02rem;
+  font-size: 1.08rem;
   line-height: 1.5;
   letter-spacing: -0.01em;
 }
 
 .answer {
   margin: 0;
-  font-size: 0.96rem;
+  font-size: clamp(1rem, 1.25vw, 1.1rem);
   line-height: 1.8;
   text-wrap: pretty;
-  color: var(--c-muted);
+  color: color-mix(in srgb, var(--c-ink) 88%, transparent);
 }
 
 /* ---------------- Kapanış ---------------- */
@@ -444,6 +563,15 @@
   margin-top: clamp(36px, 5vw, 56px);
   padding-top: clamp(24px, 3vw, 32px);
   border-top: 1px solid var(--c-rule);
+}
+
+/* Bölüm metni olmayan sayfalarda (yalnızca giriş yazısı olanlar)
+   dipnot gövdenin ilk öğesi oluyor; tepesinde boşlukta duran bir
+   çizgi kalmasın. */
+.detailFoot:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .note {
@@ -524,14 +652,16 @@
   }
 }
 
-@media (min-width: 900px) {
-  .detailHead {
-    grid-template-columns: minmax(0, 1fr) minmax(240px, 0.5fr);
+@media (max-width: 620px) {
+  /* Dar ekranda kahraman görsel biraz daha alçak dursun. */
+  .hero {
+    min-height: clamp(320px, 56vh, 460px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page * {
+  .page *,
+  .detail * {
     transition: none !important;
   }
 }
