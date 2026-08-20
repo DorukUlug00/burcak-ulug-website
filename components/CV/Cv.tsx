@@ -2,31 +2,24 @@ import Image from "next/image";
 
 import styles from "./Cv.module.css";
 
-/* ------------------------------------------------------------------
-   DOLDURULACAK: Aşağıdaki metinler yer tutucudur.
-   Gerçek özgeçmiş bilgisiyle değiştir.
------------------------------------------------------------------- */
-
 const CONTENT = {
-  eyebrow: "Özgeçmiş",
-  title: "Eğitim ve Akademik Kariyer",
+  quote:
+    "Plastik ve Estetik Cerrahide en iyi sonuçlar, kişinin beklentileri ile tıbben mümkün olanın doğru noktada buluşmasıyla elde edilir. Doğallığı koruyan, güvenli ve kişiye özel bir yaklaşım; bilimsel bilgi, cerrahi deneyim, karşılıklı güven ve açık iletişim üzerine kuruludur. Çünkü başarılı bir sonuç, yalnızca görünümü değiştirmek değil; kişinin kendine özgü özelliklerini koruyarak doğal, dengeli ve uyumlu bir görünüm elde etmektir.",
 
-  paragraphs: [
-    "Bu alana hekimin kısa tanıtım metni gelecek: eğitim geçmişi, uzmanlık alanı ve akademik kariyerine dair birkaç cümle.",
-    "İkinci paragraf isteğe bağlıdır; klinik yaklaşımını veya hasta ile kurduğu iletişimi anlatan kısa bir bölüm eklenebilir.",
-  ],
+  /* Sözü söyleyen — alıntının altındaki künye. */
+  attribution: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
 
-  cta: "Tüm Özgeçmişi Gör",
+  cta: "Özgeçmiş",
   ctaHref: "/ozgecmis",
 
   image: {
     src: "/doctor/white-shirt.png",
-    alt: "Prof. Dr. Burçak Tümerdem Uluğ",
+    alt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
   },
 };
 
 export default function Cv() {
-  const { eyebrow, title, paragraphs, cta, ctaHref, image } = CONTENT;
+  const { quote, attribution, cta, ctaHref, image } = CONTENT;
 
   return (
     <section className={styles.section} id="cv">
@@ -41,22 +34,30 @@ export default function Cv() {
           />
         </div>
 
-        <div className={styles.body}>
-          <p className={styles.eyebrow}>{eyebrow}</p>
+        <figure className={styles.body}>
+          {/* Tırnaklar dekoratif: ekran okuyucu blockquote'u zaten
+              alıntı olarak duyurur, iki kez okunmasın. */}
+          <span className={styles.markOpen} aria-hidden="true">
+            &ldquo;
+          </span>
 
-          <h2 className={styles.title}>{title}</h2>
+          <blockquote className={styles.quote}>
+            <p className={styles.quoteText}>{quote}</p>
+          </blockquote>
 
-          {paragraphs.map((text) => (
-            <p key={text.slice(0, 24)} className={styles.paragraph}>
-              {text}
-            </p>
-          ))}
+          <span className={styles.markClose} aria-hidden="true">
+            &rdquo;
+          </span>
+
+          <figcaption className={styles.attribution}>
+            {attribution}
+          </figcaption>
 
           <a href={ctaHref} className={styles.cta}>
             <span>{cta}</span>
             <LongArrow />
           </a>
-        </div>
+        </figure>
       </div>
     </section>
   );
