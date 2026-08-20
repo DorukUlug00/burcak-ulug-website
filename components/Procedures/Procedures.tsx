@@ -15,40 +15,40 @@ export type Procedure = {
 
 export const PROCEDURES: Procedure[] = [
   {
-    slug: "meme-kucultme-diklestirme",
+    slug: "meme-estetigi/meme-kucultme",
     name: "Meme Küçültme / Dikleştirme",
     summary: "Meme küçültme ameliyatı iri ve sarkık memelerin kişinin vücut yapısına uygun şekilde hacminin azaltılarak daha dik ve estetik meme şeklinin oluşturulmasını sağlayan cerrahi girişimlerdir",
-    image: "/procedures/meme-kucultme.jpg",
+    image: "/procedures/meme-kucultme.png",
   },
   {
-    slug: "karin-germe",
+    slug: "vucut-estetigi/karin-germe",
     name: "Karın Germe",
-    summary: "Sarkan cildi ve gevşeyen karın kaslarını onarır.",
-    image: DEFAULT_IMAGE,
+    summary: "Karın germe ameliyatı karın bölgesindeki cilt, cilt altı dokulardaki sarkıklığın giderilip düz ve gergin bir karın oluşumunu sağlayan cerrahi girişimdir.",
+    image: "/procedures/karin-germe.png",
   },
   {
-    slug: "meme-buyutme",
+    slug: "meme-estetigi/meme-buyutme",
     name: "Meme Büyütme",
-    summary: "İmplant ya da kendi yağ dokusu ile hacim kazandırır.",
-    image: DEFAULT_IMAGE,
+    summary: "Meme büyütme ameliyatı gelişimsel nedenlere, hamileliğe veya kilo kaybına bağlı olarak memelerdeki hacim yetersizliğini düzeltmeye yönelik cerrahi girişimdir.",
+    image: "/procedures/meme-kucultme.png",
   },
   {
-    slug: "liposuction",
+    slug: "vucut-estetigi/liposuction",
     name: "Liposuction",
-    summary: "Bölgesel yağ fazlasını alarak vücut hatlarını belirginleştirir.",
-    image: DEFAULT_IMAGE,
+    summary: "Liposuction / yağ alma ameliyatı vücutta kontür bozukluğuna yol açan bölgesel yağ fazlalıklarının giderilmesini sağlayan cerrahi girişimdir.",
+    image: "/procedures/liposuction.png",
   },
   {
     slug: "yag-enjeksiyonu",
     name: "Yağ Enjeksiyonu",
     summary: "Hacim kaybı olan bölgeleri kişinin kendi yağı ile doldurur.",
-    image: DEFAULT_IMAGE,
+    image: "/procedures/meme-kucultme.png",
   },
   {
     slug: "goz-kapagi",
     name: "Göz Kapağı",
     summary: "Fazla deri ve torbalanmayı düzelterek bakışları açar.",
-    image: DEFAULT_IMAGE,
+    image: "/procedures/meme-kucultme.png",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function Procedures({ items = PROCEDURES }: ProceduresProps) {
       <div className={styles.grid}>
         {items.map((item) => (
           <article key={item.slug} className={styles.card}>
-            <a href={`/islemler/${item.slug}`} className={styles.cardLink}>
+            <a href={`/ameliyatlar/${item.slug}`} className={styles.cardLink}>
               <Image
                 src={item.image ?? DEFAULT_IMAGE}
                 alt=""
