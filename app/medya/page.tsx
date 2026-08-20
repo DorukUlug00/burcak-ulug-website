@@ -8,11 +8,11 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Medya | Prof. Dr. Burçak Tümerdem Uluğ",
   description:
-    "Televizyon programları, söyleşiler, kongre ve klinik fotoğrafları.",
+    "Televizyon programları, gazete ve basın.",
 };
 
 const INTRO =
-  "Televizyon ve gazete söyleşileri, bilimsel kongre sunumları ve klinikten kareler.";
+  "";
 
 export default function MedyaPage() {
   return (
@@ -21,9 +21,9 @@ export default function MedyaPage() {
         <div>
           <p className={styles.eyebrow}>Medya</p>
 
-          <h1 className={styles.title}>
-            Söyleşiler ve
-            <span className={styles.titleAccent}>kareler</span>
+          <h1 className={styles.title}> 
+            Televizyon Programları ve
+            <span className={styles.titleAccent}> Basın</span>
           </h1>
         </div>
 
