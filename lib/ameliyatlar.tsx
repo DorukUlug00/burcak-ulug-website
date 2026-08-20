@@ -33,9 +33,6 @@ import styles from "../app/ameliyatlar/ameliyatlar.module.css";
    1. İÇERİK — kategoriler ve ameliyatlar
    =============================================================== */
 
-/* Sayfanın üst kısmındaki künye satırı — "Anestezi: Genel" gibi. */
-export type Fact = { label: string; value: string };
-
 export type Section = {
   heading: string;
   /* Her eleman bir paragraf. */
@@ -51,7 +48,6 @@ export type Content = {
   metaDescription?: string;
   /* Başlığın altındaki giriş paragrafı. */
   lead?: string;
-  facts?: Fact[];
   sections?: Section[];
   faq?: Faq[];
   /* Başlığın arkasındaki tam genişlik görsel. public/ altındaki
@@ -84,12 +80,6 @@ export type Procedure = Content & {
      category: "meme-estetigi",
      title: "Meme Küçültme",
      lead: "Bir iki cümlelik giriş.",
-     facts: [
-       { label: "Anestezi", value: "Genel anestezi" },
-       { label: "Ameliyat süresi", value: "2 – 3 saat" },
-       { label: "Hastanede kalış", value: "1 gece" },
-       { label: "İşe dönüş", value: "7 – 10 gün" },
-     ],
      sections: [
        { heading: "Kimler için uygun", body: ["..."] },
        { heading: "Ameliyat nasıl yapılır", body: ["...", "..."] },
@@ -115,7 +105,6 @@ export const CATEGORIES: Category[] = [
     image: "/operations/background1.png",
     blurb: "Burun şekli ve solunum işlevine yönelik işlemler.",
     lead: "Burundaki kemik ve kıkırdak yapıların şekil bozukluklarını düzeltmeye yönelik cerrahidir. Burun şekli kişiye özgüdür; ameliyat planı yüz oranlarıyla birlikte yapılır.",
-    facts: [{ label: "Anestezi", value: "Genel anestezi" }],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -139,13 +128,6 @@ export const CATEGORIES: Category[] = [
     image: "/operations/background1.png",
     blurb: "Kulak şekli ve konumuna yönelik işlemler.",
     lead: "Kulak sayvanı veya kulak memesindeki yapısal, travmaya ya da önceki cerrahiye bağlı büyüklük ve şekil bozukluklarını düzeltmeye yönelik ameliyatların genel adıdır. Kepçe kulak deformitesi bu grupta sık ele alınan sorunlardandır.",
-    facts: [
-      {
-        label: "Anestezi",
-        value: "Erişkinde lokal anestezi ve sedasyon; çocukta yaşa göre planlanır",
-      },
-      { label: "Taburculuk", value: "Erişkinlerde çoğunlukla aynı gün" },
-    ],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -192,10 +174,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Yüz Germe",
     image: "/operations/background1.png",
     lead: "Yüz ve boyunda yaşlanmaya bağlı gevşeyen, sarkan deri ile derin dokuların yeniden konumlandırılması ve fazla derinin çıkarılmasıyla daha gergin bir yüz-boyun konturu oluşturmayı amaçlayan ameliyattır.",
-    facts: [
-      { label: "Anestezi", value: "Tercihen genel anestezi" },
-      { label: "Yapıldığı yer", value: "Hastane ameliyathanesi" },
-    ],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -219,10 +197,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Alın Germe",
     image: "/operations/background1.png",
     lead: "Alın bölgesindeki gevşeme ve kırışıklıkların, ayrıca kaşların konumunun düzeltilmesine yönelik yüz gençleştirme ameliyatıdır.",
-    facts: [
-      { label: "Anestezi", value: "Tercihen genel anestezi" },
-      { label: "Yöntem", value: "Endoskopik" },
-    ],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -262,58 +236,6 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-  {
-    slug: "kas-kaldirma",
-    category: "yuz-estetigi",
-    title: "Kaş Kaldırma",
-    image: "/operations/background1.png",
-    lead: "Özellikle kaşın dış bölümündeki düşüklüğü düzeltmeyi ve göz çevresinde daha dengeli bir görünüm sağlamayı amaçlayan estetik girişimdir.",
-    sections: [
-      {
-        heading: "Nasıl uygulanır",
-        body: [
-          "Şakak bölgesindeki saçlı deriden yapılan küçük bir kesiyle kaşın dış kısmı serbestleştirilir ve istenen yüksekliğe tespit edilir.",
-          "İşlem tek başına veya başka yüz gençleştirme ameliyatlarıyla birlikte planlanabilir.",
-        ],
-      },
-      {
-        heading: "Ameliyat sonrası ve iyileşme",
-        body: [
-          "Kaşlar üzerinde dokuları destekleyen bantlı bir pansuman uygulanır. İlk dönemde şişlik ve hassasiyet görülebilir.",
-          "Sonucun oturması, dokuların yeni konumuna uyum sağlamasıyla kademeli olarak gerçekleşir.",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "yuz-implantlari",
-    category: "yuz-estetigi",
-    title: "Yüz İmplantları",
-    image: "/operations/background1.png",
-    lead: "Yüz ve çene kemiklerinde yapısal, travma veya ameliyat sonrası ya da yaşlanmaya bağlı kontur eksikliklerini düzeltmek amacıyla kullanılan implant uygulamalarıdır. En sık çene ve elmacık kemiği bölgesinde kullanılır.",
-    facts: [
-      {
-        label: "Anestezi",
-        value: "Lokal anestezi ve sedasyon ya da genel anestezi",
-      },
-    ],
-    sections: [
-      {
-        heading: "Nasıl uygulanır",
-        body: [
-          "Silikon ve poröz polietilen implantlar kullanılır. Uygulama, başka bir ameliyatla birleştirilmiyorsa lokal anestezi ve sedasyon altında da yapılabilir.",
-          "Elmacık ve çene implantları ağız içinden yapılan kesilerle yerleştirilebilir; böylece görünür bir dış izden kaçınılır.",
-        ],
-      },
-      {
-        heading: "Ameliyat sonrası ve iyileşme",
-        body: [
-          "Ağız içi kesiler nedeniyle erken dönemde şişlik ve hassasiyet beklenebilir.",
-          "İmplantın konumunun korunması ve enfeksiyon riskinin azaltılması için ağız hijyeni ile cerrahın bakım önerileri önem taşır.",
-        ],
-      },
-    ],
-  },
 
   /* Burun ve kulak estetiğinin alt sayfası yok; içerik doğrudan
      kategori sayfasında duruyor. */
@@ -325,10 +247,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Meme Büyütme",
     image: "/operations/background1.png",
     lead: "Gelişimsel nedenler, hamilelik veya kilo kaybı sonrasında ortaya çıkan meme hacmi yetersizliğini düzeltmeyi amaçlayan cerrahi girişimdir.",
-    facts: [
-      { label: "Anestezi", value: "Genel anestezi" },
-      { label: "Yapıldığı yer", value: "Hastane ameliyathanesi" },
-    ],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -351,10 +269,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Meme Küçültme",
     image: "/operations/background1.png",
     lead: "Büyük ve sarkık memelerde fazla meme dokusu ile derinin çıkarılması, meme başının daha uygun bir konuma taşınması ve memenin yeniden biçimlendirilmesini amaçlayan ameliyattır.",
-    facts: [
-      { label: "Anestezi", value: "Genel anestezi" },
-      { label: "Yapıldığı yer", value: "Hastane ameliyathanesi" },
-    ],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -377,7 +291,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Meme Dikleştirme",
     image: "/operations/background1.png",
     lead: "Hamilelik, emzirme, kilo değişimi, yaşlanma veya yapısal nedenlerle sarkan memenin yeniden şekillendirilerek daha yukarı ve dengeli bir konuma getirilmesini amaçlayan ameliyattır.",
-    facts: [{ label: "Anestezi", value: "Genel anestezi" }],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -472,7 +385,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Karın Germe",
     image: "/operations/background1.png",
     lead: "Karın bölgesindeki cilt ve cilt altı dokularda oluşan sarkmayı gidermek, gevşemiş karın duvarını toparlamak ve daha düz, gergin bir karın oluşturmak amacıyla yapılan ameliyattır. Özellikle doğumlar veya belirgin kilo değişimleri sonrasında tercih edilir.",
-    facts: [{ label: "Anestezi", value: "Genel anestezi" }],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -496,7 +408,6 @@ export const PROCEDURES: Procedure[] = [
     title: "Bacak İçi Germe",
     image: "/operations/background1.png",
     lead: "Kilo alıp verme, yer çekimi veya yapısal nedenlerle bacakların iç yüzünde oluşan cilt ve cilt altı doku sarkmasını azaltarak daha gergin bir kontur oluşturmayı amaçlayan ameliyattır.",
-    facts: [{ label: "Aktif yaşama dönüş", value: "Yaklaşık 10 gün" }],
     sections: [
       {
         heading: "Nasıl uygulanır",
@@ -577,10 +488,7 @@ export function groupedProcedures(): {
 /* Sayfada gösterilecek bir içerik var mı? */
 export function hasContent(content: Content): boolean {
   return Boolean(
-    content.lead ||
-      content.sections?.length ||
-      content.facts?.length ||
-      content.faq?.length,
+    content.lead || content.sections?.length || content.faq?.length,
   );
 }
 
@@ -671,17 +579,6 @@ export function ContentArticle({ content, crumbs, related }: Props) {
       )}
 
       <div className={styles.body}>
-        {content.facts?.length ? (
-          <dl className={styles.facts}>
-            {content.facts.map((fact) => (
-              <div key={fact.label} className={styles.fact}>
-                <dt className={styles.factLabel}>{fact.label}</dt>
-                <dd className={styles.factValue}>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        ) : null}
-
         {content.sections?.map((section) => (
           <section key={section.heading} className={styles.section}>
             <h2 className={styles.heading}>{section.heading}</h2>
