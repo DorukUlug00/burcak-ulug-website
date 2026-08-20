@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,7 +14,9 @@ type NavItem = {
 };
 
 type Props = {
-  monogram: string;
+  /* Raster logo (jpg/png). Daireye kırpılır. Şeffaf PNG ya da SVG
+     kullanılırsa .monogram'daki background kaldırılabilir. */
+  logoSrc?: string;
   name: string;
   items: NavItem[];
   ctaLabel?: string;
@@ -27,7 +30,7 @@ function isRoute(href: string) {
 }
 
 export default function StickyNav({
-  monogram,
+  logoSrc = "/logo/logo.svg",
   name,
   items,
   ctaLabel = "İletişim",
@@ -143,7 +146,19 @@ export default function StickyNav({
       {/* inert YOK: bar her zaman görünür ve her zaman erişilebilir. */}
       <div className={`${styles.bar} ${solid ? styles.solid : ""}`}>
         <Link href="/" className={styles.brand}>
-          <span className={styles.monogram}>{monogram}</span>
+          {/* Logo dekoratif: erişilebilir ad zaten yandaki isimden gelir,
+              bu yüzden alt="" bırakıldı. */}
+          <span className={styles.monogram}>
+            <Image
+              src={logoSrc}
+              alt=""
+              width={64}
+              height={64}
+              priority
+              className={styles.monogramMark}
+            />
+          </span>
+
           <span className={styles.brandName}>{name}</span>
         </Link>
 

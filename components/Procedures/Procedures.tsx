@@ -53,7 +53,7 @@ export const PROCEDURES: Procedure[] = [
 ];
 
 const COPY = {
-  eyebrow: "En Sık Uyguladığım Ameliyatlar",
+  eyebrow: "",
   title: "Cerrahi İşlemler",
   intro:
     "Her ameliyat, hastanın anatomik özellikleri, ihtiyaçları ve beklentileri doğrultusunda kişiye özel olarak planlanır.",

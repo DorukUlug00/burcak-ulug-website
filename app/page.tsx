@@ -13,13 +13,11 @@ const CONTENT = {
   hero: {
     eyebrow: "Plastik ve Estetik Cerrahi · İstanbul",
     prefix: "Prof. Dr.",
-    givenName: "Burçak",
-    familyName: "Tümerdem Ulug",
-    /* Birincil eylem WhatsApp'a gider; numara lib/site.ts'ten
-       okunur, burada elle yazılı telefon yok. */
+    givenName: "Z. Burçak",
+    familyName: "Tümerdem Uluğ",
     whatsapp: "WhatsApp'tan yazın",
     contact: "İletişim bilgileri",
-    imageAlt: "Prof. Dr. Burçak Tümerdem Uluğ",
+    imageAlt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
   },
 };
 

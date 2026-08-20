@@ -9,6 +9,9 @@
      --bar-*    duruma göre değişir (bar yazıları)
      --panel-*  hiç değişmez (açılır menü kutuları her zaman
                 krem zemin + koyu yazı)
+
+   Logo raster (jpg) olduğu için renk değiştiremez; daireye
+   kırpılır ve iki durumda da aynı görünür.
    ============================================================ */
 
 .bar {
@@ -106,22 +109,36 @@
   text-decoration: none;
 }
 
+/* Görsel daireyi tamamen doldurur, taşan kısım kırpılır.
+   jpg şeffaf olmadığı için padding bırakmak beyaz köşe
+   yaratırdı — bu yüzden padding yok. */
 .monogram {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
+  position: relative;
+  display: block;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  overflow: hidden;
   border: 1px solid var(--bar-rule);
   border-radius: 999px;
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
+  background: var(--panel);
   transition: border-color 320ms ease;
 }
 
+.monogramMark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .brandName {
-  font-size: 0.8rem;
+  /* Başlık fontuyla aynı aile: layout.tsx'teki --font-display. */
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   white-space: nowrap;
 }
 
@@ -470,6 +487,10 @@
   /* Menü hamburger'a taşınır. */
   .nav,
   .cta {
+    display: none;
+  }
+
+  .menuButton {
     display: none;
   }
 
