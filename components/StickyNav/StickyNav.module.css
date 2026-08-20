@@ -644,25 +644,30 @@
     font-weight: 600;
   }
 
-  /* Ok düğmesi de 44px dokunma hedefi. */
+    /* Ok düğmesi satırın sağındaki TÜM boşluğu kaplar:
+     etiketin sağına dokunmak da alt menüyü açar. */
   .drawerCaret {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 44px;
+    justify-content: flex-end;
+    flex: 1;
+    min-width: 44px;
     height: 44px;
-    flex-shrink: 0;
-    margin-right: clamp(4px, 2vw, 20px);
+    padding-right: clamp(4px, 2vw, 20px);
     border: 0;
     background: none;
     color: #6d6660;
     cursor: pointer;
-    transition: transform 250ms ease;
+    transition:
+      transform 250ms ease,
+      color 200ms ease;
   }
 
+  /* Ok döndüğünde padding de dönmesin diye ikon ayrı sarılmıyor;
+     transform yalnızca renk/dönüş için. */
   .drawerCaret[aria-expanded="true"] {
-    transform: rotate(180deg);
-    color: #1c1a18;
+    transform: scaleY(-1);
+    color: var(--accent, #b08b52);
   }
 
   .drawerSubList {
