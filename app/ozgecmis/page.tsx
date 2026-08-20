@@ -6,7 +6,7 @@ import { BIOGRAPHY, MEMBERSHIPS, PROFILE } from "../../lib/cv";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Özgeçmiş | Prof. Dr. Burçak Tümerdem Uluğ",
+  title: "Özgeçmiş | Prof. Dr. Z. Burçak Tümerdem Uluğ",
   description:
     "Prof. Dr. Z. Burçak Tümerdem Uluğ'un eğitimi, akademik kariyeri, yurt dışı gözlemci programları ve bilimsel çalışmaları.",
 };
@@ -59,19 +59,14 @@ export default function OzgecmisPage() {
           />
         </figure>
 
+        {/* Ara başlık yok: paragraflar kesintisiz tek metin akar. */}
         <div className={styles.body}>
           <p className={styles.intro}>{PROFILE.intro}</p>
 
-          {BIOGRAPHY.map((section) => (
-            <section key={section.heading} className={styles.section}>
-              <h2 className={styles.heading}>{section.heading}</h2>
-
-              {section.body.map((paragraph) => (
-                <p key={paragraph.slice(0, 28)} className={styles.paragraph}>
-                  {paragraph}
-                </p>
-              ))}
-            </section>
+          {BIOGRAPHY.map((paragraph) => (
+            <p key={paragraph.slice(0, 28)} className={styles.paragraph}>
+              {paragraph}
+            </p>
           ))}
 
           <p className={styles.footNote}>
