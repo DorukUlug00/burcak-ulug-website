@@ -14,8 +14,9 @@ type NavItem = {
 };
 
 type Props = {
-  /* Raster logo (jpg/png). Daireye kırpılır. Şeffaf PNG ya da SVG
-     kullanılırsa .monogram'daki background kaldırılabilir. */
+  /* SVG logo. next/image yerel .svg dosyalarını optimize etmeden
+     olduğu gibi sunar; ek config gerekmez. Renk uyumu CSS'teki
+     filter kurallarıyla sağlanır (bkz. .monogramMark). */
   logoSrc?: string;
   name: string;
   items: NavItem[];

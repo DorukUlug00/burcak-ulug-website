@@ -6,12 +6,12 @@
      .bar.solid    -> krem zemin (hero geçilince ve diğer sayfalarda)
 
    Renkler iki gruba ayrıldı:
-     --bar-*    duruma göre değişir (bar yazıları)
+     --bar-*    duruma göre değişir (bar yazıları VE logo)
      --panel-*  hiç değişmez (açılır menü kutuları her zaman
                 krem zemin + koyu yazı)
 
-   Logo raster (jpg) olduğu için renk değiştiremez; daireye
-   kırpılır ve iki durumda da aynı görünür.
+   Logo SVG'dir; filter ile bar durumunu takip eder:
+   saydam hâlde beyaz, katı hâlde siyah silüet.
    ============================================================ */
 
 .bar {
@@ -109,28 +109,43 @@
   text-decoration: none;
 }
 
-/* Görsel daireyi tamamen doldurur, taşan kısım kırpılır.
-   jpg şeffaf olmadığı için padding bırakmak beyaz köşe
-   yaratırdı — bu yüzden padding yok. */
 .monogram {
-  position: relative;
-  display: block;
-  width: 34px;
-  height: 34px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
   flex-shrink: 0;
+  padding: 5px;              /* padding kalktı */
   overflow: hidden;
   border: 1px solid var(--bar-rule);
   border-radius: 999px;
-  background: var(--panel);
-  transition: border-color 320ms ease;
 }
 
 .monogramMark {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+
+  /* SVG içindeki mark yukarıda ve solda kaldığı için
+     görsel olarak ortalamak üzere kaydırılıyor.
+     viewBox kırpılırsa bu satır silinmeli. */
+  transform: scale(1.9) translate(2%, 4%);
+
+  transition: filter 320ms ease;
+}
+
+/* Logo bar yazısıyla birlikte renk değiştirir.
+   brightness(0) her şeyi siyaha indirger, invert(1) beyaza çevirir.
+   NOT: Bu, logoyu tek renkli silüete dönüştürür. Logo çok renkliyse
+   ve renkleri korunacaksa bu iki kuralı SİL — logo kendi
+   renkleriyle, iki durumda da aynı görünür. */
+.bar:not(.solid) .monogramMark {
+  filter: brightness(0) invert(1);
+}
+
+.solid .monogramMark {
+  filter: brightness(0);
 }
 
 .brandName {
@@ -487,10 +502,6 @@
   /* Menü hamburger'a taşınır. */
   .nav,
   .cta {
-    display: none;
-  }
-
-  .menuButton {
     display: none;
   }
 

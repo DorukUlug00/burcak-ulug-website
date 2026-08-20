@@ -17,7 +17,7 @@ export const PROCEDURES: Procedure[] = [
   {
     slug: "meme-kucultme-diklestirme",
     name: "Meme Küçültme / Dikleştirme",
-    summary: "Sırt, boyun ve omuz yükünü hafifletir.",
+    summary: "Meme küçültme ameliyatı iri ve sarkık memelerin kişinin vücut yapısına uygun şekilde hacminin azaltılarak daha dik ve estetik meme şeklinin oluşturulmasını sağlayan cerrahi girişimlerdir",
     image: "/procedures/meme-kucultme.jpg",
   },
   {
