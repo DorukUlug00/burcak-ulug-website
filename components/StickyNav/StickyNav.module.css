@@ -10,8 +10,8 @@
      --panel-*  hiç değişmez (açılır menü kutuları her zaman
                 krem zemin + koyu yazı)
 
-   Logo SVG'dir; filter ile bar durumunu takip eder:
-   saydam hâlde beyaz, katı hâlde siyah silüet.
+   900px altında yatay menü gizlenir, yerini hamburger'ın açtığı
+   .drawer alır (dosyanın sonundaki MOBİL ÇEKMECE bölümü).
    ============================================================ */
 
 .bar {
@@ -28,6 +28,9 @@
   --bar-rule: rgba(251, 250, 248, 0.42);
   --bar-border: transparent;
 
+  /* Çekmece bu yüksekliğin altından başlar. */
+  --bar-h: 68px;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -41,7 +44,7 @@
   gap: 24px;
 
   padding: 0 clamp(16px, 4vw, 48px);
-  min-height: 68px;
+  min-height: var(--bar-h);
 
   background: var(--bar-bg);
   border-bottom: 1px solid var(--bar-border);
@@ -107,6 +110,7 @@
   gap: 10px;
   color: inherit;
   text-decoration: none;
+  min-width: 0;
 }
 
 .monogram {
@@ -115,7 +119,7 @@
   width: 38px;
   height: 38px;
   flex-shrink: 0;
-  padding: 5px;              /* padding kalktı */
+  padding: 5px;
   overflow: hidden;
   border: 1px solid var(--bar-rule);
   border-radius: 999px;
@@ -236,11 +240,14 @@
   color: #1c1a18;
 }
 
+/* Dokunma hedefi 44px: parmakla ıskalanmasın. */
 .menuButton {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   border: 1px solid var(--bar-rule);
   border-radius: 999px;
   background: none;
@@ -467,6 +474,23 @@
 }
 
 /* ============================================================
+   MOBİL ÇEKMECE
+   Masaüstünde tamamen kapalı; yalnızca 900px altında açılır.
+   ============================================================ */
+
+.drawer {
+  display: none;
+}
+
+.drawerList,
+.drawerSubList,
+.drawerLeafList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ============================================================
    DAR EKRAN
    ============================================================ */
 
@@ -493,13 +517,13 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .bar {
     grid-template-columns: auto auto;
     justify-content: space-between;
   }
 
-  /* Menü hamburger'a taşınır. */
+  /* Menü ve CTA hamburger'ın açtığı çekmeceye taşınır. */
   .nav,
   .cta {
     display: none;
@@ -513,6 +537,177 @@
     max-width: 46vw;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ---------- Panelin kendisi ---------- */
+
+  .drawer {
+    position: fixed;
+    top: var(--bar-h, 68px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+
+    display: flex;
+    flex-direction: column;
+
+    /* Uzun menü sığmazsa panel kendi içinde kayar;
+       overscroll arkadaki sayfaya sıçramasın. */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    padding: 8px 0 max(32px, env(safe-area-inset-bottom));
+
+    background: #fbfaf8;
+    color: #1c1a18;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease,
+      visibility 0s linear 220ms;
+  }
+
+  .drawerOpen {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease,
+      visibility 0s linear 0s;
+  }
+
+  .drawerNav {
+    flex: 1;
+  }
+
+  /* ---------- Satırlar ---------- */
+
+  .drawerItem + .drawerItem {
+    border-top: 1px solid #ece8e2;
+  }
+
+  /* Etiket ile ok düğmesi yan yana: etiket sayfaya gider,
+     düğme akordeonu açar. */
+  .drawerRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .drawerLink {
+    display: block;
+    flex: 1;
+    padding: 16px clamp(16px, 4vw, 48px);
+
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1c1a18;
+    text-decoration: none;
+  }
+
+  .drawerSubLink {
+    display: block;
+    flex: 1;
+    padding: 13px clamp(16px, 4vw, 48px) 13px calc(clamp(16px, 4vw, 48px) + 16px);
+
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4540;
+    text-decoration: none;
+  }
+
+  .drawerLeafLink {
+    display: block;
+    padding: 12px clamp(16px, 4vw, 48px) 12px calc(clamp(16px, 4vw, 48px) + 32px);
+
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: #6d6660;
+    text-decoration: none;
+  }
+
+  .drawerLinkActive {
+    color: #1c1a18;
+    font-weight: 600;
+  }
+
+  /* Ok düğmesi de 44px dokunma hedefi. */
+  .drawerCaret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    margin-right: clamp(4px, 2vw, 20px);
+    border: 0;
+    background: none;
+    color: #6d6660;
+    cursor: pointer;
+    transition: transform 250ms ease;
+  }
+
+  .drawerCaret[aria-expanded="true"] {
+    transform: rotate(180deg);
+    color: #1c1a18;
+  }
+
+  .drawerSubList {
+    background: #f4f1ec;
+    border-top: 1px solid #ece8e2;
+  }
+
+  .drawerLeafList {
+    background: #efece7;
+  }
+
+  .drawerSubList > li + li,
+  .drawerLeafList > li + li {
+    border-top: 1px solid #e6e1da;
+  }
+
+  /* ---------- Alt CTA ---------- */
+
+  .drawerFooter {
+    padding: 24px clamp(16px, 4vw, 48px) 8px;
+    border-top: 1px solid #ece8e2;
+    margin-top: 16px;
+  }
+
+  .drawerCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+    border-radius: 999px;
+
+    background: #1c1a18;
+    color: #fbfaf8;
+
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .drawer a:focus-visible,
+  .drawer button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -3px;
   }
 }
 
@@ -524,7 +719,9 @@
   .caretButton,
   .subCaret,
   .cta,
-  .navLink {
+  .navLink,
+  .drawer,
+  .drawerCaret {
     transition: none !important;
   }
 }
