@@ -9,8 +9,7 @@ import styles from "./Footer.module.css";
 const LEGAL = {
   noticeTitle: "Yasal uyarı",
   notice: [
-    "Bu sitede yer alan içerikler yalnızca genel bilgilendirme amaçlıdır; hekim muayenesi, tanı veya tedavinin yerine geçmez. Cerrahi sonuçlar kişiden kişiye değişir ve hiçbir sonuç taahhüt edilmez. Şikâyetleriniz için lütfen bir hekime başvurun.",
-    "1219 sayılı Kanun ve Sağlık Bakanlığı'nın tanıtım mevzuatı uyarınca bu sitede tedavi edici sağlık hizmetlerine yönelik reklam ve yönlendirici içerik bulunmamaktadır.",
+    "Bu internet sitesinin tüm hakları saklıdır, siteden alıntı yapılamaz. Bu site T.C. ve uluslararası fikir hakları kanunları ile korunmaktadır. Bu sitede yer alan bilgiler bilgilendirme amaçlıdır; hastalıkların tanı ve tedavisinde kullanılmaz, bu konuda herhangi bir sorumluluk kabul edilmez."
   ],
   rights: "Tüm hakları saklıdır.",
   ip: "Sitedeki metin, görsel ve tasarımlar izinsiz kullanılamaz, kopyalanamaz ve çoğaltılamaz.",

@@ -20,7 +20,7 @@ export const CONTACT = {
   facebookHandle: "burcaktumerdemulug",
   facebookUrl: "https://www.facebook.com/burcaktumerdemulug",
 
-  emails: ["burcaktumerdemulug@gmail.com", "info@burcaktumerdemulug.com"],
+  emails: ["info@burcaktumerdemulug.com"],
 
   address: {
     line: "Osmanağa Mh. Mürver Çiçeği Sk. No:10/3 K:1",
