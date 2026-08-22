@@ -97,7 +97,21 @@ export const CATEGORIES: Category[] = [
     title: "Yüz Estetiği",
     image: "/operations/background1.png",
     blurb: "Yüz ve göz çevresine yönelik cerrahi işlemler.",
-    lead: "Yüz ve boyun bölgesindeki yaşlanma değişiklikleri, tek bir ameliyatla değil; alın, kaş, göz kapakları ve yüz-boyun konturunun birlikte değerlendirilmesiyle ele alınır. Aşağıdaki başlıklar, bu bölgeye yönelik ameliyatları ayrı ayrı anlatıyor.",
+    sections: [
+      {
+        heading: "Yüz estetiği nedir?",
+        body: [
+          "Yüz estetiği yüzde estetik amaçla gerçekleştirilen işlemlerin genel tanımlamasıdır. Yaşlanma her birey için kaçınılmazdır. Etkilerini hafifleterek kişinin kendini dinç, genç ve sağlıklı hissetmesini sağlamak estetik cerrahinin amaçlarından biridir. Yüz yaşlanmaya bağlı değişikliklerin saklanamayacağı bir bölgedir. Aynaya baktığında kişinin karşılaştığı yorgun, gergin ve mutsuz bir yüz ifadesi kendini hem kötü hissettirir hem de sosyal ilişkilerinde problemler yaşamasına yol açar.",
+          "Yaşla beraber tüm vücut cildinde bir elastikiyet kaybı ve sarkma oluşur; yüz cildinde ise bu problem yer çekiminin etkisi ile daha da öne çıkar. Yüz insanlararası iletişimde ilk bakışta dikkatin odağı olan yapıdır. Bu nedenle deformiteleri bir hastalık olmasa da estetik kaygıya yol açar. Yüz estetiği için hekimlerin tanımladığı ölçüler vardır, ancak kararlarda asıl olan, kişinin hekim süzgecinden geçmiş kendi beklentileridir.",
+        ],
+      },
+      {
+        heading: "Yüz hangi bölgelerde değerlendirilir?",
+        body: [
+          "Yüzü üç bölümde incelemek gerekir; alın, kaşlar, üst göz kapaklarını içeren üst yüz bölgesi, alt göz kapakları, yanak bölgesini içeren orta yüz bölgesi, çene ve boyun bölgesini içeren alt yüz bölgesi. Bütün bu alanlara tek tek cerrahi olarak müdahale etmek mümkündür. Ancak gerekli durumlarda kombine girişimler ( yüz germe ve göz kapağı estetiği, alın germe ve göz kapağı estetiği) yüzdeki estetik deformiteler için daha etkili sonuç verir.",
+        ],
+      },
+    ],
   },
   {
     slug: "burun-estetigi",
@@ -168,25 +182,34 @@ export const CATEGORIES: Category[] = [
 
 export const PROCEDURES: Procedure[] = [
   /* ---------------- Yüz estetiği ---------------- */
-  {
+    {
     slug: "yuz-germe",
     category: "yuz-estetigi",
     title: "Yüz Germe",
     image: "/operations/background1.png",
-    lead: "Yüz ve boyunda yaşlanmaya bağlı gevşeyen, sarkan deri ile derin dokuların yeniden konumlandırılması ve fazla derinin çıkarılmasıyla daha gergin bir yüz-boyun konturu oluşturmayı amaçlayan ameliyattır.",
+    lead: "Yüz germe, kişinin yüzündeki ve boyundaki sarkmış, bollaşmış derinin ve gevşemiş olan derin dokuları saran yapının uygun yönde ve tansiyonda gerginlik sağlayarak yeni yerine tespiti ve fazla derinin çıkarılmasını içeren estetik ameliyattır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Yüz germe (ritidektomi) nedir?",
         body: [
-          "Kesiler şakak saçlı derisinden başlayıp kulak önü ve arkasından ensedeki saçlı deriye uzanır.",
-          "Amaç yalnızca fazla deriyi almak değil, gevşemiş derin dokuları da uygun yönde yeniden şekillendirmektir.",
+          "Derinin yaşlanmasıyla birlikte kişinin genetik yapısına bağlı olarak kiminde kırışıklar ön plandayken bazı kişilerde kırışıklarla birlikte deride gevşeme ve sarkma daha dikkat çekicidir. Bu kişilerde hem yüz hem de boyundaki deri fazlalığının giderilmesine imkân veren klasik yüz germe ameliyatı tercih edilir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Yüz germe ameliyatı nasıl yapılır?",
         body: [
-          "Ameliyat sonunda yüzü destekleyen bir pansuman uygulanır ve aralıklı soğuk uygulama önerilir. Drenler genellikle erken dönemde çıkarılır.",
-          "İlk hafta başın yüksekte tutulması; ilk haftalarda yoğun güneş, solaryum, sauna, hamam ve ağır spordan uzak durulması önerilir. Şişlik, uyuşukluk ve geçici asimetriler iyileşme döneminde görülebilir.",
+          "Yüz germe ameliyatı hastanede ameliyathane şartlarında tercihen genel anestezi altında gerçekleştirilir. İzler şakak bölgesindeki saçlı deriden başlar, kulak önü ve arkasında devam ederek ensede saçlı deriye uzanır.",
+          "Bu izlerden sadece kulak önündeki olanı gözükür. Kişinin genetik yapısına bağlı olarak izlerin olgunlaşması bir yıl sürer. Ancak bu süre içinde özellikle kadınlarda bu alanı kamufle edecek saç şekliyle hiçbir sorun oluşturmaz. Kulak önündeki izler kulak kıvrımının içinde saklıdır, bu nedenle erkekler için de çok rahatsız edici bir durum yaratmaz. Diğer izler ise gizlenmiş olarak kalır.",
+          "Bu ameliyatta amaç sadece fazla derinin atılması değildir. Gevşemiş, sarkmış derin dokuların da uygun yönde ve gerginlikte biçimlendirilmesini içerir.",
+        ],
+      },
+      {
+        heading: "Yüz germe ameliyatı sonrası nasıldır?",
+        body: [
+          "Yüz germe ameliyatı sonunda gözler, burun ve ağzı açık bırakacak şekilde yüzün tamamını kaplayan yumuşak bir pansuman yapılır. Yüz bölgesine soğuk uygulama saatte 10-15 dakika şeklinde aralıklı olarak yapılır. Hasta ertesi gün antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+          "Bir hafta boyunca sırtın yükseltilerek yatılması ve aralıklı soğuk uygulamaya devam edilmesi istenir. Sıklıkla 2. gün drenler çekilir. Pansuman çıkarılarak banyo yapılmasına izin verilir. Yüz bölgesindeki dikişler kendi kendine eridiği için dikiş alımı gerekmez. Saçlı deridekiler 1. haftada alınır.",
+          "Bu ameliyatla ilgili en sık karşılaşılan komplikasyon özellikle erkeklerde ameliyat alanında kan toplanmasıdır. Bu nedenle mutlaka dren kullanılır ve kişinin tansiyonu ameliyat öncesi ve sonrasında takip edilir. Yüzde ameliyata bağlı geçici uyuşukluk ve asimetriler olabilir. İlk 8 hafta yoğun güneş, solaryum, sauna ve hamamdan uzak durmak ve ağır spor aktivitelerinden kaçınmak gerekir. Erkeklerde tıraşa 2. haftanın sonunda izin verilir.",
+          "Her cerrahi girişim sonrası istenmeyen durumlarla karşılaşılabilir. Anestezi riski, ameliyat bölgesinde kan toplanması, enfeksiyon ve yara iyileşmesinde gecikme bütün cerrahi girişimler sonrası görülebilen ortak olası komplikasyonlardır. Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır. Özellikle yüz germe ameliyatı, sigara kullanımı fazla olan ve ameliyattan önce sigarayı bırakmaya istekli olmayan kişilerde tercih edilmez.",
         ],
       },
     ],
@@ -196,42 +219,77 @@ export const PROCEDURES: Procedure[] = [
     category: "yuz-estetigi",
     title: "Alın Germe",
     image: "/operations/background1.png",
-    lead: "Alın bölgesindeki gevşeme ve kırışıklıkların, ayrıca kaşların konumunun düzeltilmesine yönelik yüz gençleştirme ameliyatıdır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Alın germe (brow-lift) nedir?",
         body: [
-          "Saçlı deride açılan küçük kesilerden girilerek alın ve şakak dokuları serbestleştirilir, gerekli gerginlik sağlanır ve kaş-alın bölgesi yeni konumuna tespit edilir.",
+          "Alın bölgesinde gevşeme, sarkma ve kaşların bütünüyle aşağıya doğru yer değiştirmesine bağlı oluşan deformitenin düzeltilmesine yönelik estetik ameliyattır. Temelde üst yüz germe ameliyatıdır. Yaşlanma belirtileri öncelikle üst yüz bölgesinde ve göz etrafında başlar. Kaşlarda düşüklük ve aşağıya doğru yer değiştirmesi üst göz kapağında yığılmaya da yol açar. Deri fazlalığını gidermeye yönelik göz kapağı estetiği (blefaroplasti) kaş düşüklüğü ön planda olan kişilerde tek başına yeterli olmaz.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Alın germe ameliyatı nasıl yapılır?",
         body: [
-          "Alın ve kaş üzerinde dokuları destekleyen bantlı bir pansuman uygulanır. İlk günlerde şişlik ve morluk görülebilir.",
-          "İyileşme sürecinde başın yüksekte tutulması ve cerrahın önerdiği süre boyunca fiziksel zorlanmadan kaçınılması gerekir.",
+          "Alın germe ameliyatı hastanede ameliyathane şartlarında tercihen genel anestezi altında gerçekleştirilir. Alın germe ameliyatında alın ve şakak bölgesindeki saçlı deride yapılan 2 cmlik kesilerden endoskopik cerrahi için özel tasarlanmış cerrahi aletlerle girilerek alın bölgesi ve kaşlar serbestleştirilir ve farklı tekniklerle saçlı derideki kesi yerlerinden yeni yerine tespit edilir. Böylece saçlı deride kolayca gizlenebilen izlerle hem alın bölgesi gerilir hem de kaşlardaki sarkıklık düzelir.",
+        ],
+      },
+      {
+        heading: "Alın germe ameliyatı sonrası nasıldır?",
+        body: [
+          "Alın germe ameliyatı sonrasında alın bölgesinde ve kaş üstünde cildi gergin tutan bantlardan oluşan pansuman yapılır. Dren ertesi gün çekilir. Kombine bir cerrahi işlem yapılmamışsa aynı gün taburcu edilir. Ameliyat bölgesinde uyuşukluk, asimetri geçicidir. İlk 8 hafta yoğun güneş, solarium, sauna ve hamamdan uzak durmak ve ağır spor aktivitelerinden kaçınmak gerekir.",
+          "Her cerrahi girişim sonrası istenmeyen durumlarla karşılaşılabilinir. Anestezi riski, ameliyat bölgesinde kan toplanması, enfeksiyon ve yara iyileşmesinde gecikme bütün cerrahi girişimler sonrası görülebilen ortak olası komplikasyonlardır. Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır.",
         ],
       },
     ],
   },
   {
-    slug: "goz-estetigi",
+    slug: "goz-kapagi-estetigi",
     category: "yuz-estetigi",
-    title: "Göz Estetiği",
+    title: "Göz Kapağı Estetiği",
     image: "/operations/background1.png",
-    lead: "Üst ve alt göz kapaklarında yaşlanmaya bağlı gevşeme, deri fazlalığı ve torbalanma gibi değişikliklerin düzeltilmesini amaçlayan cerrahi girişimdir.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Göz kapağı estetiği (blefaroplasti) nedir?",
         body: [
-          "Değerlendirme yalnızca göz kapağıyla sınırlı tutulmaz: üst kapak için alın ve kaşların, alt kapak için orta yüz bölgesinin de birlikte değerlendirilmesi gerekir.",
-          "Cerrahi plan, fazla deri ve yağ dokusunun dağılımına göre kişiye özel yapılır.",
+          "Göz kapağı estetiği (blefaroplasti), üst ve/veya alt göz kapaklarında zamanla oluşan deri fazlalığı, gevşeme ve yağ dokusu belirginliğinin düzeltilmesini amaçlayan cerrahi bir işlemdir. Amaç, göz çevresinde daha dinlenmiş, canlı ve doğal bir görünüm elde ederken kişinin yüz ifadesini ve kendine özgü özelliklerini korumaktır.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Göz kapağı estetiği nasıl yapılır?",
         body: [
-          "Kesi yerlerine, görmeyi engellemeyen ince bantlardan oluşan bir pansuman uygulanır. İlk günlerde göz çevresinde şişlik ve morluk oluşabilir; bunlar zaman içinde geriler.",
-          "İyileşme döneminde göz çevresini travmadan ve yoğun güneşten korumak önemlidir.",
+          "Üst göz kapağı ameliyatında fazla deri ve gerektiğinde yağ dokusu düzenlenir. Alt göz kapağında ise göz altı torbalanmaları, deri fazlalığı ve kontur düzensizlikleri kişinin anatomik özelliklerine göre değerlendirilir. Kesiler mümkün olduğunca doğal göz kapağı kıvrımları ve anatomik sınırlar içinde planlanır.",
+        ],
+      },
+      {
+        heading: "Ameliyat nasıl planlanır?",
+        body: [
+          "Ameliyat planlaması; göz kapağının yapısı, kaş pozisyonu, göz çevresindeki yağ dokuları, cilt kalitesi ve kişinin beklentileri birlikte değerlendirilerek kişiye özel olarak yapılır.",
+          "Göz kapağı estetiğinde temel amaç yalnızca fazla dokuyu çıkarmak değil; göz çevresinde doğal, dengeli ve yüzün bütünüyle uyumlu bir görünüm oluşturmaktır.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "yag-enjeksiyonu",
+    category: "yuz-estetigi",
+    title: "Yağ Enjeksiyonu",
+    image: "/operations/background1.png",
+    sections: [
+      {
+        heading: "Yağ enjeksiyonu nedir?",
+        body: [
+          "Yağ enjeksiyonu, kişinin kendi vücudundan alınan yağ dokusunun özel işlemlerden geçirilerek yüz veya vücudun ihtiyaç duyulan bölgelerine aktarılması işlemidir. Amaç, hacim kayıplarını gidermek, konturları şekillendirmek ve kişinin anatomisiyle uyumlu, doğal bir görünüm elde etmektir.",
+        ],
+      },
+      {
+        heading: "Hangi bölgelere uygulanır?",
+        body: [
+          "Yüz, meme ve çeşitli vücut bölgelerine uygulanabilen bu yöntemde, transfer edilen yağın bir bölümü kalıcı olurken bir kısmı zaman içinde vücut tarafından emilebilir.",
+        ],
+      },
+      {
+        heading: "Sonuçlar nasıldır?",
+        body: [
+          "Sonuçlar kişiden kişiye değişebileceğinden işlem, kişinin anatomik özellikleri ve beklentileri doğrultusunda kişiye özel olarak planlanmalıdır.",
         ],
       },
     ],

@@ -66,8 +66,12 @@ export const NAV: NavItem[] = [
             href: "/ameliyatlar/yuz-estetigi/alin-germe",
           },
           {
-            label: "Göz Estetiği",
-            href: "/ameliyatlar/yuz-estetigi/goz-estetigi",
+            label: "Göz Kapağı Estetiği",
+            href: "/ameliyatlar/yuz-estetigi/goz-kapagi-estetigi",
+          },
+          {
+            label: "Yağ Enjeksiyonu",
+            href: "/ameliyatlar/yuz-estetigi/yag-enjeksiyonu",
           },
         ],
       },
