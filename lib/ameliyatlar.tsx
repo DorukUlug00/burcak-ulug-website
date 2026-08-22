@@ -118,20 +118,50 @@ export const CATEGORIES: Category[] = [
     title: "Burun Estetiği",
     image: "/operations/background1.png",
     blurb: "Burun şekli ve solunum işlevine yönelik işlemler.",
-    lead: "Burundaki kemik ve kıkırdak yapıların şekil bozukluklarını düzeltmeye yönelik cerrahidir. Burun şekli kişiye özgüdür; ameliyat planı yüz oranlarıyla birlikte yapılır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Burun estetiği nedir?",
         body: [
-          "Burun kemerinin düzeltilmesi, burun kemiklerinin yeniden şekillendirilmesi, burun kanatlarına ve burun ucuna yönelik kıkırdak ile dikiş teknikleri farklı kombinasyonlarda kullanılabilir.",
-          "Deviasyon ve burun eti büyümesi gibi solunumu etkileyen sorunlar da değerlendirmeye dâhil edilebilir.",
+          "Burun estetiği yapısal nedenle, geçirilmiş travma veya ameliyat neticesinde burunda oluşan şekil bozukluğunu düzeltmek için gerçekleştirilen işlemlerin genel tanımlamasıdır. Burun insan yüzünün tam ortasında yer alan, yüze ilk bakışta, farkında olmaksızın dikkatin odağı olan yapıdır. Bu nedenle deformiteleri bir hastalık olmasa da estetik kaygıya yol açar. Burun estetiği için hekimlerin tanımladığı ideale yakın ölçüler vardır, ancak kararlarda asıl olan, kişinin hekim süzgecinden geçmiş kendi beklentileridir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Nazal deformite nedir?",
         body: [
-          "İlk haftalarda şişlik belirgindir ve sabahları daha fazla olabilir. Yaklaşık altı haftada şişliğin önemli bir kısmının gerilemesi beklenir; burnun nihai şeklini alması ise daha uzun sürer.",
-          "İyileşme boyunca darbelerden korunmak ve kontrolleri sürdürmek önemlidir.",
+          "Nazal deformite, burnun dış şekil bozukluklarını tanımlamak için hekimlerin kullandığı kavramdır. Burnun şekil bozukluğu, kemik ve kıkırdak yapılarının farklı bölümlerinden kaynaklanır. Burun sırtında kemer varlığı, burnun uzun olması, burun ucunun düşük veya alçak olması, burun kanatlarının geniş olması en sık karşılaşılan estetik problemlerdir.",
+        ],
+      },
+      {
+        heading: "Deviasyon nedir?",
+        body: [
+          "Nazal deformiteli hastaların önemli bir bölümünde burundan nefes almada da sıkıntı vardır. Normal sağlıklı nefes alış burun üzerinden olur. Burun, deviasyon denilen iç eğrilik ve konka hipertrofisi denilen burun etleri büyümesi nedeniyle hakkıyla görev yapamadığı takdirde, kalıcı burun tıkanıklığı oluşur, nefes alış ağız yoluyla olur.",
+          "Deviasyon, burnun içinde önden genize kadar uzanan, burun içini iki bölüme ayıran ve septum olarak adlandırılan dokunun eğriliğidir. Septum dokusu, kıkırdak ve kemik parçalardan oluşmakta, üzerini mukoza adı verilen iç cilt kaplamaktadır. Deviasyon, yapısal olarak veya travma sonucu oluşmuş olabilir. Her hastada eğriliğin olduğu kısımlar ile bunların sayısı ve ciddiyeti farklılık gösterir.",
+          "Et büyümesi, konka denilen burun etlerinin büyümesidir; konka hipertrofisi olarak adlandırılır. Bu yapıların en büyükleri alt konkalardır, hacimleri artıp azalarak burundan geçen hava miktarını ayarlar ve havayı ısıtırlar, deviasyon varlığında burun tıkanıklığını artırırlar.",
+        ],
+      },
+      {
+        heading: "Rinoplasti nedir?",
+        body: [
+          "Rinoplasti ameliyatı burunda şekil bozukluğuna yol açan kıkırdak ve kemik yapıdaki deformitelerin düzeltilmesine yönelik cerrahi işlemdir. Her insanın burun şekli birbirinden farklıdır; aynı şekilde ameliyatla erişilmesi planlanan son durum farklıdır. Bu nedenle burun estetiğine yönelik tek bir teknik yoktur.",
+          "Burun deformitesi değerlendirilmesinde cild, kemik ve kıkırdak yapı tek tek ele alınır. Ameliyat planı yapılırken, hastanın burnuna yönelik beklentilerinin yanısıra, yüzünün şekli ve oranları mutlaka göz önüne alınır. Aksi taktirde kişinin yüz şekline uyumlu olmayan bir burun elde edilir.",
+          "Rinoplasti ameliyatlarında, hump rezeksiyonu, yani burun kemeri alınması, osteotomi, yani burun kemiği kırılması, alar sefalik rezeksiyon, yani burun kanatları küçültülmesi, dikiş teknikleri uygulanması ve kıkırdak destek konulması, yani burun ucu daraltılması ve yükseltilmesi gibi farklı teknikler çeşitli kombinasyonlarda uygulanır.",
+        ],
+      },
+      {
+        heading: "Deviasyon ameliyatı nedir?",
+        body: [
+          "Nazal deformitesi olan vakalarda, burun içi eğriliği de varsa, burun estetiği girişimine, yani rinoplasti ameliyatına, deviasyon düzeltme girişimi, yani septoplasti ameliyatı ilave edilir. Bu kombine ameliyatı tanımlamak için hekimler septorinoplasti sözcüğünü kullanırlar.",
+          "Konka hipertrofisinin eşlik ettiği, burun tıkanıklığına katkıda bulunduğu vakalarda alt konkalara da müdahale edilir. Alt konkaları küçültmek için konkaplasti, radyofrekans, koterizasyon gibi teknikler uygulanır. Konkaplasti ameliyatı, konkalardaki aşırı dokuların, özellikle iç tarafa bakan yüzlerinin korunması kaydıyla, klasik cerrahi tekniklerle alınmasıdır. Radyofrekans tekniği, genel bir cerrahi yöntemidir, radyo dalgalarının iğne şeklinde bir çubukla dokuya iletilmesidir; bu enerjinin yarattığı değişiklikle dokular iyileşme sürecinde büzülür, küçülür ve gerginleşirler.",
+        ],
+      },
+      {
+        heading: "Ameliyat sonrası nasıldır?",
+        body: [
+          "Rinoplasti veya septorinoplasti ameliyatının sonunda burun sırtına ince bandlar ve atel yerleştirilir. Ameliyatın bitiminde gözlerin etrafına soğuk uygulanmasına başlanır. Klasik yöntemlerle, saatte 10-15 dakika şeklinde aralıklı soğuk uygulanması gözlerin etrafında morluk ve şişlik oluşumunu azaltır. Hasta ertesi gün taburcu edilir. Birinci haftanın sonunda burun ateli alınır. Gerekli görülürse ince bandlar bir hafta daha tutulur.",
+          "Rinoplasti ile beraber yapılan deviasyon ve konka ameliyatlarının ameliyat sonrası süreçleri fazla zahmetli değildir. Septum bölmesine karşılıklı devamlı dikiş tekniği uygulandığında burun içine hiçbir şey konulmaması mümkündür. Ancak ihtiyaç halinde, bir gün kalmak üzere, düz tipte veya içinde nefes almaya yarayan küçük birer boru bulunan tipte burun tamponları yerleştirilir.",
+          "Rinoplasti ameliyatlarında göz etrafına soğuk uygulanmasına, taburcu olunduktan sonra da, giderek azalan şekilde 1-2 gün daha devam edilmesi faydalıdır. Ameliyatın üçüncü gününden sonra göz çevresindeki hafif morluk ve şişlikler azalmaya başlar. İlk haftalarda sabahları burun daha şiş olabilir, şişlik gün içinde azalır. 6 hafta sonra burun şişliğinin önemli bir kısmı düzelir. Ancak burnun son şeklini alması 1 yıl sürer.",
+          "Ameliyattan sonra erken dönemde buruna gelecek travmalar burun şeklinde kalıcı bozukluklara yol açabilir. Bu nedenle vücud teması gereken sporlar ilk 8 hafta içinde sakıncalıdır. Üçüncü haftadan itibaren tempolu yürüyüş, yüzme gibi egzersizler yapılabilir. Burun sırtındaki kemere müdahale edilmişse gözlük kullanımı ilk 8 hafta uygun değildir. Yine yoğun güneş ışığı, solaryumdan, sauna ve hamamdan 8 hafta uzak durmak gerekir. Özellikle morluk olduğu dönemde güneşe maruz kalmamak için şapka ve yüksek faktörlü güneş koruyucu bir krem kullanmak, kalıcı göz çevresi renk değişikliklerinin önlenmesi açısından önemlidir.",
+          "Ameliyat sonrası erken süreç geçtikten sonra, 3,6 ve 12. aylarda kontroller yapılır. Vakaların büyük bölümü bu şekilde son burun şekillerine kavuşurken, bazı vakalarda ideal sonuca ulaşmak için ikinci sınırlı bir müdahale gerekebilir.",
         ],
       },
     ],
