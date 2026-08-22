@@ -528,25 +528,42 @@ export const PROCEDURES: Procedure[] = [
   },
 
   /* ---------------- Vücut estetiği ---------------- */
-  {
+    {
     slug: "liposuction",
     category: "vucut-estetigi",
     title: "Liposuction",
     image: "/operations/background1.png",
-    lead: "Vücutta kontur bozukluğuna yol açan bölgesel yağ fazlalıklarının azaltılmasını amaçlayan vücut şekillendirme ameliyatıdır. İdeal kilosuna yakın ve cilt elastikiyeti iyi olan kişiler daha uygun adaylardır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Liposuction / yağ alma ameliyatı nedir?",
         body: [
-          "Karın, bel yanları, basen, bacak, kol, çene altı ve diz çevresi gibi farklı bölgelere uygulanabilir.",
-          "İşlem, uygulanacak alanın genişliğine göre uygun anestezi altında yapılır ve ince kanüllerle yağ dokusunun uzaklaştırılmasına dayanır.",
+          "Liposuction / yağ alma ameliyatı vücutta kontür bozukluğuna yol açan bölgesel yağ fazlalıklarının giderilmesini sağlayan cerrahi girişimdir. Bu ameliyat için uygun aday ideal kilosuna yakın, cilt elastikiyeti iyi olan genç hastalardır. Liposuction selüliti yok etmek ve kilo vermek için çözüm değildir. Ancak bölgesel fazlalıklarının giderilmesiyle ve cilt altı yağ dokusunun azaltılmasıyla kişi daha zayıf gözükür ve selülit olarak adlandırılan cilt düzensizlikleri hafifler.",
+          "Yağ hücrelerinin sayısı erişkinde sabittir. Kilo alınmasıyla sayıda artma olmaz ancak yağ hücrelerinde yağ depolanması olur. Kişideki fazlalıkları belirleyen de yağ hücrelerinin sayıca fazla olarak belli bölgelerde yoğunlaşmasıdır. Bu yağ hücrelerinin dağılımı kişiden kişiye ve cinsiyete göre farklılık gösterir.",
+          "Armut tip vücut şekli olanlarda yağlar karın çevresinde, elma tip vücut şeklinde ise basen bölgesinde toplanmıştır. Bu bölgeler başta olmak üzere kişinin vücut yapısına özgü başka bölgelerde de diyet ve spora cevap vermeyen inatçı fazlalıklar mevcuttur. Vücutta kontür bozukluğuna yol açan bu fazlalıkların giderilmesinin kalıcı çözümü yağların alınmasıdır. Liposuction ile aslında yağların depolandığı yağ hücreleri alınmaktadır. Bu nedenle ameliyat sonrası kilo alınması söz konusu olduğunda yağ hücrelerinin sayısının azaltıldığı bu bölgelerde eskisi gibi yağ birikimi olmamaktadır.",
+          "Liposuction sıklıkla karın, bel yanları, basenler, bacaklar, kollar, çene altı, diz üstü ve dizin iç yüzüne uygulanır. Vücudun şeklini ve kontürünü düzeltirken yağ almayla birlikte bazı alanlara da yağ vermek gerekebilir. Liposuction sırasında alınan yağ gerekli işlemden geçirildikten sonra aynı seansta vücuttaki bazı alanlara enjekte edilerek daha orantılı vücut şekli elde edilir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Liposuction / yağ alma ameliyatı nasıl yapılır?",
         body: [
-          "Ameliyat sonrasında korse kullanılır. Morluk, uyuşukluk, dokunmakla ağrı ve hassasiyet ilk haftalarda görülebilir ve giderek azalır.",
-          "Son konturun ortaya çıkması, ödemin gerilemesiyle kademeli olur.",
+          "Liposuction / yağ alma ameliyatı hastanede ameliyathane şartlarında gerçekleştirilmesi uygun olan estetik bir girişimdir. Uygulanacak bölgenin genişliğine ve beraberinde başka bir girişimin yapılmasına göre lokal anestezi-sedasyon veya genel anestezi altında gerçekleştirilir.",
+          "Vücutta kontür bozukluğuna yol açan bölgesel yağ fazlalıkları ameliyat öncesi işaretlenir. Ameliyat sırasında bu bölgelere içinde kanamayı önleyici ve ameliyat sonrası ağrıyı giderici ilaçlar bulunan özel bir solüsyon enjekte edilir. Vücut kıvrımlarında saklanacak şekilde 3-4 mm'lik kesilerden girilen ince kanüller aracılığıyla vakumla yağlar alınır. Eğer aynı seansta yağ enjeksiyonu yapılacaksa yağ özel enjektör sistemi ile alınarak enjeksiyon için hazırlanır.",
+          "Yağın alınma miktarında rakamsal bir hedef yoktur. Amaç bir heykeltıraş gibi istenilen kontürün oluşturulmasını sağlayacak miktarda yağın, ciltte istenmeyen deformitelere yol açmadan alınmasıdır.",
+          "Ameliyat bitiminde hastaya yağ alınan bölgelere bası yapacak özel korse giydirilir. Aynı gün veya ertesi gün antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+        ],
+      },
+      {
+        heading: "Liposuction / yağ alma ameliyatı sonrası nasıldır?",
+        body: [
+          "Korsenin 4-6 hafta düzenli kullanılması istenir, çünkü korsenin basısıyla yağın boşaltıldığı alanlara cildin sağlıklı bir şekilde adaptasyonu olmakta, vücudun daha hızlı ve etkin biçimlenmesi sağlanmaktadır. İkinci haftadan sonra korse geceleri ara ara çıkarılabilir.",
+          "Uyuşukluk, ciltte morluk, dokunmakla ağrı ve hassasiyet 3. haftadan itibaren hızla azalır. İlk haftalarda tartıda artış ve kıyafetlerin dar gelmesi dokuların ameliyata bağlı ödemli olmasından dolayı beklenen bir durumdur. İkinci aydan itibaren şişler oldukça azalır. Vücut kontürü 6 ay-1 yıl içinde son hâlini alır.",
+        ],
+      },
+      {
+        heading: "Laser liposuction / laser lipoliz nedir?",
+        body: [
+          "Laser enerjisi ile yağ hücrelerinin zarlarının parçalanıp içerdiği depo yağın sıvı hâle getirilmesi prensibine dayalı bir vücut kontür düzeltme işlemidir. Sıvı hâline gelen yağ dokusu, uygulanan laser tekniğine ve bölgeye göre vücuttan lenfatikler aracılığıyla atılması için bırakılabilir veya ince kanüllerle dışarı alınır.",
+          "Bu işlemin bir özelliği de laserin termal etkisiyle kollajen sentezini uyararak cildi sıklaştırma etkisidir. Böylece tek seansta hem yağ alınması hem de cilt sıklaştırma işlemi gerçekleşir.",
         ],
       },
     ],
@@ -556,66 +573,97 @@ export const PROCEDURES: Procedure[] = [
     category: "vucut-estetigi",
     title: "Karın Germe",
     image: "/operations/background1.png",
-    lead: "Karın bölgesindeki cilt ve cilt altı dokularda oluşan sarkmayı gidermek, gevşemiş karın duvarını toparlamak ve daha düz, gergin bir karın oluşturmak amacıyla yapılan ameliyattır. Özellikle doğumlar veya belirgin kilo değişimleri sonrasında tercih edilir.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Karın germe / abdominoplasti ameliyatı nedir?",
         body: [
-          "Alt karındaki fazla deri ve yağ dokusu çıkarılır; gebelik sonrası gevşeyen karın zarı gerekiyorsa sıkılaştırılır, yeni bir göbek deliği oluşturulur ve ihtiyaç hâlinde liposuction eklenir.",
-          "Kesi, bikini hattında kalacak şekilde planlanır. Dren ve korse kullanılır.",
+          "Karın germe ameliyatı karın bölgesindeki cilt, cilt altı dokulardaki sarkıklığın giderilip düz ve gergin bir karın oluşumunu sağlayan cerrahi girişimdir. Bu ameliyatla göbek deliğinin altındaki tüm cilt fazlalığı atılırken özellikle gebeliklere bağlı gevşemiş karın zarı da gerginleştirilir. Atılan ciltte varsa çatlaklardan tamamen kurtulunur. Göbek deliği üzerindeki çatlaklar da gerginliğe bağlı daha az görünür hâle gelir.",
+          "Sıklıkla doğum sonrası ve aşırı kilo alıp vermeye bağlı karın bölgesinde, bazı kişilerde bel yanlarına da uzanan cilt ve cilt altındaki dokularda sarkma oluşur, bel kalınlaşır. Bu sarkma aşırı olursa bel ve sırt bölgesinde ağrılara, cilt kıvrımı altında kötü koku, kaşıntı, kızarıklık gibi özellikle yaz aylarında artan şikâyetlere yol açar. Estetik açıdan ise kişinin sosyal ve özel hayatını oldukça zorlayıcı bir deformitedir. Karın bölgesini örten tipte kıyafetler tercih edilir. Yazın ise bu bölgeyi saklamak daha da zorlaşır.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Karın germe ameliyatı nasıl yapılır?",
         body: [
-          "Drenler, gelen sıvı miktarına göre birkaç gün içinde çıkarılır. İlk hafta dikiş hattındaki gerginliği azaltmak için sırtın yüksekte ve bacakların hafif bükülü tutulması, yürürken hafif öne eğilme önerilebilir.",
-          "Emboli riskini azaltmak amacıyla erken hareket, anti-embolik önlemler ve hastane takibi önemlidir.",
+          "Karın germe ameliyatı hastanede ameliyathane şartlarında genel anestezi altında gerçekleştirilir. Ameliyat sezaryen iziyle aynı hatta, sarkık cildin altından kasıklar boyunca uzanan bikini içinde kalan bir izle sonlanır. İzlerin kalıcılığı temelde kişinin genetik yapısına bağlı değişmekle birlikte karınla birlikte son şeklini alması 1-2 yılı bulur.",
+          "Gebelik sonrası karın kasları birbirinden ayrık durur ve kasları örten karın zarında gevşeme oluşur. Göbek deliği gebelik ve aşırı kilo almaya bağlı gerginlikten dolayı deforme olur.",
+          "Karın germe ameliyatı ile göbek deliğinin altındaki sarkık ve çatlaklar içeren cilt ve cilt altındaki yağlı doku çıkarılır. Gevşemiş karın zarı uygun yön ve gerginlikte plike edilerek güçlendirilir. Yeni ve daha estetik bir göbek deliği oluşturulur. Gerekirse ameliyata liposuction / yağ alma da eklenerek cilt altı yağ dokusu inceltilir. Böylece, estetik bir göbek deliği olan gergin, düz bir karın ve daha ince bir bel oluşturulur.",
+          "Ameliyat bölgesindeki sızıntıların birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır. Karnı saran bir korse giydirilir.",
+        ],
+      },
+      {
+        heading: "Karın germe ameliyatı sonrası nasıldır?",
+        body: [
+          "Drenler gelen miktara göre 3-4 gün içinde çıkartılır. İki veya 3 gün hastanede kaldıktan sonra antibiyotik ve ağrı kesici reçete edilerek taburcu edilir. İlk bir hafta hastanın evde de sırtının yüksekte, bacakların hafif kırık pozisyonda yatması ve ayağa kalktığında hafif öne eğilerek yürümesi istenir. Böylece dikiş hattındaki gerginlik azalır. İkinci haftadan sonra kişi yavaş yavaş normal yatış ve yürüyüş pozisyonuna geçebilir. Ameliyat bölgesindeki belirgin olan şişlik 3. günden itibaren azalmaya başlar. Korse 4 hafta boyunca düzenli kullanılmalıdır. Ameliyattan sonra sık sık ve küçük porsiyonlarla beslenilmesi önerilir.",
+          "Her cerrahi girişim sonrası istenmeyen durumlarla karşılaşılabilinir. Anestezi riski, ameliyat bölgesinde kan toplanması, enfeksiyon ve yara iyileşmesinde gecikme bütün cerrahi girişimler sonrası görülebilen ortak olası komplikasyonlardır. Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır. Sigara içen kişi ameliyattan en az 2 hafta önce sigarayı bırakmalı ve ameliyattan sonra da 2-3 hafta boyunca içmemelidir.",
+          "Karın germe ameliyatı sonrası en istenmeyen komplikasyon embolidir. Embolinin önlenmesi için ameliyatın öncesi anti-embolik çoraplar giydirilir. Ameliyat sonrası yatakta bacaklara masaj yaptırılır ve hareket ettirilmesi sağlanır. Hastanede kalınan süre içinde de uygun ilaçlar kullanılır. Ameliyat öncesi emboli açısından bacaklarda derin ven trombozu hikâyesi ve varislerin varlığı sorgulanır.",
+          "Karın bölgesinde uyuşukluk, hassasiyet, şişlik doğaldır. Birinci aydan itibaren karın şekle girmeye başlar, izlerle birlikte son hâlini alması 1-2 yıl sürer. Sauna, hamam ve ağır spor aktiviteleri 8 haftadan önce önerilmez.",
+        ],
+      },
+      {
+        heading: "Mini karın germe / mini abdominoplasti ameliyatı nedir?",
+        body: [
+          "Mini karın germe ameliyatı karındaki sarkma ve gevşeklik göbek deliği altındaki alanda sınırlıysa yapılan cerrahi işlemdir. Yapılan işlem tam karın germe ameliyatındakine oranla daha sınırlı olduğu için daha kısa izle sonlanabilir. Ameliyat sonrası iyileşme süreci de daha hızlıdır. Gerekirse göbek deliği üzerindeki alana liposuction / yağ alma ameliyatı ile kombine edilir.",
         ],
       },
     ],
   },
-  {
+    {
     slug: "bacak-ici-germe",
     category: "vucut-estetigi",
     title: "Bacak İçi Germe",
     image: "/operations/background1.png",
-    lead: "Kilo alıp verme, yer çekimi veya yapısal nedenlerle bacakların iç yüzünde oluşan cilt ve cilt altı doku sarkmasını azaltarak daha gergin bir kontur oluşturmayı amaçlayan ameliyattır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Bacak içi germe / thigh-lift ameliyatı nedir?",
         body: [
-          "Cilt gevşekliğiyle birlikte yağ fazlalığı varsa önce liposuction yapılabilir; ardından sarkan fazla deri ve cilt altı doku çıkarılır.",
-          "İzler, mümkün olduğunca kasık bölgesinde iç çamaşırı içinde kalacak şekilde planlanır. İleri sarkmalarda kesi bacağın iç yüzünde daha aşağı uzayabilir. Dren kullanılabilir.",
+          "Bacak içi germe ameliyatı, kilo alıp vermeye ve yer çekimine bağlı veya yapısal olarak bacakların iç kısmında oluşan cilt, cilt altı dokulardaki sarkıklığın giderilip düz ve gergin bir hâle getirilmesini sağlayan cerrahi girişimdir. Bacak iç yüzündeki bölgesel yağ fazlalığı eğer ciltte gevşeklik yok ise sınırlı bir yağ alma işlemi ile düzelebilir.",
+          "Anatomik olarak buradaki cilt ve cilt altı dokular bacağın diğer yerlerine göre daha gevşektir. Bundan dolayı yer çekimine ve kilo değişimlerine bağlı rahatsız edici şekilde bu bölgede sarkmalar oluşur. Yaz aylarında mayo, şort giymek kişi için çok rahatsız edici bir durumdur. İleri deformitelerde bacak iç yüzlerinin birbirine sürtünmesi sonucu pişik, kızarıklık, yaralar oluşması bu kişileri sürtünmeyi engellemek için devamlı pantolon giymek zorunda bırakır.",
+          "Yağ alma teknikleriyle cilt altı yağ dokusunun boşaltılması ciltteki sarkmayı daha da belirginleştirir. Bu nedenle sarkmaya yol açan dokuların çıkarılmasını içeren bacak içi germe ameliyatı yağ alma işlemiyle kombine edilmelidir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Bacak içi germe ameliyatı nasıl yapılır?",
         body: [
-          "Drenler genellikle birkaç gün içinde çıkarılır. İlk haftalarda bacaklarda şişlik ve morluk olabilir; bacakları yüksekte tutmak ve istirahat iyileşmeye yardımcı olur.",
-          "Kasık hattındaki nem nedeniyle yara iyileşmesi daha yavaş olabilir. Aktif yaşama yaklaşık on gün sonra dönülür; ağır spor, sauna ve hamam için daha uzun süre beklemek gerekir.",
+          "Bacak içi germe ameliyatı hastanede ameliyathane şartlarında lokal anestezi-sedasyon veya genel anestezi altında gerçekleştirilir. İç yüzdeki ciltte gevşeklik ile birlikte yağ dokusunda da fazlalık varsa önce yağ alma teknikleriyle cilt altı yağ dokusu boşaltılır. Yağ alma sonrası daha da belirginleşen cilt ve cilt altı dokulardaki sarkıklığa yol açan fazlalık, bacak iç yüzü yukarıya doğru gerildikten sonra çıkartılır.",
+          "İzler kasık bölgesinde iç çamaşır içinde kalacak şekilde gizlenir. İzlerin kalıcılığı ve genişliği temelde kişinin genetik yapısına bağlı değişmekle birlikte son şeklini alması 1-2 yılı bulur. Ameliyat bölgesindeki sızıntıların birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır.",
+        ],
+      },
+      {
+        heading: "Bacak içi germe ameliyatı sonrası nasıldır?",
+        body: [
+          "Drenler gelen miktara göre 2-3 gün içinde çıkartılır. Aynı gün veya ertesi gün antibiyotik ve ağrı kesici reçete edilerek taburcu edilir. Bacak iç bölgesinde morluk ve şişlik birinci haftadan itibaren azalır. Bu süre içinde bacakları kalp seviyesinde tutmak ve genel anlamda istirahat iyileşme sürecini hızlandırır.",
+          "Dikiş hattı kasık gibi vücudun nemli bir bölgesinde olduğu için yara iyileşmesinde gecikmeler yaşanabilir. Pansumanlarla sorunsuz toparlanır. Özellikle bariatrik cerrahi sonrası 20 kiloyu aşan kilo vermeye bağlı görülen ileri derecede sarkmalarda izler bacak iç yüzü boyunca devam edebilir. İzlerin yerinin netleştirilmesi için ameliyat öncesi detaylı bir muayene gerekir.",
+          "On gün sonra aktif hayata dönülür. Sauna, hamam ve ağır spor aktiviteleri 8 haftadan önce önerilmez.",
         ],
       },
     ],
   },
-  {
+    {
     slug: "kol-germe",
     category: "vucut-estetigi",
     title: "Kol Germe",
     image: "/operations/background1.png",
-    lead: "Kilo değişimi, yer çekimi veya yapısal nedenlerle kolun iç kısmında oluşan deri ve cilt altı doku sarkmasını gidermeye yönelik ameliyattır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Kol germe / brakioplasti ameliyatı nedir?",
         body: [
-          "Yağ fazlalığı varsa önce liposuction ile cilt altı yağ dokusu azaltılabilir. Ardından fazla deri, kol boyunca planlanan kesiyle çıkarılır ve kol daha gergin hâle getirilir.",
-          "İz, kolun iç-arka bölümünde mümkün olduğunca karşıdan görünmeyecek şekilde konumlandırılır. Dren kullanılabilir.",
+          "Kol germe ameliyatı, kilo alıp vermeye ve yer çekimine bağlı veya yapısal olarak kolların iç kısmında oluşan cilt, cilt altı dokulardaki sarkıklığın giderilmesini sağlayan cerrahi girişimdir. Kolun iç yüzündeki bölgesel yağ fazlalığı eğer ciltte gevşeklik yok ise sınırlı bir yağ alma işlemi ile düzelebilir.",
+          "Anatomik olarak buradaki cilt ve cilt altı dokular kolun diğer yerlerine göre daha gevşektir. Bundan dolayı yer çekimine ve kilo değişimlerine bağlı rahatsız edici şekilde bu bölgede sarkmalar oluşur. Yaz aylarında kısa kollu kıyafet giymek, kol hareketlerini içeren aktiviteler kişi için çok rahatsız edici bir durumdur.",
+          "Yağ alma teknikleriyle cilt altı yağ dokusunun boşaltılması ciltteki sarkmayı daha da belirginleştirir. Bu nedenle sarkmaya yol açan dokuların çıkarılmasını içeren kol germe ameliyatı, gerekirse yağ alma işlemiyle kombine edilmelidir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Kol germe ameliyatı nasıl yapılır?",
         body: [
-          "Drenler çoğunlukla birkaç gün içinde çıkarılır. İlk dönemde morluk, şişlik ve gerginlik görülebilir.",
-          "Dikiş hattını korumak ve dokuların uyumunu desteklemek için korse veya elastik destek kullanılabilir; ağır kol egzersizlerine dönüş kademeli olmalıdır.",
+          "Kol germe ameliyatı hastanede ameliyathane şartlarında lokal anestezi-sedasyon veya genel anestezi altında gerçekleştirilir. İç yüzdeki ciltte gevşeklik ile birlikte yağ dokusunda da fazlalık varsa önce yağ alma teknikleriyle cilt altı yağ dokusu boşaltılır. Yağ alma sonrası daha da belirginleşen cilt ve cilt altı dokulardaki sarkıklığa yol açan fazlalık çıkartılır.",
+          "Bu ameliyatla ilgili üzerinde durulması gereken önemli nokta izlerin yeridir. Çok hafif cilt sarkıklığında iz koltuk altında saklanabilir. Ancak kişiyi ameliyat olmaya iten kol sarkıklığı çoğunlukla izlerin koltuk altında saklanabileceği durumlardan daha ileridir. Cilt fazlalığı ancak kola paralel şekilde eksize edilince kolda istenilen gerginlik elde edilir.",
+          "İz kolun iç ve arka yüzü arasında kol normalde vücutla paralel durduğunda karşıdan ve arkadan bakıldığında fark edilmeyecek şekilde konumlandırılmaya çalışılır. İzlerin kalıcılığı ve genişliği temelde kişinin genetik yapısına bağlı değişmekle birlikte son şeklini alması 1-2 yılı bulur. Ameliyat bölgesindeki sızıntıların birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır.",
+        ],
+      },
+      {
+        heading: "Kol germe ameliyatı sonrası nasıldır?",
+        body: [
+          "Drenler gelen miktara göre 2-3 gün içinde çıkartılır. Aynı gün veya ertesi gün antibiyotik ve ağrı kesici reçete edilerek taburcu edilir. Kol iç bölgesinde morluk ve şişlik birinci haftadan itibaren azalır. Bu süre içinde kollara yüklenilmemesi iyileşme sürecini hızlandırır. Sauna, hamam ve ağır spor aktiviteleri 8 haftadan önce önerilmez.",
         ],
       },
     ],
@@ -623,8 +671,83 @@ export const PROCEDURES: Procedure[] = [
 
   /* ---------------- Ameliyatsız yöntemler ----------------
      DOLDURULACAK: Belgede botoks ve dolgu bölümleri yok. */
-  { slug: "botoks", category: "ameliyatsiz-yontemler", title: "Botoks" },
-  { slug: "dolgu", category: "ameliyatsiz-yontemler", title: "Dolgu" },
+    {
+    slug: "botoks",
+    category: "ameliyatsiz-yontemler",
+    title: "Botoks",
+    image: "/operations/background1.png",
+    sections: [
+      {
+        heading: "Botoks nedir?",
+        body: [
+          "Botoks klostridyum botulinum denen bir bakterinin ürettiği bir toksindir. Doğal bir maddedir, laboratuvarlarda da doğal yoldan üretilmekte, kapalı vakumlu steril şişeciklere toz hâlinde yerleştirilip soğuk zincire özen göstererek nakledilmektedir.",
+          "Botoks toksini, sinir uçlarında uyarı iletimini sağlayan asetilkolin denilen bir maddenin salınımını bloke eder, sinirsel uyarı kaslara iletilemez, kas kasılması oluşamaz. Botoks dıştan bölgesel kullanım için hazırlanmıştır; enjeksiyon yapılan bölgedeki kaslar paraliziye uğrar, aylarca sürecek şekilde gevşek kalırlar.",
+          "Terlemenin önlenmesinden, bölgesel spastisitenin tedavisine, estetik amaca kadar vücudun değişik alanlarında farklı rahatsızlıkların süreli çözümleri için kullanılmaktadır.",
+        ],
+      },
+      {
+        heading: "Yüzde botoks uygulaması nedir?",
+        body: [
+          "Mimik kaslarının kullanılması üzerindeki ciltte kırışıklıklar oluşturur. Bu kırışıklıkların süresi çok uzunsa, cilt de kuru ise kırışıklıklar çok daha derin ve mimik yapılmadan dahi kalıcı bir hâl alabilir. Her insanın gülerken veya stresliyken farklı mimik kasları aktiftir. Bu nedenle kırışıkların derinliği ve lokalizasyonu kişiden kişiye değişir.",
+          "Botoks yüzde özellikle estetik amaçlı olarak uygulanmaktadır; en yaygın kullanım alanı, aşırı çalışan mimik kaslarını geçici olarak gevşeterek oluşturduğu cilt kırışıklıklarının belli bir süre için azaltılmasıdır. En sık alın, iki kaş arası ve göz çevresindeki kırışıkların önlenmesi için bu bölgelere uygulanır. Sonuç olarak kırışıklar derinliğine göre azalır veya tamamen yok olur. Beraberinde kişi arzu ediyorsa planlanan miktarda kaşlar kalkar.",
+        ],
+      },
+      {
+        heading: "Estetik amaçlı botoks nasıl uygulanır?",
+        body: [
+          "Botoks uygulaması ofis koşullarında gerçekleştirilen bir işlemdir. Enjeksiyon alanlarına lokal anestezik bir krem uygulanması yeterlidir. Hasta yarı oturur pozisyonda iken, daha önce sulandırılarak hazır hâle getirilmiş botoks, ince uçlu hassas enjektörler kullanılarak yüzün farklı alanlarına hastanın ihtiyacına göre belirlenmiş dozlarda enjekte edilir.",
+        ],
+      },
+      {
+        heading: "Botoks uygulaması sonrası nasıldır?",
+        body: [
+          "Botoks uygulaması sonrası enjeksiyon alanlarına soğuk tatbiki yapılır. Masaj ise kesinlikle yapılmaz. Enjeksiyon noktalarında geçici olarak hafif kızarıklık ve morarma oluşabilir. Ancak bunların makyajla kapatılmasında sakınca yoktur.",
+          "Hasta, ihtiyaca göre kontrol muayenesine çağırılır. Botoksun hastadan hastaya değişmek üzere etki süresi 4-6 aydır. Bu süreyi takiben uygulamanın tekrarlanması gerekir.",
+        ],
+      },
+    ],
+  },
+    {
+    slug: "dolgu",
+    category: "ameliyatsiz-yontemler",
+    title: "Dolgu",
+    image: "/operations/background1.png",
+    sections: [
+      {
+        heading: "Dolgu nedir? Hyaluronik asid ve yağ enjeksiyonu nedir?",
+        body: [
+          "Dolgu vücudun yapısal, yaşlanma, hastalık veya geçirilmiş operasyona bağlı olarak oluşan çökük bölgelerine estetik amaçla enjekte edilen tıbbi amaçla üretilmiş maddedir. Dolgu için farklı maddeler tanımlanmıştır ve tanımlanmaktadır. Ancak hekimler arasında en yaygın kabul görenleri yağ ve hyaluronik asittir.",
+          "Dolgu amaçlı kullanılan yağ kişinin kendi vücudunun karın gibi bol ve dayanıklı yağ içeren bir bölgesinden alınır. Tekniğe göre değişen şekilde farklı işlemlerden geçirilerek dolgu yapılacak bölgelere enjekte edilir.",
+          "Hyaluronik asit ise insan vücudunda zaten bulunan doğal bir maddedir, laboratuvarlarda da doğal yoldan üretilmekte, hyaluronik asit jeli ve lidokain gibi lokal anestezik içeren kullanıma hazır koyu kıvamlı bir akışkan madde şeklinde özel enjektör içinde nakledilmekte, 2-25 °C sıcaklıkta saklanmaktadır. Bu dolgu maddesi, ecza depolarında çeşitli markalarla, yalnız uzmanların kullanımına hazırlanmış olarak bulunmaktadır.",
+          "Hyaluronik asit dıştan bölgesel kullanım için hazırlanmıştır; enjeksiyon yapılan bölgede aylarca sürecek şekilde etkinliğini gösterir. Yağ ve hyaluronik asit vücudun değişik alanlarında farklı rahatsızlıkların süreli çözümleri için kullanılmaktadır.",
+        ],
+      },
+      {
+        heading: "Yüzde dolgu uygulaması nedir?",
+        body: [
+          "Dolgu yüzde estetik amaçlı olarak, ciltte çökmelerin, çizgilenmelerin olduğu bölgeleri dolgunlaştırmak için uygulanmaktadır. En yaygın kullanım alanları, nazolabial sulkus denilen burun dudak oluğunun, marionette hattı denilen dudak yanı oluğunun, dudak kenarındaki yatay ve üstündeki dikey kırışıklarının doldurulmasıdır.",
+          "Ayrıca dudakları belirgin ve dolgun göstermek için dudak kenarlarına ve dudak mukozasının altına da uygulanmaktadır. Bunların dışında kontür verme amacıyla yüzün ihtiyaç olan başka bölgelerine de dengeli bir şekilde uygulanabilir.",
+        ],
+      },
+      {
+        heading: "Yağ enjeksiyonu, hyaluronik asit enjeksiyonu nasıl uygulanır?",
+        body: [
+          "Hyaluronik asit uygulaması ofis koşullarında gerçekleştirilen bir işlemdir. Hyaluronik asit kullanıma hazır olarak ambalajlanmıştır. Yağın alınması ve ilk seferde hazırlanması ideal olarak ameliyathane şartlarında steril bir ortamda, lokal ve sedasyon anestezi altında gerçekleştirilmelidir. Küçük bir delikten girilerek sıklıkla karın bölgesinden alınır, o enjeksiyon için kullanılacak miktar işlemden geçirilir, geri kalan kısmı diğer seanslarda kullanılmak için dondurularak saklanır.",
+          "Yağ veya hyaluronik asit dolgusu benzer şekilde uygulanır. Önce enjeksiyon yapılacak alanlar dezenfektanla silinir, yüzeye lokal anestezik içeren bir krem sürülür, hassasiyet azaltılır. Takiben hasta yarı oturur pozisyonda iken, hyaluronik asit ince uçlu hassas özel enjektörler, yağ ise özel kanüller kullanılarak yüzün farklı alanlarına hastanın ihtiyacına göre belirlenmiş dozlarda enjekte edilir.",
+          "Hyaluronik asit enjeksiyonu uygulanacak hastalarda, tedavi altında olmayan epilepsi, hipertrofik nedbe eğilimi, hyaluronik asit veya lidokain alerjisi, hamilelik, çocukluk çağı, aktif akne, herpes ve iltihaplı dokular ve eş zamanlı lazer, dermabrazyon ile derin kimyasal peeling uygulaması, kontrendikasyon nedenidir.",
+          "Diğer taraftan kan sulandırıcı ilaçlar, aspirin ve C vitamini kullanması, otoimmün hastalık, genel alerjik bünye, karaciğer hastalığı veya metabolizmasını bozan ilaç kullanımı, kardiyak blok hastalığı, streptokok enfeksiyonu varlığı ise dikkatli karar vermeyi gerektiren durumlardır.",
+        ],
+      },
+      {
+        heading: "Dolgu uygulaması sonrası nasıldır?",
+        body: [
+          "Yağ ve hyaluronik asit dolgu uygulaması sonrası enjeksiyon alanlarına uzman tarafından hafif masaj yapılması dengeli dağılım için önemlidir, sonrasında hafif soğuk uygulanır. Enjeksiyon noktalarında 1 hafta süreyle geçici ve hafif olmak üzere kızarıklık, morarma, kaşıntı, ağrı oluşabilir. Ancak bunların 12 saat geçtikten sonra makyajla kapatılmasında sakınca yoktur.",
+          "Dolgu uygulanmış hastalar günlük yaşamlarında ilk 1 hafta krem kullanmamaya dikkat etmelidir. Hyaluronik asit dolgusunu takiben hastalar 2 hafta süreyle güneş, UV, 0 °C dereceden düşük soğuk, sauna ve hamamdan kaçınmalıdır. Yağ enjeksiyonunda bu kısıtlamalar daha gevşektir.",
+          "Hastalar, ihtiyaca göre kontrol muayenesine çağırılır. Hyaluronik asit etki süresi 4-6 aydır. Yağın ise aylar içinde bir bölümü erir, bir bölümü ise varlığını sürdürür. Hastadan hastaya değişmek üzere bu süreyi takiben bu uygulamaların tekrarlanması gerekir.",
+        ],
+      },
+    ],
+  },
 ];
 
 /* ---------------- Yardımcılar ---------------- */
