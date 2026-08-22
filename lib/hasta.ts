@@ -3,14 +3,17 @@
    yeni bir kayıt eklemen yeterli.
 
    `when` alanı bölümün başındaki zaman etiketidir; boş bırakılırsa
-   etiket gösterilmez. Bölümler zaman sırasına göre dizildi. */
+   etiket gösterilmez. Bölümler zaman sırasına göre dizildi.
+
+   Metin hekimin verdiği hâliyle korunmuştur; yalnızca zaman
+   etiketleri ve başlıklar sayfa düzeni için eklenmiştir. */
 
 export const HASTA_META = {
   eyebrow: "Hasta bilgilendirme",
   title: "Ameliyat öncesi",
   titleAccent: "yapılması gerekenler",
-  intro:
-    "Ameliyata iyi hazırlanmak, iyileşme sürecinin en az ameliyatın kendisi kadar belirleyici bir parçasıdır. Aşağıdaki başlıklar, hazırlık döneminde en sık sorulan konuları toparlıyor.",
+  /* Giriş paragrafı yok: sayfa doğrudan bölümlerle başlar. */
+  intro: "",
 
   /* Görseli public/hasta-bilgilendirme/ klasörüne koy.
      Dikey ya da kareye yakın kadraj uygun. */
@@ -33,52 +36,36 @@ export const HASTA_SECTIONS: InfoSection[] = [
     when: "İlk görüşmede",
     heading: "Sağlık geçmişinizi paylaşın",
     paragraphs: [
-      "Bütün sağlık problemleriniz mutlaka paylaşılmalıdır. Küçük görünen bir ayrıntı bile anestezi ve ameliyat planını değiştirebilir:",
-    ],
-    items: [
-      "Yüksek tansiyon ve şeker hastalığı",
-      "Mide rahatsızlıkları — gastrit, reflü, ülser",
-      "Tiroid fonksiyon bozuklukları; geçirilmiş tiroid ameliyatı, hipotiroidi veya hipertiroidi",
-      "Düzenli olarak kullandığınız ilaçlar",
-      "Alerjileriniz",
-      "Geçirdiğiniz ameliyatlar",
-      "Hepatit B, Hepatit C veya HIV taşıyıcılığı",
+      "Yüksek tansiyon, şeker hastalığı, mide rahatsızlıkları (gastrit, reflü, ülser), tiroid fonksiyon bozuklukları (geçirilmiş tiroid ameliyatı, hipo/hipertiroidi), kullanılan düzenli ilaçlar, alerji, geçirilmiş ameliyatlar, Hepatit B, C veya HIV taşıyıcılığı gibi bütün sağlık problemleri mutlaka paylaşılmalıdır.",
     ],
   },
   {
     when: "En az 2 hafta önce",
     heading: "Sigarayı bırakın",
     paragraphs: [
-      "Sigara kullanımı dokuların kanlanmasını ve oksijenlenmesini olumsuz etkilediği için komplikasyon oranını artırır. Sigara içen kişi ameliyattan en az iki hafta önce sigarayı bırakmalı, ameliyattan sonra da iki-üç hafta boyunca içmemelidir.",
+      "Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır. Sigara içen kişi ameliyattan en az 2 hafta önce sigarayı bırakmalı ve ameliyattan sonra da 2-3 hafta boyunca içmemelidir.",
     ],
   },
   {
     when: "1 hafta önce",
     heading: "Bazı ilaç ve takviyeler kesilir",
     paragraphs: [
-      "Ameliyattan bir hafta önce, kanı sulandıran ilaçların ve benzer etki gösteren takviyelerin kullanımı kesilmelidir:",
-    ],
-    items: [
-      "Aspirin ve benzeri kan sulandırıcı ilaçlar",
-      "Antiinflamatuar ilaçlar",
-      "Gingko biloba ve ginseng gibi beslenme desteği olarak kullanılan maddeler",
-      "E vitamini",
-      "Yeşil çay",
+      "Bir hafta öncesinde kanı sulandıran aspirin ve benzeri ilaçlar, antienflamatuarlar, gingko biloba, ginseng gibi beslenme desteği olarak kullanılan maddeler, vitamin E ve yeşil çay kullanımı kesilmelidir.",
     ],
   },
   {
     when: "1 gün önce ya da aynı gün",
     heading: "Tetkikler ve anestezi değerlendirmesi",
     paragraphs: [
-      "Herhangi bir sağlık probleminiz yoksa ameliyattan bir gün önce veya aynı gün rutin kan tetkikleri, gerekirse radyolojik tetkikler yapılır. Ardından anestezi uzmanlarının kontrolüyle ameliyata hazırlanılır.",
+      "Herhangi bir sağlık problemi yoksa ameliyattan bir gün önce veya aynı gün rutin kan tetkikleri ve gerekirse radyolojik tetkikler yapılır. Anestezi uzmanlarının kontrolüyle ameliyata hazırlanılır.",
     ],
   },
   {
     when: "Ameliyat günü",
     heading: "Aç kalma süresi",
     paragraphs: [
-      "Genel anestezi ve sedasyon anestezisi alacak kişiler, ameliyat saatinden en az 6-8 saat öncesinde yemeyi ve içmeyi keser. Düzenli olarak kullanılan ilaçlar, hekimin bilgisi dâhilinde çok az bir su ile alınabilir.",
-      "Lokal anestezi alacak kişiler ise işlemden 3-4 saat önce hafif bir kahvaltı edebilir.",
+      "Genel anestezi ve sedasyon anestezisi alacak olan kişiler ameliyat saatinden en az 6-8 saat öncesinde yemek ve içmeyi keserler. Düzenli olarak kullanılan ilaçlar hekimin bilgisi dâhilinde çok az bir su ile alınabilir.",
+      "Lokal anestezi alacak olanlar ise işlemden 3-4 saat önce hafif bir kahvaltı edebilirler.",
     ],
   },
 ];
