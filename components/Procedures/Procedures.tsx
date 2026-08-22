@@ -30,7 +30,13 @@ export const PROCEDURES: Procedure[] = [
     slug: "meme-estetigi/meme-buyutme",
     name: "Meme Büyütme",
     summary: "Meme büyütme ameliyatı gelişimsel nedenlere, hamileliğe veya kilo kaybına bağlı olarak memelerdeki hacim yetersizliğini düzeltmeye yönelik cerrahi girişimdir.",
-    image: "/procedures/meme-kucultme.png",
+    image: "/procedures/meme-buyutme.png",
+  },
+  {
+    slug: "yag-enjeksiyonu",
+    name: "Yağ Enjeksiyonu",
+    summary: "Hacim kaybı olan bölgeleri kişinin kendi yağı ile doldurur.",
+    image: "/procedures/yag-enjeksiyonu.png",
   },
   {
     slug: "vucut-estetigi/liposuction",
@@ -39,16 +45,10 @@ export const PROCEDURES: Procedure[] = [
     image: "/procedures/liposuction.png",
   },
   {
-    slug: "yag-enjeksiyonu",
-    name: "Yağ Enjeksiyonu",
-    summary: "Hacim kaybı olan bölgeleri kişinin kendi yağı ile doldurur.",
-    image: "/procedures/meme-kucultme.png",
-  },
-  {
-    slug: "goz-kapagi",
-    name: "Göz Kapağı",
+    slug: "goz-kapagi-estetigi",
+    name: "Göz Kapağı Estetiği",
     summary: "Fazla deri ve torbalanmayı düzelterek bakışları açar.",
-    image: "/procedures/meme-kucultme.png",
+    image: "/procedures/goz-kapagi-estetigi.png",
   },
 ];
 
