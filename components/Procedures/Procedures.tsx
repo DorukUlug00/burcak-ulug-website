@@ -33,9 +33,9 @@ export const PROCEDURES: Procedure[] = [
     image: "/procedures/meme-buyutme.png",
   },
   {
-    slug: "yag-enjeksiyonu",
+    slug: "yuz-estetigi/yag-enjeksiyonu",
     name: "Yağ Enjeksiyonu",
-    summary: "Hacim kaybı olan bölgeleri kişinin kendi yağı ile doldurur.",
+    summary: "Yağ enjeksiyonu, kişinin kendi vücudundan alınan yağ dokusunun özel işlemlerden geçirilerek yüz veya vücudun ihtiyaç duyulan bölgelerine aktarılması işlemidir.",
     image: "/procedures/yag-enjeksiyonu.png",
   },
   {
@@ -45,9 +45,9 @@ export const PROCEDURES: Procedure[] = [
     image: "/procedures/liposuction.png",
   },
   {
-    slug: "goz-kapagi-estetigi",
+    slug: "yuz-estetigi/goz-kapagi-estetigi",
     name: "Göz Kapağı Estetiği",
-    summary: "Fazla deri ve torbalanmayı düzelterek bakışları açar.",
+    summary: "Göz kapağı estetiği (blefaroplasti), üst ve/veya alt göz kapaklarında zamanla oluşan deri fazlalığı, gevşeme ve yağ dokusu belirginliğinin düzeltilmesini amaçlayan cerrahi bir işlemdir.",
     image: "/procedures/goz-kapagi-estetigi.png",
   },
 ];
