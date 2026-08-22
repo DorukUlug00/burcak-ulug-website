@@ -166,24 +166,41 @@ export const CATEGORIES: Category[] = [
       },
     ],
   },
-  {
+    {
     slug: "kulak-estetigi",
     title: "Kulak Estetiği",
     image: "/operations/background1.png",
     blurb: "Kulak şekli ve konumuna yönelik işlemler.",
-    lead: "Kulak sayvanı veya kulak memesindeki yapısal, travmaya ya da önceki cerrahiye bağlı büyüklük ve şekil bozukluklarını düzeltmeye yönelik ameliyatların genel adıdır. Kepçe kulak deformitesi bu grupta sık ele alınan sorunlardandır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Kulak estetiği nedir?",
         body: [
-          "Ameliyat tekniği deformitenin tipine göre değişir. Erişkinlerde lokal anestezi ve sedasyonla yapılabilir; çocuklarda anestezi planı yaşa ve duruma göre farklılaşır.",
+          "Kulak estetiği, kulağın dış kısmını oluşturan kulak sayvanının ve kulak memesinin yapısal veya geçirilmiş travma, cerrahi sonrası görülen büyüklük ve şekil bozukluklarının düzeltilmesine yönelik cerrahi girişimlerdir. Kulak anne karnındayken şekillenmesini tamamlar, boyutu ise 6 yaşlarında erişkin hâlinin %90'ına ulaşır.",
+          "Yapısal deformiteleri arasında kulağın bir kısmının veya tamamının hiç olmaması, deri altına gömük olması, aşırı büyük olması, kulak önünde ikinci bir çıkıntı oluşması, kulak sayvanının düz ve öne doğru açık olması yer alır. Sonradan ise çoğunlukla tümör rezeksiyonu, travma sonrası doku kaybına bağlı kulak sayvanından eksiklik şeklinde görülür.",
+          "Kulağı oluşturan kıkırdak yapıdır. Kulağın şekli kıkırdak yapıyı biçimlendirerek verilir. Eksikliğinde de karşı kulak veya kaburga kıkırdağı kullanılarak onarılır.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Kepçe kulak nedir?",
         body: [
-          "Erişkin hastaların çoğu aynı gün, çocuk hastalar ise uygun görüldüğünde ertesi gün taburcu edilebilir.",
-          "Ameliyat sonrasında kulakların yeni şeklini koruyan pansuman ve bandaj kullanımı ile darbelerden korunmak önemlidir.",
+          "Kepçe kulak kulak sayvanının kafatası ile yaptığı açının normalden geniş olup iç yüzeyindeki Y şeklinde olması gereken kıvrımın yetersiz ya da hiç gelişmemesidir. Beraberinde kulak deliğinin hemen önündeki çanak şeklindeki kıkırdak yapının büyük ve geniş olması kulağın daha da öne doğru yer almasına yol açabilir. Sonuç olarak kepçe kulak, öne doğru açık, üst 1/3 kısmı düz, normalden daha büyükmüş algılaması yaratan bir kulak görünümündedir. Kulağın en sık görülen yapısal deformitesidir.",
+          "Çocukluk çağından itibaren sosyal ortamlarda alay konusu olmak kişi için psikolojik olarak yıpratıcı olur. Özellikle okul çağındaki çocuklar arkadaş çevrelerinde başa çıkması oldukça zor tepkilere maruz kalırlar. Erişkin dönemde bunun getirdiği estetik kaygıyı azaltmak için erkekler ve kadınlar kulaklarını örten saç şekillerini tercih eder. Özellikle okul çağındaki saçlarını toplamak zorunda kalan genç kızlar büyük sıkıntı çeker. Yazın deniz ve havuzdan çıkarken saçların ıslak olmasından dolayı kulakların kamufle edilememesi bile başlı başına bir sorundur.",
+          "Kepçe kulak ameliyatının ideal zamanlaması kulağın gelişimini tamamladığı okul öncesi döneme denk gelen 6 yaştır. Çocukluk çağından kıkırdak yapı yumuşak olduğu için şekil verilmesi ve verilen şeklin sabit kalması daha kolaydır. Yaş büyüdükçe kıkırdak yapı sertleşir. Şekil vermek daha zorlaşırken çok sık olmasa da kıkırdağın hafızasından dolayı eski şekline dönme olasılığı artar.",
+        ],
+      },
+      {
+        heading: "Otoplasti ameliyatı nedir?",
+        body: [
+          "Otoplasti ameliyatı kulak sayvanını oluşturan kıkırdak yapıya şekil verilerek kulağın normal boyut ve şekle getirilmesini sağlayan cerrahi girişimdir. Bu amaçla çok farklı teknikler kullanılır. Kulağın arkasından yapılan kesiyle kıkırdak yapıya ulaşılır. Dikiş teknikleriyle kulak sayvanının üst 1/3 bölümünde olması gereken kıvrım oluşturulur.",
+          "Kulağın öne doğru açılanmasına ayrıca katkıda bulunan konka olarak adlandırılan kıkırdak yapının çanak şeklindeki yapısında fazlalık varsa eksize edilir. Kıkırdak yapı tekrar şekillendirilerek kulak kafatası arasındaki açı daraltılmış olur. Kulak lobulundeki irilik ve öne doğru açılanma yine arkadan yapılan kesi ve eksizyon teknikleriyle düzeltilir. Kendi kendine eriyen dikişler ile kesi dikilir. Ertesi gün çekilmek üzere içeride kan birikmesini önlemek için küçük bir dren yerleştirilir.",
+          "Otoplasti ameliyatı hastanede ameliyathane şartlarında gerçekleştirilmesi uygun olan estetik bir girişimdir. Çocuklarda genel anestezi tercih edilir. Erişkinlerde lokal anestezi ve sedasyon ile yapılabilir. Erişkin hastalar ameliyattan 5-6 saat sonra, çocuk hastalar ise tercihen ertesi gün antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+        ],
+      },
+      {
+        heading: "Ameliyat sonrası nasıldır?",
+        body: [
+          "Ameliyatın bitiminde her iki kulağı kaplayan önde alın, arkada enseyi içine alan sargı şeklinde bir pansuman yapılır. Dördüncü gün bu pansuman açılarak kamufle edilmesi özellikle kadınlar için çok daha kolay olan daha ince bir pansumana geçilir. Birinci haftadan itibaren sadece tenisçi bandı kullanılması yeterlidir. Bu bandın 4 hafta boyunca geceleri uyurken kullanılması verilen şeklin ve açının korunmasını sağlar.",
+          "Kulakta özellikle ön yüzde ameliyat sonrası oluşan şişlik ve morluk 3. günden itibaren azalır. İyileşme sürecinde ilk 8 hafta travma, temas sporları, sauna, hamam ve sıcak ortamdan uzak durmak ve kulakların üzerine yatmaktan kaçınmak gerekir. Yine bu süreç içinde gözlüğün kulağın arkasına gelen kısmının direkt teması rahatsız edici olabilir. Kullanılan günlük gözlüğün ayarının geçici bir süreliğine değiştirilmesi gerekebilir.",
         ],
       },
     ],
@@ -193,7 +210,21 @@ export const CATEGORIES: Category[] = [
     title: "Meme Estetiği",
     image: "/operations/background1.png",
     blurb: "Meme büyüklüğü, şekli ve onarımına yönelik ameliyatlar.",
-    lead: "Meme hacmi, şekli ve simetrisine yönelik ameliyatlar ile meme kanseri tedavisi sonrası onarım cerrahisini kapsar. Uygun yöntem; mevcut doku, deri yapısı ve hedeflenen görünüme göre kişiye özel planlanır.",
+    sections: [
+      {
+        heading: "Meme estetiği / mammoplasti nedir?",
+        body: [
+          "Meme estetiği detaylı bir analiz ve iyi bir planlamayla çeşitli etkenlere bağlı oluşan memedeki şekil bozukluğunun uygun cerrahi tekniklerle düzeltilmesidir.",
+        ],
+      },
+      {
+        heading: "Meme estetiği kimlere uygulanır?",
+        body: [
+          "Meme estetiği, meme gelişimini tamamlamış sağlıklı kadına uygulanır. Memenin şekli kişiden kişiye farklılıklar gösterdiği gibi aynı kişide iki meme arasında da belirgin fark olabilir. Doğumsal deformiteleri arasında memenin az gelişmesi veya hiç gelişmemesi, memede aşırı büyüklük (gigantomasti), asimetri ve memenin meme başından fıtıklaşması (tüberöz meme) yer alır.",
+          "Memenin şekli kadınlarda yaşamları boyunca değişiklikler gösterir. Kilo alıp verme, gebelik, emzirme, menopoz ve yer çekimi bu değişikliklerin nedenleridir. Ayrıca travma, yanık, memeden kitle alınması gibi cerrahi müdahaleler de memede deformitelere yol açabilir.",
+        ],
+      },
+    ],
   },
   {
     slug: "vucut-estetigi",
@@ -329,115 +360,168 @@ export const PROCEDURES: Procedure[] = [
      kategori sayfasında duruyor. */
 
   /* ---------------- Meme estetiği ---------------- */
-  {
+    {
     slug: "meme-buyutme",
     category: "meme-estetigi",
     title: "Meme Büyütme",
     image: "/operations/background1.png",
-    lead: "Gelişimsel nedenler, hamilelik veya kilo kaybı sonrasında ortaya çıkan meme hacmi yetersizliğini düzeltmeyi amaçlayan cerrahi girişimdir.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Meme büyütme ameliyatı nedir?",
         body: [
-          "Meme protezinin boyutu ve şekli; kişinin göğüs kafesi, mevcut meme dokusu, deri yapısı ve hedeflenen görünüm dikkate alınarak planlanır.",
+          "Meme büyütme ameliyatı gelişimsel nedenlere, hamileliğe veya kilo kaybına bağlı olarak memelerdeki hacim yetersizliğini düzeltmeye yönelik cerrahi girişimdir. Bu amaçla meme protezleri kullanılır.",
+          "Meme protezi, meme büyütme amacıyla kullanılan, silikon bir kılıf içinde farklı akışkan maddeler içeren tıbbi malzemedir. Akışkan maddeye göre silikon jel ve tuzlu su (serum fizyolojik) içeren meme protezleri olarak ikiye ayrılır. Şekil özelliklerine göre de yuvarlak ve damla şeklinde anatomik meme protezleri mevcuttur. Kullanılacak meme protezinin tipi ve şekli hastanın vücut yapısı, deri kalitesi, deri kalınlığı ve beklentilerine göre karar verilir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Meme büyütme ameliyatı nasıl yapılır?",
         body: [
-          "Meme bölgesinde gerginlik, şişlik ve hassasiyet görülebilir. Destekleyici sütyen kullanımı ve üst gövdeyi zorlayan hareketlerin bir süre sınırlandırılması iyileşme sürecinin parçasıdır.",
-          "Protezin ve meme dokularının doğal konumuna oturması zaman alır.",
+          "Meme büyütme ameliyatı hastanede ameliyathane şartlarında genel anestezi altında gerçekleştirilmesi uygun olan estetik bir girişimdir. Meme protezi kas önüne veya kas arkasına yerleştirilir. Bu iki temel teknikle ilgili kas kılıfı altı, dual plan gibi farklı uygulamalar mevcuttur. Protez koltuk altından, meme başından veya meme altı kıvrımından yerleştirilir. Hangi tekniğin tercih edileceği meme yapısı ve protez tipiyle ilişkili olarak ameliyat öncesinde planlanır.",
+          "Ameliyat bitiminde hastaya hafif bir pansuman eşliğinde memenin istenilen büyüklüğüne uygun sporcu sütyeni giydirilir. Memedeki sızıntıların ameliyat alanında birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır. Gelen miktara göre üç gün içinde çıkartılır. Ertesi gün hastaneden antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+          "Ameliyatın ilk iki günü memelerde belirgin olan şişlik 3. günden itibaren azalmaya başlar. Bu dönem içinde memelerin üst kısımlarına yapılan soğuk uygulama ve istirahat hastayı rahatlatır. Sporcu sütyeni 6 hafta kullanılır. Göğüs kaslarına yüklenen ağır spor aktiviteler 8 hafta yapılmaz.",
+        ],
+      },
+      {
+        heading: "Meme büyütme ameliyatı sonrası nasıldır?",
+        body: [
+          "Her cerrahi girişim sonrası istenmeyen durumlarla karşılaşılabilinir. Anestezi riski, ameliyat bölgesinde kan toplanması, enfeksiyon ve yara iyileşmesinde gecikme bütün cerrahi girişimler sonrası görülebilen ortak olası komplikasyonlardır. Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır.",
+          "Kapsül kontraktürü, meme büyütme ameliyatına özgü istenmeyen bir durumdur. Meme protezine vücudun aşırı tepkisi olarak geç dönemde %1-3 oranında gelişebilir. Kendini protezin çevresinde kalınlaşan bir zarla, memenin şeklinin bozulması şeklinde gösterir. Kapsülün gevşetilmesi, çıkarılması, protezin değiştirilmesi veya çıkarılması gerekebilir. Meme protezi kapsülünün zamanla aşınması ve içeriğinin dışına sızma olasılığı çok düşüktür. Rutin meme kanseri tarama testleri (mammografi, meme US) sırasında saptanması hâlinde protezin değiştirilmesi gerekir.",
+          "Meme protezi konan hastalarda meme kanseri riski normal popülasyondan farklı değildir. Meme protezi olan kişilerin gebe kalmasında bir sakınca yoktur. Ancak dokuların iyileşme sürecinin tamamlanabilmesi için ilk 6 ay içinde planlı bir gebelik tavsiye edilmez. Kişinin süt vermesine engel bir durum yaratmaz.",
         ],
       },
     ],
   },
-  {
+    {
     slug: "meme-kucultme",
     category: "meme-estetigi",
     title: "Meme Küçültme",
     image: "/operations/background1.png",
-    lead: "Büyük ve sarkık memelerde fazla meme dokusu ile derinin çıkarılması, meme başının daha uygun bir konuma taşınması ve memenin yeniden biçimlendirilmesini amaçlayan ameliyattır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Meme küçültme ameliyatı nedir?",
         body: [
-          "Kullanılacak kesi ve iz planı; memenin büyüklüğüne, sarkma derecesine ve çıkarılacak doku miktarına göre değişir.",
+          "Meme küçültme ameliyatı iri ve sarkık memelerin kişinin vücut yapısına uygun şekilde hacminin azaltılarak daha dik ve estetik meme şeklinin oluşturulmasını sağlayan cerrahi girişimlerdir.",
+          "İri memeler beraberinde başka sağlık problemlerine de yol açar. Memelerin ağırlığına bağlı sırt ve bel ağrıları, kamburlaşma gibi duruş bozuklukları, omuzlarda sütyen askılarının basısı sonucunda oluk şeklinde deformasyonlar oluşur. Yazın daha da artan meme altlarında ve arasında kızarıklık, kötü koku, akıntı, kaşıntı, yaralar, mantar oluşumu kişi için çok rahatsız edicidir.",
+          "Yapısal olan iri memeler puberte döneminden itibaren kişinin sosyal yaşamını olumsuz etkiler. Uygun kıyafet bulamamak, girilen her sosyal ortamda dikkat çekme stresi, spor yapmakta zorluk ve olduğundan daha kilolu görüntü kişiyi mutsuz eder.",
+          "Meme küçültme ameliyatı meme gelişimini tamamlamış, yakın bir zamanda gebelik planı olmayan, yapılan radyolojik tetkiklerinde meme kanseri şüphesi saptanmayan, genel sağlık durumu iyi olan her kadına yapılabilir.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Meme küçültme ameliyatı nasıl yapılır?",
         body: [
-          "Ameliyat sonrasında şişlik ve hassasiyet beklenebilir. Yara iyileşmesi ve izlerin olgunlaşması aylar içinde devam eder.",
-          "Tüm cerrahilerde olduğu gibi kanama, enfeksiyon ve yara iyileşmesi sorunları gibi genel komplikasyonlar mümkündür.",
+          "Meme küçültme ameliyatı hastanede ameliyathane şartlarında genel anestezi altında gerçekleştirilmesi uygun olan estetik bir girişimdir. Bu ameliyatla meme başı yukarı kaldırılırken fazla ve sarkık meme dokusu çıkarılarak meme yeniden biçimlendirilir. Çıkarılan meme dokusu genellikle patolojik incelemeye gönderilir. Sonuçta daha küçük, dik ve estetik bir meme elde edilir.",
+          "Orta boy memelerde meme başı etrafında ve meme başı alt orta noktasından meme alt kıvrımına uzanan dik bir izle ameliyat sonlanırken büyük ve genişliği fazla olan memelerde bu izlere ek olarak meme alt kıvrımında saklanacak şekilde yatay bir iz eklenir. İzlerin kalıcılığı temelde kişinin genetik yapısına bağlı değişmekle birlikte memeyle birlikte son şeklini alması 1 yılı bulur.",
+          "Ameliyat bitiminde hastaya hafif bir pansuman eşliğinde memenin istenilen büyüklüğüne uygun sporcu sütyeni giydirilir. Memedeki sızıntıların ameliyat alanında birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır. Gelen miktara göre üç gün içinde çıkartılır. 1 veya 2 gün hastanede kaldıktan sonra antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+          "Ameliyatın ilk iki günü memelerde belirgin olan şişlik 3. günden itibaren azalmaya başlar. Bu dönem içinde memelerin üst kısımlarına yapılan soğuk uygulama ve istirahat hastayı rahatlatır. Sporcu sütyeni 3 ay kullanılır. Ağır spor aktiviteleri 8 haftadan önce önerilmez.",
+        ],
+      },
+      {
+        heading: "Meme küçültme ameliyatı sonrası nasıldır?",
+        body: [
+          "Her cerrahi girişim sonrası istenmeyen durumlarla karşılaşılabilinir. Anestezi riski, ameliyat bölgesinde kan toplanması, enfeksiyon ve yara iyileşmesinde gecikme bütün cerrahi girişimler sonrası görülebilen ortak olası komplikasyonlardır.",
+          "Ameliyat sonunda elde edilen dik ve dolgun memeler yıllar içinde yaş ve yer çekimine bağlı, araya giren gebelik, kilo alıp verme sonrasında sarkma gösterebilir. Ancak ameliyat öncesi duruma dönmez. Memelerde asimetri, meme başlarında çoğunlukla geçici olan uyuşukluk ve renk değişikliği, yara iyileşmesinde gecikme, özellikle kişinin deri yapısıyla ilişkili izlerde belirginlik görülebilir. Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır.",
+          "Meme küçültme ameliyatı süt vermeye mutlak bir engel değildir, ancak emzirmenin mümkün olup olmayacağı kesin olarak bilinemez.",
         ],
       },
     ],
   },
-  {
+    {
     slug: "meme-diklestirme",
     category: "meme-estetigi",
     title: "Meme Dikleştirme",
     image: "/operations/background1.png",
-    lead: "Hamilelik, emzirme, kilo değişimi, yaşlanma veya yapısal nedenlerle sarkan memenin yeniden şekillendirilerek daha yukarı ve dengeli bir konuma getirilmesini amaçlayan ameliyattır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Meme dikleştirme / mastopeksi ameliyatı nedir?",
         body: [
-          "Fazla deri çıkarılır, meme dokusu yeniden şekillendirilir ve meme başı uygun seviyeye taşınır.",
-          "Hacim eksikliği belirginse dikleştirme, meme proteziyle birlikte planlanabilir.",
+          "Meme dikleştirme ameliyatı, çeşitli nedenlere bağlı sarkmış olan meme dokusunun tekrar biçimlendirilerek daha estetik bir meme şeklinin oluşturulmasını sağlayan cerrahi girişimdir. Memenin büyüklük ve hacmi yeterli değilse dikleştirme ameliyatında meme protezi kullanılması gerekir.",
+          "Gebelik, emzirme, kilo almaya bağlı memeler büyür ve memeyi göğüs duvarına asan bağlar gerilir. Gebelik ve emzirme sürecinin sonlanması ve kilo verme sonucu meme dokusu küçülür ancak asıcı bağlar eski gerginliğine geri dönemez. Yaş, menopoz gibi hormonal değişiklikler ve yer çekiminin etkisiyle de meme dokusu giderek sarkar. Sonuç olarak önce meme dokusu, daha ileri durumlarda da meme ucu meme alt kıvrımının altına iner.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Meme dikleştirme ameliyatı nasıl yapılır?",
         body: [
-          "Erken dönemde şişlik, gerginlik ve hassasiyet olabilir. Destekleyici sütyen ve aktivite kısıtlamaları iyileşmeye yardımcı olur.",
-          "İzlerin nihai görünümü, kişinin yara iyileşme özelliklerine bağlı olarak zaman içinde oturur.",
+          "Meme dikleştirme ameliyatı hastanede ameliyathane şartlarında genel anestezi altında gerçekleştirilmesi uygun olan estetik bir girişimdir. Bu ameliyatla meme başı yukarı kaldırılırken sarkık meme dokusu toparlanarak daha dolgun ve dik bir hâle getirilir. Eğer memenin hacmi yetersizse memeyi daha dolgun bir şekle getirmek için meme protezi kullanılır.",
+          "Memenin boyutuna göre izler sadece meme başı çevresinde olabilir. Ancak sıklıkla daha büyük memelerde meme başı etrafında ve meme başı alt orta noktasından meme alt kıvrımına uzanan dik bir izle ameliyat sonlanır. Genişliği fazla olan memelerde bu izlere ek olarak meme alt kıvrımında saklanacak şekilde yatay bir iz eklenebilir. İzlerin kalıcılığı temelde kişinin genetik yapısına bağlı değişmekle birlikte memeyle birlikte son şeklini alması 1 yılı bulur.",
+          "Ameliyat bitiminde hastaya hafif bir pansuman eşliğinde memenin istenilen büyüklüğüne uygun sporcu sütyeni giydirilir. Memedeki sızıntıların ameliyat alanında birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır. Gelen miktara göre üç gün içinde çıkartılır. Ertesi gün hastaneden antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+          "Ameliyatın ilk iki günü memelerde belirgin olan şişlik 3. günden itibaren azalmaya başlar. Bu dönem içinde memelerin üst kısımlarına yapılan soğuk uygulama ve istirahat hastayı rahatlatır. Sporcu sütyeni 3 ay kullanılır. Ağır spor aktiviteleri 8 haftadan önce önerilmez.",
+        ],
+      },
+      {
+        heading: "Meme dikleştirme ameliyatı sonrası nasıldır?",
+        body: [
+          "Her cerrahi girişim sonrası istenmeyen durumlarla karşılaşılabilinir. Anestezi riski, ameliyat bölgesinde kan toplanması, enfeksiyon ve yara iyileşmesinde gecikme bütün cerrahi girişimler sonrası görülebilen ortak olası komplikasyonlardır. Sigara kullanımı dokuların kanlanmasını ve oksijenizasyonunu olumsuz etkilediği için komplikasyon oranını arttırır.",
+          "Beraberinde meme protezi kullanılmışsa meme protezine özgü istenmeyen durumlar bu ameliyat için de geçerlidir. Ameliyat sonunda elde edilen dik ve dolgun memeler yıllar içinde yaş ve yer çekimine bağlı, araya giren gebelik, kilo alıp verme sonrasında sarkma gösterebilir. Ancak ameliyat öncesi duruma dönmez.",
         ],
       },
     ],
   },
-  {
+    {
     slug: "meme-rekonstruksiyonu",
     category: "meme-estetigi",
     title: "Meme Rekonstrüksiyonu",
     image: "/operations/background1.png",
-    lead: "Meme kanseri nedeniyle memenin bir kısmı veya tamamı alındıktan sonra memenin yeniden oluşturulmasına yönelik cerrahi yöntemlerin genel adıdır.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Meme rekonstrüksiyonu / meme onarımı ameliyatı nedir?",
         body: [
-          "İki ana yaklaşım vardır: protez ile doku genişletici kullanımı, ve kişinin kendi dokusunun kullanıldığı rekonstrüksiyonlar.",
-          "Kendi dokusuyla onarımda karın bölgesinden TRAM flep veya sırt bölgesinden latissimus dorsi flebi seçenekleri değerlendirilir. Uygun yöntem; vücut yapısı, mevcut doku, kanser tedavi planı ve hasta tercihlerine göre belirlenir.",
+          "Meme rekonstrüksiyonu, kanser nedeniyle memenin bir kısmının veya tamamının alındıktan sonra memenin yeniden oluşturulmasına yönelik cerrahi tekniklerin genel tanımıdır.",
+          "Günümüzde gelişen teknoloji ve koruyucu hekimliğin yaygınlaşmasıyla meme kanserinin saptanması çok erken yaşlarda olmaktadır. Kadın için çok önemli bir organ olan memenin kaybı her yaştaki kadının psikolojisini derinden etkiler.",
+          "Memenin yeniden oluşturulmasına yönelik ameliyatlar kişinin kanser tedavisini etkilemez. Bu nedenle kanser tanısı konduktan sonra hastayla memesinin yeniden oluşturulabileceği bilgisi mutlaka paylaşılmalıdır. Tümörün büyüklüğü, koltuk altındaki lenf nodlarının tutulumu, yaş, ailede meme kanseri hikâyesi, östrojen reseptör varlığı gibi birçok faktör göz önüne alınarak hastanın cerrahi ve onkolojik tedavisi planlanır.",
+          "Kanser ameliyatıyla eşzamanlı veya daha sonra meme rekonstrüksiyonu yani memenin yeniden oluşturulması ameliyatı gerçekleştirilir. Kanser ameliyatının hemen devamında eşzamanlı yapılan meme rekonstrüksiyonu hastanın ameliyat masasından meme ile uyanmasını sağlar. Eşzamanlı onarımın yapılması uygun olmayan durumlarda veya hasta tercih etmemişse onkolojik tedavi tamamlandıktan sonra, hasta kararını verdiği zaman da rekonstrüksiyon gerçekleştirilebilir. Bu amaçla hangi tekniğin kullanılacağını, hastanın kanser ameliyatı sonrası ışın tedavisi alıp almayacağı, vücut yapısı, genel sağlık durumu ve hastanın beklentileri belirler.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Meme rekonstrüksiyonu ameliyatı nasıl yapılır?",
         body: [
-          "Kendi dokusunun kullanıldığı ameliyatlarda hastanede kalış ve aktif yaşama dönüş süresi, yalnızca protez veya doku genişletici kullanılan yöntemlere göre daha uzun olabilir.",
-          "Meme şekli ve hacmi oturduktan sonra, gerekiyorsa meme başı rekonstrüksiyonu daha sonraki bir aşamada planlanabilir.",
+          "Meme rekonstrüksiyonu ameliyatı, hastanede ameliyathane şartlarında genel anestezi altında gerçekleştirilir. Bu amaçla farklı teknikler mevcuttur.",
+          "Silikon meme protezi kullanılarak yapılan meme rekonstrüksiyonunda meme dokusu alındıktan sonra kasın altına, eğer cilt ve cilt altı doku yeterli ise kalıcı protez, yeterli değilse doku genişletici yerleştirilir. İki hafta sonra doku genişletici serum fizyolojik ile seanslar hâlinde şişirilerek meme 1-2 ay içinde hedeflenen hacme getirilir. Hedeflenen hacimden en az altı ay sonra doku genişletici çıkarılarak kalıcı meme protezi yerleştirilir.",
+          "Bir kısmı silikondan oluşan, hem doku genişletici hem de kalıcı protez olarak kullanılan meme protez tipi ilk ameliyatta tercih edilmişse, meme hedeflenen hacme getirildikten en az 6 ay sonra protezin serum fizyolojik ile şişirilmesini sağlayan ara bağlantısı lokal anesteziyle çekilerek protez yerinde bırakılır.",
+          "Hastanın otolog dokularla yani kendi dokusunun kullanılarak yapılan meme rekonstrüksiyonunda en sık karın ve sırt dokusu tercih edilir. Hangisinin kullanılacağını kişinin vücut yapısı ve hastanın tercihi belirler.",
+          "TRAM flep olarak adlandırılan teknikte karın dokusu kısmen karın kasıyla (rektus abdominis kası) birlikte kullanılarak yapılır. Bu teknik karın bölgesinde doku fazlalığı olan aslında karın germe ameliyatı adayı da olabilecek hastalar için uygundur. İz karın germe ameliyatındaki gibi iç çamaşırının altında saklanır.",
+          "Karın bölgesinde yeterli doku olmayan hastalarda sırt dokusu tercih edilir. Bu teknikte sırt dokusu kısmen sırt kasıyla (latissimus dorsi kası) birlikte kullanılır. Sırt bölgesinde özellikle zayıf hastalarda kitle oluşturabilecek doku fazla olmadığı için bu teknikte beraberinde meme protezi kullanılabilir. İz sütyen içinde saklanacak şekilde planlanır.",
+          "Otolog dokunun kullanıldığı bu tekniklerde hastanede kalış ve aktif hayata dönüş süresi meme protezi / doku genişletici kullanılarak yapılan tekniklere göre daha uzundur. Her bir tekniğin ameliyat sonrası iyileşme süreci, revizyon olasılıkları, sonuçları detaylıca görüşülmelidir.",
+        ],
+      },
+      {
+        heading: "Yeni meme başı nasıl yapılır?",
+        body: [
+          "Meme kanseri nedeniyle memenin tamamının alınması gereken durumlarda çoğunlukla meme başı da ameliyata dâhil edilir. Eşzamanlı veya geç dönemde yapılan meme rekonstrüksiyonu ameliyatlarında öncelikle memenin yeniden oluşturulması hedeflenir. Memenin şekli ve hacmiyle ilgili tüm cerrahi süreç sona erdikten sonra meme başının yapılması planlanır.",
+          "Ancak karşı memenin yeni yapılan memeyle şekil ve hacim olarak uyumu bu aşamada çok önemlidir. Sağlam meme sarkık ve iriyse küçültme-dikleştirme, küçük ise büyütme ameliyatı yapılması tercih edilir. Böylece yeni oluşturulan memenin meme başı sağlam memeninkiyle simetrik olarak yapılarak daha estetik bir sonuç elde edilir.",
+          "Meme başı, meme ucu (nipple) ve etrafındaki kahverengi dairesel ciltten (areola) oluşur. Meme ucu etraf meme dokusundan planlanan lokal fleplerle oluşturulur. Areola ise kasık bölgesinden alınan deriyle veya sıklıkla tatuaj / dövme ile yapılır.",
         ],
       },
     ],
   },
-  {
+    {
     slug: "jinekomasti",
     category: "meme-estetigi",
     title: "Jinekomasti",
     image: "/operations/background1.png",
-    lead: "Erkekte meme dokusunun belirginleşmesi veya büyümesi durumunun cerrahi olarak düzeltilmesine yönelik işlemdir.",
     sections: [
       {
-        heading: "Nasıl uygulanır",
+        heading: "Jinekomasti / erkekte meme küçültme ameliyatı nedir?",
         body: [
-          "Tedavi planı; meme büyümesinin yağ dokusu, bez dokusu ve deri fazlalığı içeriğine göre değişir.",
-          "Uygun hastalarda liposuction kullanılabilir. Belirgin bez dokusu veya ileri sarkma varlığında fazla meme dokusunun çıkarılması ve gerekirse deri ile meme başının yeniden şekillendirilmesi gerekebilir.",
+          "Jinekomasti ameliyatı, erkeklerdeki anormal büyümüş olan memelerin kişinin vücut yapısına uygun şekilde hacminin azaltılarak erkek tipi meme şeklinin oluşturulmasını sağlayan cerrahi girişimdir. Jinekomasti hormonal, tümöral nedenler veya çeşitli ilaçların kullanımına bağlı oluşabilir.",
+          "Hormonal nedenlere bağlı meme büyüklüğü yeni doğan ve ergenlik döneminde sıklıkla görülür ve geçicidir. Ancak ergenlik döneminde görülen memelerde gerginlik ve büyüklük kişilerin %30'unda gerilemeyerek kalıcı bir durum alır. Bu durum genç insanların sosyal yaşamını olumsuz etkiler. Bol kıyafetlerle, kambur durarak gizlemeye çalışırlar, yazın denize ve havuza girmek adeta kabusa dönüşür.",
+          "Vücut geliştirme sporu yapan bazı kişilerin kontrolsüz kullandığı hormonal ilaçlar erkekte anormal meme büyüklüğü nedenleri arasında yer alır. Kas gelişimini arttırmak amacıyla kullanılan hormonlar uzun vadede meme bezlerinde kalıcı büyümelere hatta meme başından süt gelmesine yol açar.",
+          "Tek veya çift taraflı anormal meme büyüklüğü şikâyetiyle başvuran hastanın detaylı muayene ve görüntüleme teknikleriyle jinekomastinin tipi ve derecesi belirlenir. Ayrıca hormonal analiz gerekebilir. Jinekomastinin glanduler yani meme bezinin anormal büyüklüğü veya lipomatöz yani yağ dokusunun bölgesel fazlalığına bağlı olup olmadığı incelemeler sonucu belirlenir. Memenin büyüklüğü ve ciltte sarkmanın varlığıyla birlikte sarkıklık derecesine göre evreleme yapılır.",
         ],
       },
       {
-        heading: "Ameliyat sonrası ve iyileşme",
+        heading: "Jinekomasti ameliyatı nasıl yapılır?",
         body: [
-          "İyileşme döneminde şişlik ve morluk görülebilir; göğüs bölgesini destekleyen giysiler kullanılabilir.",
-          "İz miktarı, uygulanan tekniğin kapsamına göre değişir.",
+          "Jinekomasti ameliyatı hastanede, ameliyathane şartlarında, uygulanacak teknik ve jinekomastinin boyutuna bağlı olarak sedasyon veya genel anestezi altında gerçekleştirilir. Meme bölgesindeki anormal büyümenin nedeni bölgesel yağ dokusunun birikmesi ise liposuction / yağ alma tekniği kullanılır.",
+          "Meme başının arkasında çoğunlukla düğme şeklinde ele gelen meme dokusunun, çeşitli nedenlerle anormal büyümesi eşlik ediyorsa tek başına liposuction yetmez. Liposuction ile cilt altı dokusunun kalınlığı azaltıldıktan ve memenin istenen kontürü sağlandıktan sonra, meme başının cilt ile birleşim yerinde kalacak olan yarımay şeklinde insizyon yapılır. Meme dokusu eksize edilir. İnsizyon hattı kendi kendine eriyen dikişlerle kapatılır. Çıkarılan meme dokusu genellikle patolojik incelemeye gönderilir.",
+          "İleri evredeki jinekomasti hastalarında, ciltte meme altı kıvrımından aşağı doğru sarkma mevcuttur. Beraberinde meme başı normalden daha büyük olabilir. Özellikle günümüzde bariatrik cerrahinin gelişmesi ve yaygınlaşmasıyla yüksek miktarda (20 kilonun üstü) kilo veren kişi sayısı da artmaktadır. Bu kişilerin kilo vermeleri sonucunda kaçınılmaz olarak ciltte sarkmalar olmaktadır. Erkeklerde de meme bölgesinde ciddi sarkmalar görülmektedir.",
+          "Bu tip jinekomastide ciltteki fazlalığın düzeltilmesi için daha detaylı teknikler tercih edilir. Cilt fazlalığının ve büyük meme başının düzeltilmesi için meme başının ciltle birleşim yerinde kalacak dairesel ve meme başının alt orta noktasından meme altı kıvrımına uzanan insizyonlar yapılır. Bu ameliyatla meme başı yukarı kaldırılırken fazla ve sarkık meme dokusu çıkarılarak meme yeniden biçimlendirilir. İzlerin kalıcılığı temelde kişinin genetik yapısına bağlı değişmekle birlikte memeyle birlikte son şeklini alması 1 yılı bulur.",
+          "Ameliyat bitiminde hastaya hafif bir pansuman eşliğinde göğüs bölgesini içine alan korse giydirilir. Meme dokusundan eksizyon yapılmışsa memedeki sızıntıların ameliyat alanında birikmesini önlemek için dren denilen vakumlu boru sistemi kullanılır. Gelen miktara göre üç gün içinde çıkartılır. Aynı gün veya ertesi gün antibiyotik ve ağrı kesici reçete edilerek taburcu edilir.",
+        ],
+      },
+      {
+        heading: "Jinekomasti ameliyatı sonrası nasıldır?",
+        body: [
+          "Jinekomasti ameliyatının hemen bitiminde giydirilen korsenin 4 hafta boyunca düzenli takılması istenir. İkinci haftanın sonunda çok rahatsız etmesi hâlinde geceleri çıkartılabilir. Göğüs bölgesindeki şişliğin inip şeklini alması 6 aydan önce olmaz. Ağır spor aktiviteleri, özellikle göğüs bölgesine yönelik ağırlığa dayalı egzersizler 8 haftadan önce önerilmez. İkinci haftadan itibaren yürüyüş ve yüzme sakıncalı değildir.",
         ],
       },
     ],
