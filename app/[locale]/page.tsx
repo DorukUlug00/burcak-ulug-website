@@ -112,7 +112,7 @@ export default async function Home({ params }: Props) {
       </section>
 
       <Procedures locale={locale}/>
-      <Cv/>
+      <Cv locale={locale}/>
       <Media locale={locale}/>
       <Contact locale={locale} />
     </main>

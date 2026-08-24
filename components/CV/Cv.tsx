@@ -1,33 +1,51 @@
 import Image from "next/image";
+import Link from "next/link";
 
+import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./Cv.module.css";
 
-const CONTENT = {
-  quote:
-    "Plastik ve Estetik Cerrahide en iyi sonuçlar, kişinin beklentileri ile tıbben mümkün olanın doğru noktada buluşmasıyla elde edilir. Doğallığı koruyan, güvenli ve kişiye özel bir yaklaşım; bilimsel bilgi, cerrahi deneyim, karşılıklı güven ve açık iletişim üzerine kuruludur. Çünkü başarılı bir sonuç, yalnızca görünümü değiştirmek değil; kişinin kendine özgü özelliklerini koruyarak doğal, dengeli ve uyumlu bir görünüm elde etmektir.",
-
+type Copy = {
+  quote: string;
   /* Sözü söyleyen — alıntının altındaki künye. */
-  attribution: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+  attribution: string;
+  cta: string;
+  imageAlt: string;
+};
 
-  cta: "Özgeçmiş",
-  ctaHref: "/ozgecmis",
-
-  image: {
-    src: "/doctor/white-shirt.png",
-    alt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+const CONTENT: Record<Locale, Copy> = {
+  tr: {
+    quote:
+      "Plastik ve Estetik Cerrahide en iyi sonuçlar, kişinin beklentileri ile tıbben mümkün olanın doğru noktada buluşmasıyla elde edilir. Doğallığı koruyan, güvenli ve kişiye özel bir yaklaşım; bilimsel bilgi, cerrahi deneyim, karşılıklı güven ve açık iletişim üzerine kuruludur. Çünkü başarılı bir sonuç, yalnızca görünümü değiştirmek değil; kişinin kendine özgü özelliklerini koruyarak doğal, dengeli ve uyumlu bir görünüm elde etmektir.",
+    attribution: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    cta: "Özgeçmiş",
+    imageAlt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+  },
+  en: {
+    quote:
+      "In plastic and aesthetic surgery, the best results come when a person's expectations meet what is medically possible at exactly the right point. An approach that preserves what is natural — safe and tailored to the individual — rests on scientific knowledge, surgical experience, mutual trust and open communication. Because a successful result is not simply changing how someone looks; it is achieving a natural, balanced and harmonious appearance while preserving what is distinctive about that person.",
+    attribution: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    cta: "Curriculum Vitae",
+    imageAlt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
   },
 };
 
-export default function Cv() {
-  const { quote, attribution, cta, ctaHref, image } = CONTENT;
+const IMAGE_SRC = "/doctor/white-shirt.png";
+const CTA_HREF = "/ozgecmis";
+
+type Props = {
+  locale: Locale;
+};
+
+export default function Cv({ locale }: Props) {
+  const { quote, attribution, cta, imageAlt } = CONTENT[locale];
 
   return (
     <section className={styles.section} id="cv">
       <div className={styles.inner}>
         <div className={styles.media}>
           <Image
-            src={image.src}
-            alt={image.alt}
+            src={IMAGE_SRC}
+            alt={imageAlt}
             fill
             sizes="(min-width: 900px) 42vw, 100vw"
             className={styles.image}
@@ -49,14 +67,13 @@ export default function Cv() {
             &rdquo;
           </span>
 
-          <figcaption className={styles.attribution}>
-            {attribution}
-          </figcaption>
+          <figcaption className={styles.attribution}>{attribution}</figcaption>
 
-          <a href={ctaHref} className={styles.cta}>
+          {/* Sayfa içi geçiş: <a> değil <Link>. */}
+          <Link href={withLocale(CTA_HREF, locale)} className={styles.cta}>
             <span>{cta}</span>
             <LongArrow />
-          </a>
+          </Link>
         </figure>
       </div>
     </section>
