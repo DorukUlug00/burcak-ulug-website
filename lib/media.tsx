@@ -9,32 +9,42 @@
      2. GALERİ  — sayfayı çizen bileşen. İçerik eklemek için buraya
                   dokunmana gerek yok.
 
+   İKİ DİL: Yapısal alanlar (id, youtubeId, src, date, outlet) tek
+   kayıtta ortak durur; yalnızca metin alanları { tr, en } nesnesidir.
+   Böylece bir videonun kimliği veya tarihi diller arasında ayrışamaz.
+
    Dosya "use client" ile başlıyor çünkü galeri süzgeç, oynatma ve
    büyütme için tarayıcıda çalışmak zorunda. Bu yüzden sayfanın
-   `metadata` çıktısı app/medya/page.tsx içinde kalıyor. */
+   `metadata` çıktısı app/[locale]/medya/page.tsx içinde kalıyor ve
+   `locale` bileşene prop olarak iniyor. */
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import styles from "../app/medya/page.module.css";
+import type { Locale } from "@/lib/i18n";
+import styles from "../app/[locale]/medya/page.module.css";
 
 /* ===============================================================
    1. İÇERİK — video ve fotoğraflar
    =============================================================== */
 
+/* Dile göre değişen metin alanı. */
+type Localized = { tr: string; en: string };
+
 type MediaBase = {
   /* Benzersiz olmalı — React anahtarı olarak kullanılıyor. */
   id: string;
-  title?: string;
-  /* Kanal, program ya da dergi adı. */
+  title?: Localized;
+  /* Kanal, program ya da dergi adı. Özel isim olduğu için
+     çevrilmez, tek metindir. */
   outlet?: string;
   /* ISO biçim. Yalnızca sıralama için kullanılır; ay belli değilse
      ayın ilk gününü yaz. */
   date?: string;
   /* Ekranda görünecek tarih. Boş bırakılırsa `date` biçimlenir.
      Dergi sayıları gibi "Mayıs – Haziran 2014" durumları için var. */
-  dateLabel?: string;
-  summary?: string;
+  dateLabel?: Localized;
+  summary?: Localized;
   /* Kendi ızgarasında iki sütun kaplar — öne çıkarmak için. */
   size?: "wide";
 };
@@ -51,7 +61,7 @@ export type PhotoItem = MediaBase & {
   type: "foto";
   src: string;
   /* Görme engelli kullanıcılar ve arama motorları için zorunlu. */
-  alt: string;
+  alt: Localized;
 };
 
 export type MediaItem = VideoItem | PhotoItem;
@@ -63,7 +73,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-karin-germe-1",
     type: "video",
     youtubeId: "IzysY2PP4fE",
-    title: "Karın germe ve meme dikleştirme ameliyatı — Bölüm 1",
+    title: {
+      tr: "Karın germe ve meme dikleştirme ameliyatı — Bölüm 1",
+      en: "Tummy tuck and breast lift surgery — Part 1",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2013-09-24",
     size: "wide",
@@ -72,7 +85,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-karin-germe-2",
     type: "video",
     youtubeId: "8jBYxD5uy4U",
-    title: "Karın germe ve meme dikleştirme ameliyatı — Bölüm 2",
+    title: {
+      tr: "Karın germe ve meme dikleştirme ameliyatı — Bölüm 2",
+      en: "Tummy tuck and breast lift surgery — Part 2",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2013-09-24",
   },
@@ -80,7 +96,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-meme-kucultme-2013",
     type: "video",
     youtubeId: "xeXa2292dMs",
-    title: "Meme küçültme ameliyatı",
+    title: {
+      tr: "Meme küçültme ameliyatı",
+      en: "Breast reduction surgery",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2013-02-19",
   },
@@ -88,7 +107,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-goz-cevresi-1",
     type: "video",
     youtubeId: "jQKRQK9So-A",
-    title: "Göz çevresi estetiği — Bölüm 1",
+    title: {
+      tr: "Göz çevresi estetiği — Bölüm 1",
+      en: "Eye area aesthetics — Part 1",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2013-02-19",
   },
@@ -96,7 +118,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-goz-cevresi-2",
     type: "video",
     youtubeId: "fOckQs1MGcs",
-    title: "Göz çevresi estetiği — Bölüm 2",
+    title: {
+      tr: "Göz çevresi estetiği — Bölüm 2",
+      en: "Eye area aesthetics — Part 2",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2013-02-19",
   },
@@ -104,7 +129,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-goz-cevresi-3",
     type: "video",
     youtubeId: "h1K_9CfReaM",
-    title: "Göz çevresi estetiği — Bölüm 3",
+    title: {
+      tr: "Göz çevresi estetiği — Bölüm 3",
+      en: "Eye area aesthetics — Part 3",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2013-02-19",
   },
@@ -112,7 +140,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-meme-kucultme-1",
     type: "video",
     youtubeId: "jNWNQ2pAB3Q",
-    title: "Meme küçültme ameliyatı — Bölüm 1",
+    title: {
+      tr: "Meme küçültme ameliyatı — Bölüm 1",
+      en: "Breast reduction surgery — Part 1",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2012-10-31",
   },
@@ -120,7 +151,10 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-meme-kucultme-2",
     type: "video",
     youtubeId: "iPM1NgZRO0c",
-    title: "Meme küçültme ameliyatı — Bölüm 2",
+    title: {
+      tr: "Meme küçültme ameliyatı — Bölüm 2",
+      en: "Breast reduction surgery — Part 2",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2012-10-31",
   },
@@ -128,64 +162,104 @@ export const MEDIA: MediaItem[] = [
     id: "doktorum-meme-kucultme-3",
     type: "video",
     youtubeId: "HSJdaeaxnhQ",
-    title: "Meme küçültme ameliyatı — Bölüm 3",
+    title: {
+      tr: "Meme küçültme ameliyatı — Bölüm 3",
+      en: "Breast reduction surgery — Part 3",
+    },
     outlet: "Kanal D — Doktorum",
     date: "2012-10-31",
   },
 
-  /* ---------------- Basında ---------------- */
+  /* ---------------- Basında ----------------
+     Başlıklar basılı manşetin kendisidir; İngilizce karşılıkları
+     anlaşılması için verilmiş çevirilerdir. */
 
   {
     id: "abc-dunyasi-1",
     type: "foto",
     src: "/media/photos/medya-y2a-buyuk.jpg",
-    title: "Meme estetiği hayal değil!",
+    title: {
+      tr: "Meme estetiği hayal değil!",
+      en: "Breast aesthetics is not a dream!",
+    },
     outlet: "Abç Dünyası",
     date: "2014-05-01",
-    dateLabel: "Mayıs – Haziran 2014",
-    alt: "Abç Dünyası dergisindeki röportajın birinci sayfası",
+    dateLabel: { tr: "Mayıs – Haziran 2014", en: "May – June 2014" },
+    alt: {
+      tr: "Abç Dünyası dergisindeki röportajın birinci sayfası",
+      en: "First page of the interview in Abç Dünyası magazine",
+    },
   },
   {
     id: "abc-dunyasi-2",
     type: "foto",
     src: "/media/photos/medya-y2b-buyuk.jpg",
-    title: "Meme estetiği hayal değil!",
+    title: {
+      tr: "Meme estetiği hayal değil!",
+      en: "Breast aesthetics is not a dream!",
+    },
     outlet: "Abç Dünyası",
     date: "2014-05-01",
-    dateLabel: "Mayıs – Haziran 2014",
-    alt: "Abç Dünyası dergisindeki röportajın ikinci sayfası",
+    dateLabel: { tr: "Mayıs – Haziran 2014", en: "May – June 2014" },
+    alt: {
+      tr: "Abç Dünyası dergisindeki röportajın ikinci sayfası",
+      en: "Second page of the interview in Abç Dünyası magazine",
+    },
   },
   {
     id: "abc-dunyasi-3",
     type: "foto",
     src: "/media/photos/medya-y2c-buyuk.jpg",
-    title: "Meme estetiği hayal değil!",
+    title: {
+      tr: "Meme estetiği hayal değil!",
+      en: "Breast aesthetics is not a dream!",
+    },
     outlet: "Abç Dünyası",
     date: "2014-05-01",
-    dateLabel: "Mayıs – Haziran 2014",
-    alt: "Abç Dünyası dergisindeki röportajın üçüncü sayfası",
+    dateLabel: { tr: "Mayıs – Haziran 2014", en: "May – June 2014" },
+    alt: {
+      tr: "Abç Dünyası dergisindeki röportajın üçüncü sayfası",
+      en: "Third page of the interview in Abç Dünyası magazine",
+    },
   },
   {
     id: "aktuel-1",
     type: "foto",
     src: "/media/photos/medya-y1a-buyuk.jpg",
-    title: "Bütün yaz karnınızı saklamakla geçmesin",
+    title: {
+      tr: "Bütün yaz karnınızı saklamakla geçmesin",
+      en: "Don't spend the whole summer hiding your stomach",
+    },
     outlet: "Aktüel",
     date: "2014-04-30",
-    dateLabel: "Mayıs 2014",
-    alt: "Aktüel dergisindeki röportajın birinci sayfası",
+    dateLabel: { tr: "Mayıs 2014", en: "May 2014" },
+    alt: {
+      tr: "Aktüel dergisindeki röportajın birinci sayfası",
+      en: "First page of the interview in Aktüel magazine",
+    },
   },
   {
     id: "aktuel-2",
     type: "foto",
     src: "/media/photos/medya-y1b-buyuk.jpg",
-    title: "Bütün yaz karnınızı saklamakla geçmesin",
+    title: {
+      tr: "Bütün yaz karnınızı saklamakla geçmesin",
+      en: "Don't spend the whole summer hiding your stomach",
+    },
     outlet: "Aktüel",
     date: "2014-04-30",
-    dateLabel: "Mayıs 2014",
-    alt: "Aktüel dergisindeki röportajın ikinci sayfası",
+    dateLabel: { tr: "Mayıs 2014", en: "May 2014" },
+    alt: {
+      tr: "Aktüel dergisindeki röportajın ikinci sayfası",
+      en: "Second page of the interview in Aktüel magazine",
+    },
   },
 ];
+
+/* Dile göre metin seçer; alan boşsa null döner. */
+function pick(field: Localized | undefined, locale: Locale): string | null {
+  return field ? field[locale] : null;
+}
 
 /* Tarihi olan kayıtlar yeniden eskiye sıralanır; aynı tarihli
    bölümler dosyadaki sırasını korur (Bölüm 1, 2, 3 bozulmaz). */
@@ -193,17 +267,22 @@ export function sortedMedia(items: MediaItem[] = MEDIA): MediaItem[] {
   return [...items].sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
 }
 
-/* Gün belliyse "24 Eylül 2013", değilse dateLabel devreye girer. */
-export function formatMediaDate(item: MediaItem): string | null {
-  if (item.dateLabel) {
-    return item.dateLabel;
+/* Gün belliyse "24 Eylül 2013" / "24 September 2013"; belli değilse
+   dateLabel devreye girer. */
+export function formatMediaDate(
+  item: MediaItem,
+  locale: Locale,
+): string | null {
+  const label = pick(item.dateLabel, locale);
+  if (label) {
+    return label;
   }
 
   if (!item.date) {
     return null;
   }
 
-  return new Intl.DateTimeFormat("tr-TR", {
+  return new Intl.DateTimeFormat(locale === "tr" ? "tr-TR" : "en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -217,13 +296,67 @@ export function formatMediaDate(item: MediaItem): string | null {
 
 type Filter = "hepsi" | "video" | "foto";
 
-const FILTERS: { value: Filter; label: string }[] = [
-  { value: "hepsi", label: "Tümü" },
-  { value: "video", label: "Video" },
-  { value: "foto", label: "Basında" },
-];
+/* Arayüz metinleri. İçerikten ayrı: bunlar galerinin kendi
+   etiketleri, medya kayıtlarının başlıkları değil. */
+type GalleryStrings = {
+  filterGroup: string;
+  filterAll: string;
+  filterVideo: string;
+  filterPress: string;
+  groupVideo: string;
+  groupPress: string;
+  emptyBefore: string;
+  emptyAfter: string;
+  play: string;
+  zoom: string;
+  fallbackVideo: string;
+  fallbackPhoto: string;
+  close: string;
+  prev: string;
+  next: string;
+};
 
-export default function MediaGallery() {
+const UI: Record<Locale, GalleryStrings> = {
+  tr: {
+    filterGroup: "Medya türü",
+    filterAll: "Tümü",
+    filterVideo: "Video",
+    filterPress: "Basında",
+    groupVideo: "Televizyon programları",
+    groupPress: "Basında",
+    emptyBefore: "Bu bölümde henüz içerik yok. Video ve fotoğraflar bu dosyanın üst yarısındaki ",
+    emptyAfter: " dizisine eklenir.",
+    play: "oynat",
+    zoom: "büyüt",
+    fallbackVideo: "Video",
+    fallbackPhoto: "Fotoğraf",
+    close: "Kapat",
+    prev: "Önceki sayfa",
+    next: "Sonraki sayfa",
+  },
+  en: {
+    filterGroup: "Media type",
+    filterAll: "All",
+    filterVideo: "Video",
+    filterPress: "In the press",
+    groupVideo: "Television programmes",
+    groupPress: "In the press",
+    emptyBefore: "There is no content in this section yet. Videos and photographs are added to the ",
+    emptyAfter: " array in the upper half of this file.",
+    play: "play",
+    zoom: "enlarge",
+    fallbackVideo: "Video",
+    fallbackPhoto: "Photograph",
+    close: "Close",
+    prev: "Previous page",
+    next: "Next page",
+  },
+};
+
+type Props = { locale: Locale };
+
+export default function MediaGallery({ locale }: Props) {
+  const t = UI[locale];
   const items = useMemo(() => sortedMedia(), []);
 
   const [filter, setFilter] = useState<Filter>("hepsi");
@@ -231,6 +364,12 @@ export default function MediaGallery() {
   const [playing, setPlaying] = useState<string | null>(null);
   /* Büyütülen fotoğrafın, fotoğraflar dizisindeki sırası. */
   const [lightbox, setLightbox] = useState<number | null>(null);
+
+  const FILTERS: { value: Filter; label: string }[] = [
+    { value: "hepsi", label: t.filterAll },
+    { value: "video", label: t.filterVideo },
+    { value: "foto", label: t.filterPress },
+  ];
 
   const videos = useMemo(
     () => items.filter((i): i is VideoItem => i.type === "video"),
@@ -281,7 +420,8 @@ export default function MediaGallery() {
      16:9, diğeri dik bir dergi sayfası. Bu yüzden her tür kendi
      ızgarasında, kendi en-boy oranıyla diziliyor. */
   const renderTile = (item: MediaItem) => {
-    const dateText = formatMediaDate(item);
+    const title = pick(item.title, locale);
+    const dateText = formatMediaDate(item, locale);
     const meta = [item.outlet, dateText].filter(Boolean);
     const isVideo = item.type === "video";
 
@@ -298,7 +438,7 @@ export default function MediaGallery() {
             /* nocookie alan adı, izleyici oynatmadan önce
                reklam çerezi bırakmaz. */
             src={`https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0`}
-            title={item.title ?? "Video"}
+            title={title ?? t.fallbackVideo}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -313,8 +453,8 @@ export default function MediaGallery() {
             }
             aria-label={
               item.type === "video"
-                ? `${item.title ?? "Video"} — oynat`
-                : `${item.title ?? "Fotoğraf"} — büyüt`
+                ? `${title ?? t.fallbackVideo} — ${t.play}`
+                : `${title ?? t.fallbackPhoto} — ${t.zoom}`
             }
           >
             {item.type === "video" ? (
@@ -361,15 +501,13 @@ export default function MediaGallery() {
 
         {/* Künye görselin üstünde; tıklamayı yutmasın diye
             pointer-events kapalı. */}
-        {item.title || meta.length > 0 ? (
+        {title || meta.length > 0 ? (
           <div className={styles.caption} aria-hidden={playing === item.id}>
             {meta.length > 0 ? (
               <p className={styles.kicker}>{meta.join(" · ")}</p>
             ) : null}
 
-            {item.title ? (
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-            ) : null}
+            {title ? <h3 className={styles.cardTitle}>{title}</h3> : null}
           </div>
         ) : null}
       </li>
@@ -379,7 +517,7 @@ export default function MediaGallery() {
   return (
     <>
       <div className={styles.bar}>
-        <div className={styles.filters} role="tablist" aria-label="Medya türü">
+        <div className={styles.filters} role="tablist" aria-label={t.filterGroup}>
           {FILTERS.map((option) => {
             const selected = filter === option.value;
             const count =
@@ -412,7 +550,7 @@ export default function MediaGallery() {
       {filter !== "foto" && videos.length > 0 ? (
         <section className={styles.group} aria-labelledby="grup-video">
           <h2 className={styles.groupTitle} id="grup-video">
-            Televizyon programları
+            {t.groupVideo}
           </h2>
 
           <ul className={styles.videoGrid}>{videos.map(renderTile)}</ul>
@@ -422,7 +560,7 @@ export default function MediaGallery() {
       {filter !== "video" && photos.length > 0 ? (
         <section className={styles.group} aria-labelledby="grup-basin">
           <h2 className={styles.groupTitle} id="grup-basin">
-            Basında
+            {t.groupPress}
           </h2>
 
           <ul className={styles.photoGrid}>{photos.map(renderTile)}</ul>
@@ -431,9 +569,9 @@ export default function MediaGallery() {
 
       {items.length === 0 ? (
         <p className={styles.empty}>
-          Bu bölümde henüz içerik yok. Video ve fotoğraflar bu dosyanın
-          üst yarısındaki <code className={styles.code}>MEDIA</code> dizisine
-          eklenir.
+          {t.emptyBefore}
+          <code className={styles.code}>MEDIA</code>
+          {t.emptyAfter}
         </p>
       ) : null}
 
@@ -443,14 +581,14 @@ export default function MediaGallery() {
           className={styles.lightbox}
           role="dialog"
           aria-modal="true"
-          aria-label={active.title ?? "Fotoğraf"}
+          aria-label={pick(active.title, locale) ?? t.fallbackPhoto}
           onClick={() => setLightbox(null)}
         >
           <button
             type="button"
             className={styles.close}
             onClick={() => setLightbox(null)}
-            aria-label="Kapat"
+            aria-label={t.close}
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path
@@ -471,7 +609,7 @@ export default function MediaGallery() {
                   event.stopPropagation();
                   step(-1);
                 }}
-                aria-label="Önceki sayfa"
+                aria-label={t.prev}
               >
                 <Chevron />
               </button>
@@ -483,7 +621,7 @@ export default function MediaGallery() {
                   event.stopPropagation();
                   step(1);
                 }}
-                aria-label="Sonraki sayfa"
+                aria-label={t.next}
               >
                 <Chevron />
               </button>
@@ -497,18 +635,20 @@ export default function MediaGallery() {
             <Image
               className={styles.lightboxImage}
               src={active.src}
-              alt={active.alt}
+              alt={active.alt[locale]}
               fill
               sizes="90vw"
               priority
             />
 
             <figcaption className={styles.lightboxCaption}>
-              {active.title ? <strong>{active.title}</strong> : null}
+              {pick(active.title, locale) ? (
+                <strong>{pick(active.title, locale)}</strong>
+              ) : null}
 
-              {formatMediaDate(active) ? (
+              {formatMediaDate(active, locale) ? (
                 <span>
-                  {[active.outlet, formatMediaDate(active)]
+                  {[active.outlet, formatMediaDate(active, locale)]
                     .filter(Boolean)
                     .join(" · ")}
                 </span>
