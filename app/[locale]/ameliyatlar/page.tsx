@@ -1,32 +1,84 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { groupedProcedures } from "../../../lib/ameliyatlar";
+import { groupedProcedures } from "@/lib/ameliyatlar";
+import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./ameliyatlar.module.css";
 
-export const metadata: Metadata = {
-  title: "Ameliyatlar | Prof. Dr. Burçak Tümerdem Uluğ",
-  description:
-    "Yüz, burun, kulak, meme ve vücut estetiği ameliyatları ile ameliyatsız yöntemler hakkında bilgilendirme.",
+/* Bu sayfaya özel sabit metinler. İçerik (kategori ve ameliyat
+   başlıkları) lib/ameliyatlar/tr.ts ve en.ts'ten gelir. */
+type PageStrings = {
+  eyebrow: string;
+  titleLead: string;
+  titleAccent: string;
+  intro: string;
+  general: string;
+  metaTitle: string;
+  metaDescription: string;
 };
 
-export default function AmeliyatlarPage() {
-  const groups = groupedProcedures();
+const UI: Record<Locale, PageStrings> = {
+  tr: {
+    eyebrow: "Ameliyatlar",
+    titleLead: "Uygulanan",
+    titleAccent: "işlemler",
+    intro:
+      "Aşağıdaki başlıklar genel bilgilendirme içindir. Hangi yöntemin size uygun olduğu, muayene sonrasında birlikte kararlaştırılır.",
+    general: "Genel bilgi",
+    metaTitle: "Ameliyatlar | Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    metaDescription:
+      "Yüz, burun, kulak, meme ve vücut estetiği ameliyatları ile ameliyatsız yöntemler hakkında bilgilendirme.",
+  },
+  en: {
+    eyebrow: "Procedures",
+    titleLead: "Treatments",
+    titleAccent: "offered",
+    intro:
+      "The topics below are for general information. Which method is right for you is decided together, following an examination.",
+    general: "Overview",
+    metaTitle: "Procedures | Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    metaDescription:
+      "Information on facial, nasal, ear, breast and body contouring surgery, and on non-surgical treatments.",
+  },
+};
+
+type Props = {
+  params: Promise<{ locale: Locale }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = UI[locale];
+
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    /* Google'a iki dilin de var olduğunu bildirir. */
+    alternates: {
+      languages: {
+        tr: "/tr/ameliyatlar",
+        en: "/en/ameliyatlar",
+      },
+    },
+  };
+}
+
+export default async function AmeliyatlarPage({ params }: Props) {
+  const { locale } = await params;
+  const t = UI[locale];
+  const groups = groupedProcedures(locale);
 
   return (
     <main className={styles.page}>
       <header className={styles.indexHead}>
-        <p className={styles.eyebrow}>Ameliyatlar</p>
+        <p className={styles.eyebrow}>{t.eyebrow}</p>
 
         <h1 className={styles.indexTitle}>
-          Uygulanan
-          <span className={styles.titleAccent}>işlemler</span>
+          {t.titleLead}
+          <span className={styles.titleAccent}>{t.titleAccent}</span>
         </h1>
 
-        <p className={styles.indexIntro}>
-          Aşağıdaki başlıklar genel bilgilendirme içindir. Hangi yöntemin size
-          uygun olduğu, muayene sonrasında birlikte kararlaştırılır.
-        </p>
+        <p className={styles.indexIntro}>{t.intro}</p>
       </header>
 
       {groups.map(({ category, items }) => (
@@ -40,10 +92,10 @@ export default function AmeliyatlarPage() {
             ) : null}
 
             <Link
-              href={`/ameliyatlar/${category.slug}`}
+              href={withLocale(`/ameliyatlar/${category.slug}`, locale)}
               className={styles.generalLink}
             >
-              <span>Genel bilgi</span>
+              <span>{t.general}</span>
               <Arrow />
             </Link>
           </div>
@@ -53,7 +105,10 @@ export default function AmeliyatlarPage() {
               items.map((item) => (
                 <li key={item.slug}>
                   <Link
-                    href={`/ameliyatlar/${category.slug}/${item.slug}`}
+                    href={withLocale(
+                      `/ameliyatlar/${category.slug}/${item.slug}`,
+                      locale,
+                    )}
                     className={styles.row}
                   >
                     <span className={styles.rowText}>
@@ -75,7 +130,7 @@ export default function AmeliyatlarPage() {
                  sayfasının kendisinde. */
               <li>
                 <Link
-                  href={`/ameliyatlar/${category.slug}`}
+                  href={withLocale(`/ameliyatlar/${category.slug}`, locale)}
                   className={styles.row}
                 >
                   <span className={styles.rowText}>

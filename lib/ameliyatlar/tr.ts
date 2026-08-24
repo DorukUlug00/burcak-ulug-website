@@ -1,77 +1,14 @@
-/* AMELİYAT SAYFALARI — İÇERİK VE ŞABLON
+/* TÜRKÇE İÇERİK — ameliyat ve kategori metinleri
    ---------------------------------------------------------------
-   Bu dosya iki bölümden oluşuyor:
+   Sayfa düzeni ve yardımcılar index.tsx'te; burada yalnızca metin var.
 
-     1. İÇERİK — kategoriler, ameliyatlar ve yardımcı işlevler.
-                 Düzenlemen gereken yer burası.
-     2. ŞABLON — sayfayı çizen ContentArticle bileşeni. İçerik
-                 eklemek için buraya dokunmana gerek yok.
+   Slug'lar iki dilde de AYNIDIR: en.ts içindeki karşılıkların
+   slug ve category alanları buradakilerle birebir eşleşmeli.
 
-   İki seviyeli adres yapısı:
+   Yeni ameliyat eklemek için procedures dizisine kayıt eklemen
+   yeterli — dosya oluşturmana gerek yok. İçeriği girilmemiş
+   sayfalar "hazırlanıyor" olarak görünür, kırık bağlantı bırakmaz.
 
-     /ameliyatlar                           -> tüm başlıklar
-     /ameliyatlar/meme-estetigi             -> kategori (Genel Bilgi)
-     /ameliyatlar/meme-estetigi/jinekomasti -> tek ameliyat
-
-   Kategori sayfasının kendi metni de var; menüdeki "Genel Bilgi"
-   bağlantısı oraya gider. Yeni ameliyat eklemek için PROCEDURES
-   dizisine kayıt eklemen yeterli — dosya oluşturmana gerek yok.
-
-   İçeriği girilmemiş sayfalar "hazırlanıyor" olarak görünür,
-   sitede kırık bağlantı bırakmaz.
-
-   Not: Bu dosya sunucu bileşeni olarak çalışır ("use client" yok),
-   bu yüzden sayfaların `metadata` çıktısı etkilenmez.
---------------------------------------------------------------- */
-
-import Image from "next/image";
-import Link from "next/link";
-
-import styles from "../app/[locale]/ameliyatlar/ameliyatlar.module.css";
-
-/* ===============================================================
-   1. İÇERİK — kategoriler ve ameliyatlar
-   =============================================================== */
-
-export type Section = {
-  heading: string;
-  /* Her eleman bir paragraf. */
-  body: string[];
-};
-
-export type Faq = { question: string; answer: string };
-
-/* Kategori ve ameliyat sayfaları aynı içerik şablonunu paylaşır. */
-export type Content = {
-  title: string;
-  /* Arama sonuçlarında görünen açıklama. Boşsa `lead` kullanılır. */
-  metaDescription?: string;
-  /* Başlığın altındaki giriş paragrafı. */
-  lead?: string;
-  sections?: Section[];
-  faq?: Faq[];
-  /* Başlığın arkasındaki tam genişlik görsel. public/ altındaki
-     yol yazılır: "/operations/background1.png". */
-  image?: string;
-  /* Görsel yalnızca dekoratifse boş bırak — ekran okuyucular atlar.
-     Görselde bilgi taşıyan bir şey varsa mutlaka yaz. */
-  imageAlt?: string;
-};
-
-export type Category = Content & {
-  /* URL'de görünen ad. Türkçe karakter ve boşluk kullanma. */
-  slug: string;
-  /* Liste sayfasındaki tek satırlık tanım. */
-  blurb?: string;
-};
-
-export type Procedure = Content & {
-  slug: string;
-  /* CATEGORIES içindeki bir slug olmalı. */
-  category: string;
-};
-
-/* ---------------------------------------------------------------
    ŞABLON — kopyala, doldur. Boş bıraktığın alanlar sayfada hiç
    görünmez, bu yüzden yalnızca elindeki bilgiyi yaz.
 
@@ -83,7 +20,6 @@ export type Procedure = Content & {
      sections: [
        { heading: "Kimler için uygun", body: ["..."] },
        { heading: "Ameliyat nasıl yapılır", body: ["...", "..."] },
-       { heading: "İyileşme süreci", body: ["..."] },
      ],
      faq: [{ question: "İz kalır mı?", answer: "..." }],
      image: "/ameliyatlar/meme-kucultme.jpg",
@@ -91,7 +27,9 @@ export type Procedure = Content & {
    },
 --------------------------------------------------------------- */
 
-export const CATEGORIES: Category[] = [
+import type { Category, ContentBundle, Procedure } from "./types";
+
+const categories: Category[] = [
   {
     slug: "yuz-estetigi",
     title: "Yüz Estetiği",
@@ -166,7 +104,7 @@ export const CATEGORIES: Category[] = [
       },
     ],
   },
-    {
+  {
     slug: "kulak-estetigi",
     title: "Kulak Estetiği",
     image: "/operations/background1.png",
@@ -241,9 +179,9 @@ export const CATEGORIES: Category[] = [
   },
 ];
 
-export const PROCEDURES: Procedure[] = [
+const procedures: Procedure[] = [
   /* ---------------- Yüz estetiği ---------------- */
-    {
+  {
     slug: "yuz-germe",
     category: "yuz-estetigi",
     title: "Yüz Germe",
@@ -360,7 +298,7 @@ export const PROCEDURES: Procedure[] = [
      kategori sayfasında duruyor. */
 
   /* ---------------- Meme estetiği ---------------- */
-    {
+  {
     slug: "meme-buyutme",
     category: "meme-estetigi",
     title: "Meme Büyütme",
@@ -391,7 +329,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "meme-kucultme",
     category: "meme-estetigi",
     title: "Meme Küçültme",
@@ -425,7 +363,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "meme-diklestirme",
     category: "meme-estetigi",
     title: "Meme Dikleştirme",
@@ -456,7 +394,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "meme-rekonstruksiyonu",
     category: "meme-estetigi",
     title: "Meme Rekonstrüksiyonu",
@@ -493,7 +431,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "jinekomasti",
     category: "meme-estetigi",
     title: "Jinekomasti",
@@ -528,7 +466,7 @@ export const PROCEDURES: Procedure[] = [
   },
 
   /* ---------------- Vücut estetiği ---------------- */
-    {
+  {
     slug: "liposuction",
     category: "vucut-estetigi",
     title: "Liposuction",
@@ -607,7 +545,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "bacak-ici-germe",
     category: "vucut-estetigi",
     title: "Bacak İçi Germe",
@@ -638,7 +576,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "kol-germe",
     category: "vucut-estetigi",
     title: "Kol Germe",
@@ -669,9 +607,8 @@ export const PROCEDURES: Procedure[] = [
     ],
   },
 
-  /* ---------------- Ameliyatsız yöntemler ----------------
-     DOLDURULACAK: Belgede botoks ve dolgu bölümleri yok. */
-    {
+  /* ---------------- Ameliyatsız yöntemler ---------------- */
+  {
     slug: "botoks",
     category: "ameliyatsiz-yontemler",
     title: "Botoks",
@@ -707,7 +644,7 @@ export const PROCEDURES: Procedure[] = [
       },
     ],
   },
-    {
+  {
     slug: "dolgu",
     category: "ameliyatsiz-yontemler",
     title: "Dolgu",
@@ -750,193 +687,4 @@ export const PROCEDURES: Procedure[] = [
   },
 ];
 
-/* ---------------- Yardımcılar ---------------- */
-
-export function getCategory(slug: string): Category | undefined {
-  return CATEGORIES.find((item) => item.slug === slug);
-}
-
-export function proceduresOf(categorySlug: string): Procedure[] {
-  return PROCEDURES.filter((item) => item.category === categorySlug);
-}
-
-/* Kategori de doğrulanır: /kulak-estetigi/liposuction 404 verir. */
-export function getProcedure(
-  categorySlug: string,
-  slug: string,
-): Procedure | undefined {
-  return PROCEDURES.find(
-    (item) => item.slug === slug && item.category === categorySlug,
-  );
-}
-
-export function groupedProcedures(): {
-  category: Category;
-  items: Procedure[];
-}[] {
-  return CATEGORIES.map((category) => ({
-    category,
-    items: proceduresOf(category.slug),
-  }));
-}
-
-/* Sayfada gösterilecek bir içerik var mı? */
-export function hasContent(content: Content): boolean {
-  return Boolean(
-    content.lead || content.sections?.length || content.faq?.length,
-  );
-}
-
-/* ===============================================================
-   2. ŞABLON — kategori ve ameliyat sayfalarını çizen bileşen
-   =============================================================== */
-
-/* Kategori sayfası da ameliyat sayfası da aynı şablonu kullanıyor.
-   Tek fark, aşağıda gösterilen bağlantı listesi: kategori sayfasında
-   alt ameliyatlar, ameliyat sayfasında aynı kategorideki diğerleri. */
-
-export type Crumb = { label: string; href?: string };
-export type RelatedLink = { label: string; href: string };
-
-type Props = {
-  content: Content;
-  crumbs: Crumb[];
-  related?: { title: string; items: RelatedLink[] };
-};
-
-export function ContentArticle({ content, crumbs, related }: Props) {
-  /* Görseli olan sayfalarda başlık, fotoğrafın üzerine biner;
-     olmayanlarda sade başlık kullanılır. */
-  const hasHero = Boolean(content.image);
-
-  const crumbTrail = crumbs.map((crumb, index) => (
-    <span key={crumb.label} className={styles.crumb}>
-      {index > 0 ? (
-        <span className={styles.crumbSep} aria-hidden="true">
-          /
-        </span>
-      ) : null}
-
-      {crumb.href ? (
-        <Link href={crumb.href} className={styles.crumbLink}>
-          {crumb.label}
-        </Link>
-      ) : (
-        /* Bulunulan sayfa — bağlantı değil, beyaz. */
-        <span className={styles.crumbCurrent} aria-current="page">
-          {crumb.label}
-        </span>
-      )}
-    </span>
-  ));
-
-  return (
-    <article className={styles.detail}>
-      {hasHero ? (
-        <header className={styles.hero}>
-          <Image
-            className={styles.heroImage}
-            src={content.image as string}
-            alt={content.imageAlt ?? ""}
-            fill
-            sizes="100vw"
-            priority
-          />
-
-          {/* Yazının okunması için alttan yukarı koyulaşan perde. */}
-          <span className={styles.heroScrim} aria-hidden="true" />
-
-          <nav
-            className={`${styles.crumbs} ${styles.crumbsHero}`}
-            aria-label="Konum"
-          >
-            {crumbTrail}
-          </nav>
-
-          <div className={styles.heroText}>
-            <h1 className={styles.heroTitle}>{content.title}</h1>
-
-            {content.lead ? (
-              <p className={styles.heroLead}>{content.lead}</p>
-            ) : null}
-          </div>
-        </header>
-      ) : (
-        <header className={styles.plainHead}>
-          <nav className={styles.crumbs} aria-label="Konum">
-            {crumbTrail}
-          </nav>
-
-          <h1 className={styles.detailTitle}>{content.title}</h1>
-
-          {content.lead ? <p className={styles.lead}>{content.lead}</p> : null}
-        </header>
-      )}
-
-      <div className={styles.body}>
-        {content.sections?.map((section) => (
-          <section key={section.heading} className={styles.section}>
-            <h2 className={styles.heading}>{section.heading}</h2>
-
-            {section.body.map((paragraph) => (
-              <p key={paragraph.slice(0, 28)} className={styles.paragraph}>
-                {paragraph}
-              </p>
-            ))}
-          </section>
-        ))}
-
-        {content.faq?.length ? (
-          <section className={styles.section}>
-            <h2 className={styles.heading}>Sık sorulan sorular</h2>
-
-            <dl className={styles.faq}>
-              {content.faq.map((entry) => (
-                <div key={entry.question} className={styles.faqItem}>
-                  <dt className={styles.question}>{entry.question}</dt>
-                  <dd className={styles.answer}>{entry.answer}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        ) : null}
-
-        {/* İçerik henüz girilmemişse sayfa boş kalmasın. */}
-        {!hasContent(content) ? (
-          <p className={styles.pending}>
-            Bu sayfanın içeriği hazırlanıyor. Bilgi almak için{" "}
-            <Link href="/iletisim" className={styles.inlineLink}>
-              klinikle iletişime geçebilirsiniz
-            </Link>
-            .
-          </p>
-        ) : null}
-
-        <footer className={styles.detailFoot}>
-          {/* Her sayfaya otomatik ekleniyor; unutulma ihtimali kalmıyor. */}
-          <p className={styles.note}>
-            Bu sayfadaki bilgiler genel bilgilendirme amaçlıdır; hekim
-            muayenesi, tanı veya tedavinin yerine geçmez. Uygulanacak yöntem ve
-            sonuçlar kişiden kişiye değişir.
-          </p>
-
-          {related && related.items.length > 0 ? (
-            <div className={styles.siblings}>
-              <p className={styles.siblingsTitle}>{related.title}</p>
-
-              <ul className={styles.siblingList}>
-                {related.items.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className={styles.siblingLink}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </footer>
-      </div>
-    </article>
-  );
-}
+export const CONTENT_TR: ContentBundle = { categories, procedures };
