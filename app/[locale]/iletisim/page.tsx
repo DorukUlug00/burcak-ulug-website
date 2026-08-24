@@ -1,63 +1,169 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
-import { BRAND, CONTACT, MAPS_URL } from "../../../lib/site";
+import { BRAND, CONTACT, MAPS_URL } from "@/lib/site";
+import { withLocale, type Locale } from "@/lib/i18n";
 import OpenStatus from "./OpenStatus";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "İletişim | Prof. Dr. Burçak Tümerdem Uluğ",
-  description:
-    "Danışma, muayene ve ameliyat bilgisi için telefon, WhatsApp, e-posta ve klinik adresi. Kadıköy, İstanbul.",
+type Copy = {
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  intro: string;
+  /* DOLDURULACAK: gerçek yürüme tarifi. Örn. hangi iskeleye/metro
+     çıkışına kaç dakika, otopark var mı. Uydurmadım — bilgiyi sen ver. */
+  directions: string;
+  quickLabel: string;
+  mapLabel: string;
+  mapTitle: string;
+  phoneLabel: string;
+  phoneNote: string;
+  whatsappNote: string;
+  emailLabel: string;
+  emailNote: string;
+  addressTitle: string;
+  getDirections: string;
+  hoursTitle: string;
+  sunday: string;
+  closed: string;
+  hoursNote: string;
+  socialTitle: string;
+  privacyBefore: string;
+  privacyLink: string;
+  privacyAfter: string;
+  metaTitle: string;
+  metaDescription: string;
 };
 
-const INTRO =
-  "Estetik, Plastik ve Rekonstrüktif Cerrahi alanına giren her konuda danışma, muayene, girişim ve ameliyatlarla ilgili bilgi için aşağıdaki kanallardan ulaşabilirsiniz.";
+const COPY: Record<Locale, Copy> = {
+  tr: {
+    eyebrow: "İletişim",
+    title: "Randevu ve",
+    titleAccent: "iletişim",
+    intro:
+      "Estetik, Plastik ve Rekonstrüktif Cerrahi alanına giren her konuda danışma, muayene, girişim ve ameliyatlarla ilgili bilgi için aşağıdaki kanallardan ulaşabilirsiniz.",
+    directions: "DOLDURULACAK: Toplu taşıma ve otopark bilgisi.",
+    quickLabel: "Hızlı iletişim",
+    mapLabel: "Klinik konumu",
+    mapTitle: "Klinik konumu — Google Haritalar",
+    phoneLabel: "Telefon",
+    phoneNote: "Randevu ve bilgi için arayın",
+    whatsappNote: "Yazılı görüşmeyi tercih edenler için",
+    emailLabel: "E-posta",
+    emailNote: "Ayrıntılı sorular ve belgeler",
+    addressTitle: "Adres",
+    getDirections: "Yol tarifi al",
+    hoursTitle: "Çalışma saatleri",
+    sunday: "Pazar",
+    closed: "Kapalı",
+    hoursNote:
+      "Muayene randevu ile yapılır. Ameliyat günlerinde telefonla ulaşmakta güçlük yaşarsanız WhatsApp üzerinden mesaj bırakın.",
+    socialTitle: "Sosyal medya",
+    privacyBefore:
+      "İlettiğiniz kişisel veriler yalnızca randevu ve bilgilendirme amacıyla işlenir. Ayrıntı için ",
+    privacyLink: "KVKK Aydınlatma Metni",
+    privacyAfter: ".",
+    metaTitle: "İletişim | Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    metaDescription:
+      "Danışma, muayene ve ameliyat bilgisi için telefon, WhatsApp, e-posta ve klinik adresi. Kadıköy, İstanbul.",
+  },
+  en: {
+    eyebrow: "Contact",
+    title: "Appointments and",
+    titleAccent: "enquiries",
+    intro:
+      "You can reach us through the channels below for consultations, examinations and information on procedures and surgery in any area of aesthetic, plastic and reconstructive surgery.",
+    directions: "TO BE COMPLETED: Public transport and parking information.",
+    quickLabel: "Quick contact",
+    mapLabel: "Clinic location",
+    mapTitle: "Clinic location — Google Maps",
+    phoneLabel: "Telephone",
+    phoneNote: "Call for appointments and information",
+    whatsappNote: "For those who prefer to write",
+    emailLabel: "Email",
+    emailNote: "Detailed questions and documents",
+    addressTitle: "Address",
+    getDirections: "Get directions",
+    hoursTitle: "Opening hours",
+    sunday: "Sunday",
+    closed: "Closed",
+    hoursNote:
+      "Examinations are by appointment. If you have difficulty reaching us by telephone on operating days, please leave a message on WhatsApp.",
+    socialTitle: "Social media",
+    privacyBefore:
+      "The personal data you send is processed solely for the purposes of appointments and information. For details, see the ",
+    privacyLink: "Data Protection Notice",
+    privacyAfter: ".",
+    metaTitle: "Contact | Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    metaDescription:
+      "Telephone, WhatsApp, email and clinic address for consultations, examinations and surgery information. Kadıköy, Istanbul.",
+  },
+};
 
-/* DOLDURULACAK: gerçek yürüme tarifi. Örn. hangi iskeleye/metro çıkışına
-   kaç dakika, otopark var mı. Uydurmadım — bilgiyi sen ver. */
-const DIRECTIONS = "DOLDURULACAK: Toplu taşıma ve otopark bilgisi.";
-
-/* Adres araması, anahtar gerektirmeyen gömme biçiminde. */
+/* Adres araması, anahtar gerektirmeyen gömme biçiminde.
+   Semt adı Türkçe yazılır: harita araması için doğru olan bu. */
 const MAP_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(
-  `${CONTACT.address.line} ${CONTACT.address.district}`,
+  `${CONTACT.address.line} ${CONTACT.address.district.tr}`,
 )}&z=16&output=embed`;
 
-/* Google'ın yerel işletme kartı için okuduğu yapısal veri.
-   url alanını kendi alan adınla doğrula. */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Physician",
-  name: BRAND.name,
-  medicalSpecialty: "PlasticSurgery",
-  url: "https://www.burcaktumerdemulug.com/iletisim",
-  telephone: CONTACT.phoneRaw,
-  email: CONTACT.emails[0],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: CONTACT.address.line,
-    addressLocality: "Kadıköy",
-    addressRegion: "İstanbul",
-    addressCountry: "TR",
-  },
-  sameAs: [CONTACT.instagramUrl, CONTACT.facebookUrl],
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ],
-      opens: "10:00",
-      closes: "18:00",
-    },
-  ],
-};
+type Props = { params: Promise<{ locale: Locale }> };
 
-export default function IletisimPage() {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = COPY[locale];
+
+  return {
+    title: t.metaTitle,
+    description: t.metaDescription,
+    alternates: {
+      languages: {
+        tr: "/tr/iletisim",
+        en: "/en/iletisim",
+      },
+    },
+  };
+}
+
+export default async function IletisimPage({ params }: Props) {
+  const { locale } = await params;
+  const t = COPY[locale];
+
+  /* Google'ın yerel işletme kartı için okuduğu yapısal veri.
+     url alanını kendi alan adınla doğrula. */
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    name: BRAND.name,
+    medicalSpecialty: "PlasticSurgery",
+    url: `https://www.burcaktumerdemulug.com/${locale}/iletisim`,
+    telephone: CONTACT.phoneRaw,
+    email: CONTACT.emails[0],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: CONTACT.address.line,
+      addressLocality: "Kadıköy",
+      addressRegion: "İstanbul",
+      addressCountry: "TR",
+    },
+    sameAs: [CONTACT.instagramUrl, CONTACT.facebookUrl],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
+        opens: "10:00",
+        closes: "18:00",
+      },
+    ],
+  };
+
   return (
     <main className={styles.page}>
       <script
@@ -68,33 +174,33 @@ export default function IletisimPage() {
       {/* ---------------- Başlık ---------------- */}
       <header className={styles.head}>
         <div className={styles.headMain}>
-          <p className={styles.eyebrow}>İletişim</p>
+          <p className={styles.eyebrow}>{t.eyebrow}</p>
 
           <h1 className={styles.title}>
-            Randevu ve
-            <span className={styles.titleAccent}>iletişim</span>
+            {t.title}
+            <span className={styles.titleAccent}>{t.titleAccent}</span>
           </h1>
         </div>
 
         <div className={styles.headAside}>
-          <p className={styles.intro}>{INTRO}</p>
+          <p className={styles.intro}>{t.intro}</p>
 
-          <OpenStatus />
+          <OpenStatus locale={locale}/>
         </div>
       </header>
 
       {/* ---------------- Birincil kanallar ---------------- */}
-      <section className={styles.actions} aria-label="Hızlı iletişim">
-        <a /*href={`tel:${CONTACT.phoneRaw}`}*/ className={styles.tile}>
+      <section className={styles.actions} aria-label={t.quickLabel}>
+        <a href={`tel:${CONTACT.phoneRaw}`} className={styles.tile}>
           <span className={styles.tileIcon} aria-hidden="true">
             <PhoneIcon />
           </span>
 
-          <span className={styles.tileLabel}>Telefon</span>
+          <span className={styles.tileLabel}>{t.phoneLabel}</span>
 
           <span className={styles.tileValue}>{CONTACT.phoneDisplay}</span>
 
-          <span className={styles.tileNote}>Randevu ve bilgi için arayın</span>
+          <span className={styles.tileNote}>{t.phoneNote}</span>
         </a>
 
         <a
@@ -111,7 +217,7 @@ export default function IletisimPage() {
 
           <span className={styles.tileValue}>{CONTACT.phoneDisplay}</span>
 
-          <span className={styles.tileNote}>Yazılı görüşmeyi tercih edenler için</span>
+          <span className={styles.tileNote}>{t.whatsappNote}</span>
         </a>
 
         <a href={`mailto:${CONTACT.emails[0]}`} className={styles.tile}>
@@ -119,35 +225,35 @@ export default function IletisimPage() {
             <MailIcon />
           </span>
 
-          <span className={styles.tileLabel}>E-posta</span>
+          <span className={styles.tileLabel}>{t.emailLabel}</span>
 
           <span className={styles.tileValue}>{CONTACT.emails[0]}</span>
 
-          <span className={styles.tileNote}>Ayrıntılı sorular ve belgeler</span>
+          <span className={styles.tileNote}>{t.emailNote}</span>
         </a>
       </section>
 
       <div className={styles.grid}>
         {/* ---------------- Harita ve adres ---------------- */}
-        <section className={styles.mapPanel} aria-label="Klinik konumu">
+        <section className={styles.mapPanel} aria-label={t.mapLabel}>
           <iframe
             className={styles.map}
             src={MAP_EMBED}
-            title="Klinik konumu — Google Haritalar"
+            title={t.mapTitle}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
 
           <div className={styles.addressCard}>
-            <h2 className={styles.blockTitle}>Adres</h2>
+            <h2 className={styles.blockTitle}>{t.addressTitle}</h2>
 
             <address className={styles.address}>
               {CONTACT.address.line}
               <br />
-              {CONTACT.address.district}
+              {CONTACT.address.district[locale]}
             </address>
 
-            <p className={styles.directions}>{DIRECTIONS}</p>
+            <p className={styles.directions}>{t.directions}</p>
 
             <a
               href={MAPS_URL}
@@ -155,7 +261,7 @@ export default function IletisimPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span>Yol tarifi al</span>
+              <span>{t.getDirections}</span>
               <LongArrow />
             </a>
           </div>
@@ -164,30 +270,29 @@ export default function IletisimPage() {
         {/* ---------------- Saatler ve diğer kanallar ---------------- */}
         <aside className={styles.side}>
           <div className={styles.card}>
-            <h2 className={styles.blockTitle}>Çalışma saatleri</h2>
+            <h2 className={styles.blockTitle}>{t.hoursTitle}</h2>
 
             <ul className={styles.hours}>
               {CONTACT.hours.map((slot) => (
-                <li key={slot.days} className={styles.hoursRow}>
-                  <span>{slot.days}</span>
+                /* Anahtar dilden bağımsız olsun diye saat kullanılıyor;
+                   slot.days artık bir nesne, anahtar olamaz. */
+                <li key={slot.time} className={styles.hoursRow}>
+                  <span>{slot.days[locale]}</span>
                   <span className={styles.hoursTime}>{slot.time}</span>
                 </li>
               ))}
 
               <li className={styles.hoursRow}>
-                <span>Pazar</span>
-                <span className={styles.hoursTime}>Kapalı</span>
+                <span>{t.sunday}</span>
+                <span className={styles.hoursTime}>{t.closed}</span>
               </li>
             </ul>
 
-            <p className={styles.cardNote}>
-              Muayene randevu ile yapılır. Ameliyat günlerinde telefonla
-              ulaşmakta güçlük yaşarsanız WhatsApp üzerinden mesaj bırakın.
-            </p>
+            <p className={styles.cardNote}>{t.hoursNote}</p>
           </div>
 
           <div className={styles.card}>
-            <h2 className={styles.blockTitle}>Sosyal medya</h2>
+            <h2 className={styles.blockTitle}>{t.socialTitle}</h2>
 
             <ul className={styles.linkList}>
               <li>
@@ -226,12 +331,14 @@ export default function IletisimPage() {
           </div>
 
           <p className={styles.privacy}>
-            İlettiğiniz kişisel veriler yalnızca randevu ve bilgilendirme
-            amacıyla işlenir. Ayrıntı için{" "}
-            <a href="/kvkk" className={styles.inlineLink}>
-              KVKK Aydınlatma Metni
-            </a>
-            .
+            {t.privacyBefore}
+            <Link
+              href={withLocale("/kvkk", locale)}
+              className={styles.inlineLink}
+            >
+              {t.privacyLink}
+            </Link>
+            {t.privacyAfter}
           </p>
         </aside>
       </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import type { Locale } from "@/lib/i18n";
 import styles from "./page.module.css";
 
 /* Çalışma saatleri burada makine tarafından okunabilir biçimde duruyor.
@@ -13,6 +14,8 @@ const SCHEDULE = {
   closesAt: 18 * 60, // 18.00
 };
 
+/* Bu biçimlendirici hesap için: gün adları SCHEDULE.openDays ile
+   eşleşmek zorunda, bu yüzden dile göre DEĞİŞMEZ, hep en-US. */
 const formatter = new Intl.DateTimeFormat("en-US", {
   timeZone: "Europe/Istanbul",
   weekday: "short",
@@ -36,7 +39,32 @@ function isOpenNow(): boolean {
   );
 }
 
-export default function OpenStatus() {
+type Copy = {
+  open: string;
+  closed: string;
+  hint: string;
+};
+
+const COPY: Record<Locale, Copy> = {
+  tr: {
+    open: "Şu anda açık",
+    closed: "Şu anda kapalı",
+    hint: "Hafta içi ve Cumartesi 10.00 – 18.00",
+  },
+  en: {
+    open: "Open now",
+    closed: "Closed now",
+    hint: "Weekdays and Saturday 10.00 – 18.00",
+  },
+};
+
+type Props = {
+  locale: Locale;
+};
+
+export default function OpenStatus({ locale }: Props) {
+  const t = COPY[locale];
+
   /* null = henüz tarayıcıda hesaplanmadı. Sunucu ve tarayıcı saatleri
      farklı olabileceği için ilk render'da hiçbir şey basmıyoruz;
      böylece hydration uyuşmazlığı çıkmaz. */
@@ -60,11 +88,9 @@ export default function OpenStatus() {
     <p className={open ? styles.statusOpen : styles.statusClosed}>
       <span className={styles.statusDot} aria-hidden="true" />
 
-      {open ? "Şu anda açık" : "Şu anda kapalı"}
+      {open ? t.open : t.closed}
 
-      <span className={styles.statusHint}>
-        Hafta içi ve Cumartesi 10.00 – 18.00
-      </span>
+      <span className={styles.statusHint}>{t.hint}</span>
     </p>
   );
 }
