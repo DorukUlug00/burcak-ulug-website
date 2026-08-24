@@ -111,9 +111,9 @@ export default async function Home({ params }: Props) {
         </div>
       </section>
 
-      <Procedures/>
+      <Procedures locale={locale}/>
       <Cv/>
-      <Media/>
+      <Media locale={locale}/>
       <Contact locale={locale} />
     </main>
   );

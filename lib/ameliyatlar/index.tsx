@@ -58,6 +58,7 @@ export function getProcedure(
   categorySlug: string,
   slug: string,
 ): Procedure | undefined {
+  console.log("getProcedure locale:", locale);
   return BUNDLES[locale].procedures.find(
     (item) => item.slug === slug && item.category === categorySlug,
   );
