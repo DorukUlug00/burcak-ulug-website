@@ -10,7 +10,7 @@
      --panel-*  hiç değişmez (açılır menü kutuları her zaman
                 krem zemin + koyu yazı)
 
-   900px altında yatay menü gizlenir, yerini hamburger'ın açtığı
+   1000px altında yatay menü gizlenir, yerini hamburger'ın açtığı
    .drawer alır (dosyanın sonundaki MOBİL ÇEKMECE bölümü).
    ============================================================ */
 
@@ -20,6 +20,9 @@
   --panel-ink: #1c1a18;
   --panel-muted: #6d6660;
   --panel-rule: #e2ddd6;
+
+  /* Vurgu — açık menü oku ve aktif dil çizgisi */
+  --accent: #b08b52;
 
   /* Barın kendisi — saydam hâl */
   --bar-bg: transparent;
@@ -142,8 +145,7 @@
 /* Logo bar yazısıyla birlikte renk değiştirir.
    brightness(0) her şeyi siyaha indirger, invert(1) beyaza çevirir.
    NOT: Bu, logoyu tek renkli silüete dönüştürür. Logo çok renkliyse
-   ve renkleri korunacaksa bu iki kuralı SİL — logo kendi
-   renkleriyle, iki durumda da aynı görünür. */
+   ve renkleri korunacaksa bu iki kuralı SİL. */
 .bar:not(.solid) .monogramMark {
   filter: brightness(0) invert(1);
 }
@@ -253,7 +255,9 @@
   background: none;
   color: var(--bar-ink);
   cursor: pointer;
-  transition: border-color 320ms ease;
+  transition:
+    border-color 320ms ease,
+    color 200ms ease;
 }
 
 .bar a:focus-visible,
@@ -289,7 +293,8 @@
   cursor: pointer;
   transition:
     transform 250ms ease,
-    opacity 250ms ease;
+    opacity 250ms ease,
+    color 200ms ease;
 }
 
 .caretButton:hover,
@@ -297,10 +302,18 @@
   opacity: 1;
 }
 
+.caretButton:active,
+.subCaret:active {
+  color: var(--accent);
+  opacity: 1;
+}
+
+/* Menü açıkken ok döner VE altın rengine geçer. */
 .caretButton[aria-expanded="true"],
 .subCaret[aria-expanded="true"] {
   opacity: 1;
-  transform: rotate(180deg);
+  transform: scaleY(-1);
+  color: var(--accent);
 }
 
 .caretButton:focus-visible,
@@ -392,6 +405,7 @@
 .submenuLinkActive {
   font-weight: 600;
   text-decoration: underline;
+  text-decoration-color: var(--accent);
   text-underline-offset: 5px;
 }
 
@@ -475,10 +489,14 @@
 
 /* ============================================================
    MOBİL ÇEKMECE
-   Masaüstünde tamamen kapalı; yalnızca 900px altında açılır.
+   Masaüstünde tamamen kapalı; yalnızca 1000px altında açılır.
    ============================================================ */
 
 .drawer {
+  /* .bar'ın DIŞINDA olduğu için --accent burada yeniden
+     tanımlanmalı; yoksa oklar renksiz kalır. */
+  --accent: #b08b52;
+
   display: none;
 }
 
@@ -519,13 +537,16 @@
 
 @media (max-width: 1000px) {
   .bar {
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(0, auto) auto;
     justify-content: space-between;
+    gap: 12px;
   }
 
-  /* Menü ve CTA hamburger'ın açtığı çekmeceye taşınır. */
+  /* Menü ve CTA hamburger'ın açtığı çekmeceye taşınır.
+     Dil seçici de çekmecenin dibine iner. */
   .nav,
-  .cta {
+  .cta,
+  .actions > :first-child {
     display: none;
   }
 
@@ -533,11 +554,9 @@
     display: inline-flex;
   }
 
+  /* Kısaltma YOK: isim tam görünür, gerekirse yazı küçülür. */
   .brandName {
-    max-width: 46vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: clamp(0.62rem, 2.4vw, 0.85rem);
   }
 
   /* ---------- Panelin kendisi ---------- */
@@ -593,18 +612,49 @@
     border-top: 1px solid #ece8e2;
   }
 
-  /* Etiket ile ok düğmesi yan yana: etiket sayfaya gider,
-     düğme akordeonu açar. */
-  .drawerRow {
+  /* Alt menüsü olan başlık: bağlantı DEĞİL, düğme.
+     Dokununca yalnızca akordeon açılır; satırın tamamı tıklanır. */
+  .drawerToggle,
+  .drawerSubToggle {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    border: 0;
+    background: none;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
   }
 
+  .drawerToggle {
+    padding: 16px clamp(16px, 4vw, 48px);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1c1a18;
+  }
+
+  .drawerSubToggle {
+    padding: 13px clamp(16px, 4vw, 48px) 13px
+      calc(clamp(16px, 4vw, 48px) + 16px);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a4540;
+  }
+
+  .drawerToggle:active,
+  .drawerSubToggle:active {
+    background: #f2efea;
+  }
+
+  /* Alt menüsü olmayan öğeler bağlantı olarak kalır. */
   .drawerLink {
     display: block;
-    flex: 1;
     padding: 16px clamp(16px, 4vw, 48px);
 
     font-size: 0.8rem;
@@ -617,8 +667,8 @@
 
   .drawerSubLink {
     display: block;
-    flex: 1;
-    padding: 13px clamp(16px, 4vw, 48px) 13px calc(clamp(16px, 4vw, 48px) + 16px);
+    padding: 13px clamp(16px, 4vw, 48px) 13px
+      calc(clamp(16px, 4vw, 48px) + 16px);
 
     font-size: 0.74rem;
     font-weight: 500;
@@ -630,7 +680,8 @@
 
   .drawerLeafLink {
     display: block;
-    padding: 12px clamp(16px, 4vw, 48px) 12px calc(clamp(16px, 4vw, 48px) + 32px);
+    padding: 12px clamp(16px, 4vw, 48px) 12px
+      calc(clamp(16px, 4vw, 48px) + 32px);
 
     font-size: 0.82rem;
     font-weight: 400;
@@ -639,35 +690,37 @@
     text-decoration: none;
   }
 
+  /* Üst başlığın kendi sayfasına giden ilk satır: altın renkli. */
+  .drawerOverview {
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
   .drawerLinkActive {
     color: #1c1a18;
     font-weight: 600;
   }
 
-    /* Ok düğmesi satırın sağındaki TÜM boşluğu kaplar:
-     etiketin sağına dokunmak da alt menüyü açar. */
+  /* Ok, düğmenin içinde bir işaret; tıklama alanı düğmenin tamamı. */
   .drawerCaret {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-end;
-    flex: 1;
-    min-width: 44px;
-    height: 44px;
-    padding-right: clamp(4px, 2vw, 20px);
-    border: 0;
-    background: none;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
     color: #6d6660;
-    cursor: pointer;
     transition:
       transform 250ms ease,
       color 200ms ease;
   }
 
-  /* Ok döndüğünde padding de dönmesin diye ikon ayrı sarılmıyor;
-     transform yalnızca renk/dönüş için. */
-  .drawerCaret[aria-expanded="true"] {
+  .drawerToggle[aria-expanded="true"] .drawerCaret,
+  .drawerSubToggle[aria-expanded="true"] .drawerCaret {
     transform: scaleY(-1);
-    color: var(--accent, #b08b52);
+    color: var(--accent);
   }
 
   .drawerSubList {
@@ -684,7 +737,7 @@
     border-top: 1px solid #e6e1da;
   }
 
-  /* ---------- Alt CTA ---------- */
+  /* ---------- Alt CTA ve dil seçici ---------- */
 
   .drawerFooter {
     padding: 24px clamp(16px, 4vw, 48px) 8px;
@@ -707,6 +760,12 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     text-decoration: none;
+  }
+
+  .drawerLocale {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid #ece8e2;
   }
 
   .drawer a:focus-visible,

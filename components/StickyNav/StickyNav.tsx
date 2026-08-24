@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import LocaleSwitch from "@/components/LocaleSwitch/LocaleSwitch";
 import { stripLocale, withLocale, type Locale } from "@/lib/i18n";
 import styles from "./StickyNav.module.css";
 
@@ -156,9 +157,9 @@ export default function StickyNav({
 
   /* Ekran masaüstü genişliğine çıkarsa çekmece açık kalmasın:
      yoksa gizlenir ama gövde kilidi üzerinde kalırdı.
-     Değer CSS'teki 1150px eşiğiyle aynı olmalı. */
+     Değer CSS'teki 1000px eşiğiyle aynı olmalı. */
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 1151px)");
+    const query = window.matchMedia("(min-width: 1001px)");
 
     function onChange(event: MediaQueryListEvent) {
       if (event.matches) closeMobile();
@@ -168,7 +169,8 @@ export default function StickyNav({
     return () => query.removeEventListener("change", onChange);
   }, []);
 
-  /* Sayfa değişince hem masaüstü menüsünü hem çekmeceyi kapat. */
+  /* Sayfa değişince hem masaüstü menüsünü hem çekmeceyi kapat.
+     rawPathname dinleniyor: dil değişince de kapansın. */
   useEffect(() => {
     closeAll();
     closeMobile();
@@ -368,6 +370,8 @@ export default function StickyNav({
         </nav>
 
         <div className={styles.actions}>
+          <LocaleSwitch locale={locale} />
+
           {isRoute(ctaHref) ? (
             <Link href={withLocale(ctaHref, locale)} className={styles.cta}>
               {ctaLabel}
@@ -393,7 +397,8 @@ export default function StickyNav({
 
       {/* ============ MOBİL ÇEKMECE ============
           Alt menüsü OLAN başlıklar bağlantı değil, düğmedir:
-          dokununca yalnızca akordeon açılır. */}
+          dokununca yalnızca akordeon açılır. O başlığın kendi
+          sayfasına, açılan listenin ilk satırından gidilir. */}
       <div
         id="mobil-menu"
         className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
@@ -531,6 +536,10 @@ export default function StickyNav({
               {ctaLabel}
             </a>
           )}
+
+          <div className={styles.drawerLocale}>
+            <LocaleSwitch locale={locale} variant="drawer" />
+          </div>
         </div>
       </div>
     </>

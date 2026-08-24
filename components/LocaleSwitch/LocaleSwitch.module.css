@@ -1,0 +1,67 @@
+/* Renkler .bar'dan miras alınır: --bar-ink ve --bar-muted
+   saydam/katı duruma göre zaten değişiyor. Çekmecede ise
+   .drawer sınıfı sabit koyu renkleri kullanır. */
+
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  padding: 7px 6px;
+
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--bar-muted, #6d6660);
+  text-decoration: none;
+
+  transition: color 200ms ease;
+}
+
+.option:hover,
+.option:focus-visible {
+  color: var(--bar-ink, #1c1a18);
+}
+
+/* Aktif dil: tam kontrast ve ince altın alt çizgi. */
+.active {
+  color: var(--bar-ink, #1c1a18);
+  text-decoration: underline;
+  text-decoration-color: var(--accent, #b08b52);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.option + .option {
+  border-left: 1px solid var(--bar-rule, #e2ddd6);
+}
+
+/* ---------------- Çekmece hâli ---------------- */
+
+.drawer {
+  justify-content: center;
+  width: 100%;
+}
+
+.drawer .option {
+  min-width: 60px;
+  padding: 14px 12px;
+  font-size: 0.78rem;
+  color: #6d6660;
+}
+
+.drawer .option:hover,
+.drawer .option:focus-visible,
+.drawer .active {
+  color: #1c1a18;
+}
+
+.drawer .option + .option {
+  border-left: 1px solid #e2ddd6;
+}
