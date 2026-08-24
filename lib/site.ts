@@ -1,10 +1,25 @@
 /* Tek kaynak: marka, iletişim bilgisi ve menü.
-   Bu dosyayı düzenlediğinde tüm sayfalar güncellenir. */
+   Bu dosyayı düzenlediğinde tüm sayfalar güncellenir.
+
+   MENÜ: Ameliyat ve kategori etiketleri BURADA YAZILMAZ —
+   lib/ameliyatlar/tr.ts ve en.ts'ten türetilir. Yeni bir ameliyat
+   eklediğinde menüde kendiliğinden görünür. */
+
+import {
+  categoriesOf,
+  proceduresOf,
+} from "@/lib/ameliyatlar";
+import type { Locale } from "@/lib/i18n";
+
+/* Dile göre değişen metin. */
+type Localized = { tr: string; en: string };
 
 export const BRAND = {
-  monogram: "Dr.",
-  name: "Prof. Dr. Burçak Tümerdem Uluğ",
-  role: "Plastik, Rekonstrüktif ve Estetik Cerrahi",
+  name: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+  role: {
+    tr: "Plastik, Rekonstrüktif ve Estetik Cerrahi",
+    en: "Plastic, Reconstructive and Aesthetic Surgery",
+  } satisfies Localized,
 };
 
 export const CONTACT = {
@@ -23,16 +38,29 @@ export const CONTACT = {
   emails: ["info@burcaktumerdemulug.com"],
 
   address: {
+    /* Sokak adı özel isim: çevrilmez. */
     line: "Osmanağa Mh. Mürver Çiçeği Sk. No:10/3 K:1",
-    district: "Kadıköy — İstanbul",
+    district: {
+      tr: "Kadıköy — İstanbul",
+      en: "Kadıköy — Istanbul",
+    } satisfies Localized,
   },
 
-  hours: [{ days: "Hafta içi ve Cumartesi", time: "10.00 – 18.00" }],
+  hours: [
+    {
+      days: {
+        tr: "Hafta içi ve Cumartesi",
+        en: "Weekdays and Saturday",
+      } satisfies Localized,
+      time: "10.00 – 18.00",
+    },
+  ],
 };
 
-/* Adresi Google Haritalar aramasına çevirir — API anahtarı gerektirmez. */
+/* Adresi Google Haritalar aramasına çevirir — API anahtarı gerektirmez.
+   Semt adı Türkçe yazılır: harita araması için doğru olan bu. */
 export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${CONTACT.address.line} ${CONTACT.address.district}`,
+  `${CONTACT.address.line} ${CONTACT.address.district.tr}`,
 )}`;
 
 export type NavItem = {
@@ -44,121 +72,66 @@ export type NavItem = {
   children?: NavItem[];
 };
 
-/* "Genel Bilgi" her zaman kategorinin kendi sayfasına gider. */
-export const NAV: NavItem[] = [
-  { label: "Özgeçmiş", href: "/ozgecmis" },
-  { label: "Medya", href: "/medya" },
-  {
-    label: "Ameliyatlar",
-    href: "/ameliyatlar",
-    children: [
-      {
-        label: "Yüz Estetiği",
-        href: "/ameliyatlar/yuz-estetigi",
-        children: [
-          { label: "Genel Bilgi", href: "/ameliyatlar/yuz-estetigi" },
-          {
-            label: "Yüz Germe",
-            href: "/ameliyatlar/yuz-estetigi/yuz-germe",
-          },
-          {
-            label: "Alın Germe",
-            href: "/ameliyatlar/yuz-estetigi/alin-germe",
-          },
-          {
-            label: "Göz Kapağı Estetiği",
-            href: "/ameliyatlar/yuz-estetigi/goz-kapagi-estetigi",
-          },
-          {
-            label: "Yağ Enjeksiyonu",
-            href: "/ameliyatlar/yuz-estetigi/yag-enjeksiyonu",
-          },
-        ],
-      },
-      {
-        label: "Burun Estetiği",
-        href: "/ameliyatlar/burun-estetigi",
-        children: [
-          { label: "Genel Bilgi", href: "/ameliyatlar/burun-estetigi" },
-        ],
-      },
-      {
-        label: "Kulak Estetiği",
-        href: "/ameliyatlar/kulak-estetigi",
-        children: [
-          { label: "Genel Bilgi", href: "/ameliyatlar/kulak-estetigi" },
-        ],
-      },
-      {
-        label: "Meme Estetiği",
-        href: "/ameliyatlar/meme-estetigi",
-        children: [
-          { label: "Genel Bilgi", href: "/ameliyatlar/meme-estetigi" },
-          {
-            label: "Meme Büyütme",
-            href: "/ameliyatlar/meme-estetigi/meme-buyutme",
-          },
-          {
-            label: "Meme Küçültme",
-            href: "/ameliyatlar/meme-estetigi/meme-kucultme",
-          },
-          {
-            label: "Meme Dikleştirme",
-            href: "/ameliyatlar/meme-estetigi/meme-diklestirme",
-          },
-          {
-            label: "Meme Rekonstrüksiyonu",
-            href: "/ameliyatlar/meme-estetigi/meme-rekonstruksiyonu",
-          },
-          {
-            label: "Jinekomasti",
-            href: "/ameliyatlar/meme-estetigi/jinekomasti",
-          },
-        ],
-      },
-      {
-        label: "Vücut Estetiği",
-        href: "/ameliyatlar/vucut-estetigi",
-        children: [
-          { label: "Genel Bilgi", href: "/ameliyatlar/vucut-estetigi" },
-          {
-            label: "Liposuction",
-            href: "/ameliyatlar/vucut-estetigi/liposuction",
-          },
-          {
-            label: "Karın Germe",
-            href: "/ameliyatlar/vucut-estetigi/karin-germe",
-          },
-          {
-            label: "Bacak İçi Germe",
-            href: "/ameliyatlar/vucut-estetigi/bacak-ici-germe",
-          },
-          {
-            label: "Kol Germe",
-            href: "/ameliyatlar/vucut-estetigi/kol-germe",
-          },
-        ],
-      },
-      {
-        label: "Ameliyatsız Yöntemler",
-        href: "/ameliyatlar/ameliyatsiz-yontemler",
-        children: [
-          {
-            label: "Genel Bilgi",
-            href: "/ameliyatlar/ameliyatsiz-yontemler",
-          },
-          {
-            label: "Botoks",
-            href: "/ameliyatlar/ameliyatsiz-yontemler/botoks",
-          },
-          {
-            label: "Dolgu",
-            href: "/ameliyatlar/ameliyatsiz-yontemler/dolgu",
-          },
-        ],
-      },
-    ],
-  },
-  { label: "Hasta Bilgilendirme", href: "/hasta-bilgilendirme" },
-  { label: "KVKK", href: "/kvkk" },
+/* Ameliyatlar dışındaki başlıklar. */
+const STATIC_ITEMS: { label: Localized; href: string }[] = [
+  { label: { tr: "Özgeçmiş", en: "About" }, href: "/ozgecmis" },
+  { label: { tr: "Medya", en: "Media" }, href: "/medya" },
 ];
+
+const TRAILING_ITEMS: { label: Localized; href: string }[] = [
+  {
+    label: { tr: "Hasta Bilgilendirme", en: "Patient Information" },
+    href: "/hasta-bilgilendirme",
+  },
+  {
+    label: { tr: "KVKK", en: "Privacy" },
+    href: "/kvkk",
+  },
+];
+
+const PROCEDURES_LABEL: Localized = {
+  tr: "Ameliyatlar",
+  en: "Procedures",
+};
+
+/* Her kategorinin ilk alt satırı kendi sayfasına gider. */
+const OVERVIEW_LABEL: Localized = {
+  tr: "Genel Bilgi",
+  en: "Overview",
+};
+
+/* Menüyü dile göre kurar. Kategori ve ameliyat başlıkları
+   lib/ameliyatlar içeriğinden okunur; burada elle yazılmaz. */
+export function getNav(locale: Locale): NavItem[] {
+  const procedureTree: NavItem = {
+    label: PROCEDURES_LABEL[locale],
+    href: "/ameliyatlar",
+    children: categoriesOf(locale).map((category) => {
+      const base = `/ameliyatlar/${category.slug}`;
+
+      return {
+        label: category.title,
+        href: base,
+        children: [
+          { label: OVERVIEW_LABEL[locale], href: base },
+          ...proceduresOf(locale, category.slug).map((procedure) => ({
+            label: procedure.title,
+            href: `${base}/${procedure.slug}`,
+          })),
+        ],
+      };
+    }),
+  };
+
+  return [
+    ...STATIC_ITEMS.map((item) => ({
+      label: item.label[locale],
+      href: item.href,
+    })),
+    procedureTree,
+    ...TRAILING_ITEMS.map((item) => ({
+      label: item.label[locale],
+      href: item.href,
+    })),
+  ];
+}

@@ -5,7 +5,7 @@ import { Abril_Fatface, Archivo } from "next/font/google";
 import "../globals.css";
 import StickyNav from "@/components/StickyNav/StickyNav";
 import Footer from "@/components/Footer/Footer";
-import { BRAND, NAV } from "@/lib/site";
+import { BRAND, getNav } from "@/lib/site";
 import { LOCALES, isLocale, type Locale } from "@/lib/i18n";
 
 const abril = Abril_Fatface({
@@ -49,12 +49,12 @@ export default async function RootLayout({
         <StickyNav
           locale={locale as Locale}
           name={BRAND.name}
-          items={NAV}
+          items={getNav(locale as Locale)}
         />
 
         {children}
 
-        <Footer />
+        <Footer locale={locale as Locale} />
       </body>
     </html>
   );

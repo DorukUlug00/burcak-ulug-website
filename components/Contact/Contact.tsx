@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import { CONTACT, MAPS_URL } from "../../lib/site";
+import { CONTACT, MAPS_URL } from "@/lib/site";
+import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./Contact.module.css";
 
 /* ------------------------------------------------------------------
@@ -10,31 +11,70 @@ import styles from "./Contact.module.css";
    yazılı bir iletişim bilgisi yok, tek yerden güncellenir.
 ------------------------------------------------------------------ */
 
-const COPY = {
-  eyebrow: "İletişim",
-  title: "Randevu ve",
-  titleAccent: "iletişim",
-  intro:
-    "Estetik, plastik ve rekonstrüktif cerrahi alanına giren her konuda danışma, muayene ve ameliyat bilgisi için klinikle doğrudan iletişime geçebilirsiniz.",
-  whatsappLabel: "WhatsApp'tan yazın",
-  ctaLabel: "Tüm iletişim bilgileri",
-  ctaHref: "/iletisim",
+type Copy = {
+  eyebrow: string;
+  title: string;
+  titleAccent: string;
+  intro: string;
+  whatsappLabel: string;
+  ctaLabel: string;
+  labelPhone: string;
+  labelEmail: string;
+  labelAddress: string;
+  labelHours: string;
 };
 
-export default function Contact() {
+const COPY: Record<Locale, Copy> = {
+  tr: {
+    eyebrow: "İletişim",
+    title: "Randevu ve",
+    titleAccent: "iletişim",
+    intro:
+      "Estetik, plastik ve rekonstrüktif cerrahi alanına giren her konuda danışma, muayene ve ameliyat bilgisi için klinikle doğrudan iletişime geçebilirsiniz.",
+    whatsappLabel: "WhatsApp'tan yazın",
+    ctaLabel: "Tüm iletişim bilgileri",
+    labelPhone: "Telefon",
+    labelEmail: "E-posta",
+    labelAddress: "Adres",
+    labelHours: "Çalışma saatleri",
+  },
+  en: {
+    eyebrow: "Contact",
+    title: "Appointments and",
+    titleAccent: "enquiries",
+    intro:
+      "You can contact the clinic directly for consultations, examinations and information on surgery in any area of aesthetic, plastic and reconstructive surgery.",
+    whatsappLabel: "Message on WhatsApp",
+    ctaLabel: "All contact details",
+    labelPhone: "Telephone",
+    labelEmail: "Email",
+    labelAddress: "Address",
+    labelHours: "Opening hours",
+  },
+};
+
+const CTA_HREF = "/iletisim";
+
+type Props = {
+  locale: Locale;
+};
+
+export default function Contact({ locale }: Props) {
+  const t = COPY[locale];
+
   return (
     <section className={styles.section} id="contact">
       <div className={styles.inner}>
         {/* ---------------- Sol: çağrı ---------------- */}
         <div className={styles.head}>
-          <p className={styles.eyebrow}>{COPY.eyebrow}</p>
+          <p className={styles.eyebrow}>{t.eyebrow}</p>
 
           <h2 className={styles.title}>
-            {COPY.title}
-            <span className={styles.titleAccent}>{COPY.titleAccent}</span>
+            {t.title}
+            <span className={styles.titleAccent}>{t.titleAccent}</span>
           </h2>
 
-          <p className={styles.intro}>{COPY.intro}</p>
+          <p className={styles.intro}>{t.intro}</p>
 
           <div className={styles.actions}>
             {/* Tek eylem: WhatsApp. Telefon numarası sağdaki künyede
@@ -46,7 +86,7 @@ export default function Contact() {
               rel="noopener noreferrer"
             >
               <WhatsAppIcon />
-              <span>{COPY.whatsappLabel}</span>
+              <span>{t.whatsappLabel}</span>
             </a>
           </div>
         </div>
@@ -54,7 +94,7 @@ export default function Contact() {
         {/* ---------------- Sağ: künye ---------------- */}
         <dl className={styles.details}>
           <div className={styles.detail}>
-            <dt className={styles.label}>Telefon</dt>
+            <dt className={styles.label}>{t.labelPhone}</dt>
 
             <dd className={styles.value}>
               <a /*href={`tel:${CONTACT.phoneRaw}`}*/ className={styles.link}>
@@ -64,7 +104,7 @@ export default function Contact() {
           </div>
 
           <div className={styles.detail}>
-            <dt className={styles.label}>E-posta</dt>
+            <dt className={styles.label}>{t.labelEmail}</dt>
 
             <dd className={styles.value}>
               <a href={`mailto:${CONTACT.emails[0]}`} className={styles.link}>
@@ -74,7 +114,7 @@ export default function Contact() {
           </div>
 
           <div className={styles.detail}>
-            <dt className={styles.label}>Adres</dt>
+            <dt className={styles.label}>{t.labelAddress}</dt>
 
             <dd className={styles.value}>
               <a
@@ -85,18 +125,20 @@ export default function Contact() {
               >
                 {CONTACT.address.line}
                 <br />
-                {CONTACT.address.district}
+                {CONTACT.address.district[locale]}
               </a>
             </dd>
           </div>
 
           <div className={styles.detail}>
-            <dt className={styles.label}>Çalışma saatleri</dt>
+            <dt className={styles.label}>{t.labelHours}</dt>
 
             <dd className={styles.value}>
               {CONTACT.hours.map((slot) => (
-                <span key={slot.days} className={styles.hours}>
-                  <span>{slot.days}</span>
+                /* Anahtar dilden bağımsız olsun diye saat kullanılıyor;
+                   slot.days artık bir nesne, anahtar olamaz. */
+                <span key={slot.time} className={styles.hours}>
+                  <span>{slot.days[locale]}</span>
                   <span className={styles.hoursTime}>{slot.time}</span>
                 </span>
               ))}
@@ -105,8 +147,8 @@ export default function Contact() {
         </dl>
       </div>
 
-      <Link href={COPY.ctaHref} className={styles.cta}>
-        <span>{COPY.ctaLabel}</span>
+      <Link href={withLocale(CTA_HREF, locale)} className={styles.cta}>
+        <span>{t.ctaLabel}</span>
         <LongArrow />
       </Link>
     </section>

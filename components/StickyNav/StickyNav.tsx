@@ -15,6 +15,47 @@ type NavItem = {
   children?: NavItem[];
 };
 
+/* Menünün kendi metinleri. Menü ÖĞELERİ buraya girmez —
+   onlar lib/site.ts'ten dile göre seçilip prop olarak gelir. */
+type NavStrings = {
+  barLabel: string;
+  drawerLabel: string;
+  cta: string;
+  overview: string;
+  openMenu: string;
+  closeMenu: string;
+  /* Ekran okuyucu için: "Ameliyatlar alt menüsünü aç" */
+  toggleSubmenu: (label: string, open: boolean) => string;
+  toggleProcedures: (label: string, open: boolean) => string;
+};
+
+const UI: Record<Locale, NavStrings> = {
+  tr: {
+    barLabel: "Sabit menü",
+    drawerLabel: "Mobil menü",
+    cta: "İletişim",
+    overview: "Genel bilgi",
+    openMenu: "Menüyü aç",
+    closeMenu: "Menüyü kapat",
+    toggleSubmenu: (label, open) =>
+      `${label} alt menüsünü ${open ? "kapat" : "aç"}`,
+    toggleProcedures: (label, open) =>
+      `${label} işlemlerini ${open ? "kapat" : "aç"}`,
+  },
+  en: {
+    barLabel: "Main menu",
+    drawerLabel: "Mobile menu",
+    cta: "Contact",
+    overview: "Overview",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    toggleSubmenu: (label, open) =>
+      `${open ? "Collapse" : "Expand"} ${label} submenu`,
+    toggleProcedures: (label, open) =>
+      `${open ? "Collapse" : "Expand"} ${label} procedures`,
+  },
+};
+
 type Props = {
   /* Bağlantılara eklenecek dil öneki: /tr/ameliyatlar */
   locale: Locale;
@@ -23,10 +64,11 @@ type Props = {
   logoSrc?: string;
   name: string;
   items: NavItem[];
+  /* Verilmezse dile göre sözlükten seçilir. */
   ctaLabel?: string;
   ctaHref?: string;
   /* Çekmecede, alt menüsü olan bir başlığın kendi sayfasına giden
-     ilk satırın etiketi. */
+     ilk satırın etiketi. Verilmezse sözlükten gelir. */
   overviewLabel?: string;
 };
 
@@ -41,10 +83,14 @@ export default function StickyNav({
   logoSrc = "/logo/logo.svg",
   name,
   items,
-  ctaLabel = "İletişim",
+  ctaLabel,
   ctaHref = "/iletisim",
-  overviewLabel = "Genel bilgi",
+  overviewLabel,
 }: Props) {
+  const t = UI[locale];
+  const cta = ctaLabel ?? t.cta;
+  const overview = overviewLabel ?? t.overview;
+
   const rawPathname = usePathname();
 
   /* Karşılaştırmalar dil öneki olmadan yapılır:
@@ -214,7 +260,7 @@ export default function StickyNav({
           }`}
           aria-current={pathname === item.href ? "page" : undefined}
         >
-          {overviewLabel}
+          {overview}
         </Link>
       </li>
     );
@@ -245,7 +291,7 @@ export default function StickyNav({
           <span className={styles.brandName}>{name}</span>
         </Link>
 
-        <nav className={styles.nav} aria-label="Sabit menü">
+        <nav className={styles.nav} aria-label={t.barLabel}>
           {items.map((item) => {
             const linkClass = `${styles.navLink} ${
               isActive(item.href) ? styles.navLinkActive : ""
@@ -282,9 +328,7 @@ export default function StickyNav({
                     type="button"
                     className={styles.caretButton}
                     aria-expanded={open}
-                    aria-label={`${item.label} alt menüsünü ${
-                      open ? "kapat" : "aç"
-                    }`}
+                    aria-label={t.toggleSubmenu(item.label, open)}
                     onClick={() => {
                       setOpenSub(null);
                       setOpenMenu(open ? null : item.href);
@@ -323,9 +367,10 @@ export default function StickyNav({
                                 type="button"
                                 className={styles.subCaret}
                                 aria-expanded={subOpen}
-                                aria-label={`${category.label} işlemlerini ${
-                                  subOpen ? "kapat" : "aç"
-                                }`}
+                                aria-label={t.toggleProcedures(
+                                  category.label,
+                                  subOpen,
+                                )}
                                 onClick={() =>
                                   setOpenSub(subOpen ? null : category.href)
                                 }
@@ -374,18 +419,18 @@ export default function StickyNav({
 
           {isRoute(ctaHref) ? (
             <Link href={withLocale(ctaHref, locale)} className={styles.cta}>
-              {ctaLabel}
+              {cta}
             </Link>
           ) : (
             <a href={ctaHref} className={styles.cta}>
-              {ctaLabel}
+              {cta}
             </a>
           )}
 
           <button
             type="button"
             className={styles.menuButton}
-            aria-label={mobileOpen ? "Menüyü kapat" : "Menüyü aç"}
+            aria-label={mobileOpen ? t.closeMenu : t.openMenu}
             aria-expanded={mobileOpen}
             aria-controls="mobil-menu"
             onClick={() => (mobileOpen ? closeMobile() : setMobileOpen(true))}
@@ -404,7 +449,7 @@ export default function StickyNav({
         className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
         inert={!mobileOpen || undefined}
       >
-        <nav className={styles.drawerNav} aria-label="Mobil menü">
+        <nav className={styles.drawerNav} aria-label={t.drawerLabel}>
           <ul className={styles.drawerList}>
             {items.map((item) => {
               /* Alt menüsü yok: doğrudan bağlantı. */
@@ -431,6 +476,7 @@ export default function StickyNav({
                       isActive(item.href) ? styles.drawerLinkActive : ""
                     }`}
                     aria-expanded={sectionOpen}
+                    aria-label={t.toggleSubmenu(item.label, sectionOpen)}
                     onClick={() => {
                       setMobileSub(null);
                       setMobileSection(sectionOpen ? null : item.href);
@@ -476,6 +522,10 @@ export default function StickyNav({
                                   : ""
                               }`}
                               aria-expanded={catOpen}
+                              aria-label={t.toggleProcedures(
+                                category.label,
+                                catOpen,
+                              )}
                               onClick={() =>
                                 setMobileSub(catOpen ? null : category.href)
                               }
@@ -529,11 +579,11 @@ export default function StickyNav({
               href={withLocale(ctaHref, locale)}
               className={styles.drawerCta}
             >
-              {ctaLabel}
+              {cta}
             </Link>
           ) : (
             <a href={ctaHref} className={styles.drawerCta}>
-              {ctaLabel}
+              {cta}
             </a>
           )}
 

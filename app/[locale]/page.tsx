@@ -1,28 +1,58 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Procedures from "../../components/Procedures/Procedures";
-import Cv from "../../components/CV/Cv";
+import Procedures from "@/components/Procedures/Procedures";
+import Cv from "@/components/CV/Cv";
 import Media from "@/components/Media/Media";
 import Contact from "@/components/Contact/Contact";
 
 import { CONTACT } from "@/lib/site";
+import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./page.module.css";
 
-const CONTENT = {
-  hero: {
-    eyebrow: "Plastik ve Estetik Cerrahi · İstanbul",
-    prefix: "Prof. Dr.",
-    givenName: "Z. Burçak",
-    familyName: "Tümerdem Uluğ",
-    whatsapp: "WhatsApp'tan yazın",
-    contact: "İletişim bilgileri",
-    imageAlt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+type HeroCopy = {
+  eyebrow: string;
+  prefix: string;
+  givenName: string;
+  familyName: string;
+  whatsapp: string;
+  contact: string;
+  imageAlt: string;
+};
+
+const CONTENT: Record<Locale, { hero: HeroCopy }> = {
+  tr: {
+    hero: {
+      eyebrow: "Plastik ve Estetik Cerrahi · İstanbul",
+      prefix: "Prof. Dr.",
+      givenName: "Z. Burçak",
+      familyName: "Tümerdem Uluğ",
+      /* Birincil eylem WhatsApp'a gider; numara lib/site.ts'ten
+         okunur, burada elle yazılı telefon yok. */
+      whatsapp: "WhatsApp'tan yazın",
+      contact: "İletişim bilgileri",
+      imageAlt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    },
+  },
+  en: {
+    hero: {
+      eyebrow: "Plastic and Aesthetic Surgery · Istanbul",
+      prefix: "Prof. Dr.",
+      givenName: "Z. Burçak",
+      familyName: "Tümerdem Uluğ",
+      whatsapp: "Message on WhatsApp",
+      contact: "Contact details",
+      imageAlt: "Prof. Dr. Z. Burçak Tümerdem Uluğ",
+    },
   },
 };
 
-export default function Home() {
-  const { hero } = CONTENT;
+/* params bir Promise: sayfa async olmak ve await etmek zorunda. */
+type Props = { params: Promise<{ locale: Locale }> };
+
+export default async function Home({ params }: Props) {
+  const { locale } = await params;
+  const { hero } = CONTENT[locale];
 
   return (
     <main className={styles.page}>
@@ -70,7 +100,10 @@ export default function Home() {
 
             {/* Sayfa içi geçiş olduğu için <a> değil <Link>:
                 tam yeniden yükleme yapmaz. */}
-            <Link href="/iletisim" className={styles.secondaryAction}>
+            <Link
+              href={withLocale("/iletisim", locale)}
+              className={styles.secondaryAction}
+            >
               <WhatsAppIcon />
               {hero.contact}
             </Link>
@@ -78,10 +111,10 @@ export default function Home() {
         </div>
       </section>
 
-      <Procedures />
-      <Cv />
-      <Media />
-      <Contact />
+      <Procedures/>
+      <Cv/>
+      <Media/>
+      <Contact locale={locale} />
     </main>
   );
 }
