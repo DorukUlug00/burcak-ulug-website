@@ -2,38 +2,77 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { HASTA_META, HASTA_NOTE, HASTA_SECTIONS } from "../../../lib/hasta";
+import { getHasta } from "@/lib/hasta";
+import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-  title: "Hasta Bilgilendirme | Prof. Dr. Burçak Tümerdem Uluğ",
-  description:
-    "Ameliyat öncesi hazırlık: kesilmesi gereken ilaçlar, paylaşılması gereken sağlık bilgileri, açlık süresi, tetkikler ve sigara.",
+/* Sayfaya özel sabit metinler; içerik lib/hasta.ts'ten gelir. */
+type PageStrings = {
+  contactBefore: string;
+  contactLink: string;
+  contactAfter: string;
 };
 
-export default function HastaBilgilendirmePage() {
+const UI: Record<Locale, PageStrings> = {
+  tr: {
+    contactBefore: "Hazırlık süreciyle ilgili sorularınız için ",
+    contactLink: "klinikle iletişime geçebilirsiniz",
+    contactAfter: ".",
+  },
+  en: {
+    contactBefore: "If you have questions about preparing for surgery, ",
+    contactLink: "please contact the clinic",
+    contactAfter: ".",
+  },
+};
+
+type Props = { params: Promise<{ locale: Locale }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const { meta } = getHasta(locale);
+
+  return {
+    title: meta.metaTitle,
+    description: meta.metaDescription,
+    /* Google'a iki dilin de var olduğunu bildirir. */
+    alternates: {
+      languages: {
+        tr: "/tr/hasta-bilgilendirme",
+        en: "/en/hasta-bilgilendirme",
+      },
+    },
+  };
+}
+
+export default async function HastaBilgilendirmePage({ params }: Props) {
+  const { locale } = await params;
+  const { meta, sections, note } = getHasta(locale);
+  const t = UI[locale];
+
   return (
     <main className={styles.page}>
       <article className={styles.document}>
         <div className={styles.hero}>
           <header className={styles.head}>
-            <p className={styles.eyebrow}>{HASTA_META.eyebrow}</p>
+            <p className={styles.eyebrow}>{meta.eyebrow}</p>
 
             <h1 className={styles.title}>
-              {HASTA_META.title}
-              <span className={styles.titleAccent}>
-                {HASTA_META.titleAccent}
-              </span>
+              {meta.title}
+              <span className={styles.titleAccent}>{meta.titleAccent}</span>
             </h1>
 
-            <p className={styles.intro}>{HASTA_META.intro}</p>
+            {/* intro boş bırakılabilir; boşsa hiç basılmaz. */}
+            {meta.intro ? (
+              <p className={styles.intro}>{meta.intro}</p>
+            ) : null}
           </header>
 
           <figure className={styles.heroFigure}>
             <Image
               className={styles.heroImage}
-              src={HASTA_META.image}
-              alt={HASTA_META.imageAlt}
+              src={meta.image}
+              alt={meta.imageAlt}
               fill
               sizes="(max-width: 820px) 100vw, 38vw"
               priority
@@ -41,7 +80,7 @@ export default function HastaBilgilendirmePage() {
           </figure>
         </div>
 
-        {HASTA_SECTIONS.map((section) => (
+        {sections.map((section) => (
           <section key={section.heading} className={styles.section}>
             {/* Zaman etiketi başlığın solunda, geniş ekranda kenar
                 boşluğuna taşıyor; dar ekranda başlığın üstüne düşüyor. */}
@@ -78,14 +117,17 @@ export default function HastaBilgilendirmePage() {
         ))}
 
         <footer className={styles.foot}>
-          <p className={styles.note}>{HASTA_NOTE}</p>
+          <p className={styles.note}>{note}</p>
 
           <p className={styles.contact}>
-            Hazırlık süreciyle ilgili sorularınız için{" "}
-            <Link href="/iletisim" className={styles.inlineLink}>
-              klinikle iletişime geçebilirsiniz
+            {t.contactBefore}
+            <Link
+              href={withLocale("/iletisim", locale)}
+              className={styles.inlineLink}
+            >
+              {t.contactLink}
             </Link>
-            .
+            {t.contactAfter}
           </p>
         </footer>
       </article>
