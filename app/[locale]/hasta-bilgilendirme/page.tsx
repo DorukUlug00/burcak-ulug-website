@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { HASTA_META, HASTA_NOTE, HASTA_SECTIONS } from "../../lib/hasta";
+import { HASTA_META, HASTA_NOTE, HASTA_SECTIONS } from "../../../lib/hasta";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {

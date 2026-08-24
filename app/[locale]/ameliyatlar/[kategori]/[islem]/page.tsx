@@ -8,7 +8,7 @@ import {
   getProcedure,
   proceduresOf,
   PROCEDURES,
-} from "../../../../lib/ameliyatlar";
+} from "../../../../../lib/ameliyatlar";
 
 /* Bütün ameliyat sayfaları derleme anında üretilir. */
 export function generateStaticParams() {

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Procedures from "../components/Procedures/Procedures";
-import Cv from "../components/CV/Cv";
+import Procedures from "../../components/Procedures/Procedures";
+import Cv from "../../components/CV/Cv";
 import Media from "@/components/Media/Media";
 import Contact from "@/components/Contact/Contact";
 

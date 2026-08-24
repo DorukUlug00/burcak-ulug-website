@@ -7,7 +7,7 @@ import {
   ContentArticle,
   getCategory,
   proceduresOf,
-} from "../../../lib/ameliyatlar";
+} from "../../../../lib/ameliyatlar";
 
 export function generateStaticParams() {
   return CATEGORIES.map((category) => ({ kategori: category.slug }));

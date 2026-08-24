@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { stripLocale, withLocale, type Locale } from "@/lib/i18n";
 import styles from "./StickyNav.module.css";
 
 type NavItem = {
@@ -14,14 +15,18 @@ type NavItem = {
 };
 
 type Props = {
+  /* Bağlantılara eklenecek dil öneki: /tr/ameliyatlar */
+  locale: Locale;
   /* SVG logo. next/image yerel .svg dosyalarını optimize etmeden
-     olduğu gibi sunar; ek config gerekmez. Renk uyumu CSS'teki
-     filter kurallarıyla sağlanır (bkz. .monogramMark). */
+     olduğu gibi sunar; ek config gerekmez. */
   logoSrc?: string;
   name: string;
   items: NavItem[];
   ctaLabel?: string;
   ctaHref?: string;
+  /* Çekmecede, alt menüsü olan bir başlığın kendi sayfasına giden
+     ilk satırın etiketi. */
+  overviewLabel?: string;
 };
 
 /* Dahili rota (/ ile başlayan) ise next/link, değilse normal <a>.
@@ -31,21 +36,25 @@ function isRoute(href: string) {
 }
 
 export default function StickyNav({
+  locale,
   logoSrc = "/logo/logo.svg",
   name,
   items,
   ctaLabel = "İletişim",
   ctaHref = "/iletisim",
+  overviewLabel = "Genel bilgi",
 }: Props) {
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+
+  /* Karşılaştırmalar dil öneki olmadan yapılır:
+     /tr/ameliyatlar ile /en/ameliyatlar aynı sayfadır. */
+  const pathname = stripLocale(rawPathname);
   const isHome = pathname === "/";
 
   /* Bar HER ZAMAN görünür. Değişen tek şey görünümü:
        - ana sayfada hero üzerindeyken saydam, yazılar krem
        - hero geçildikten sonra ve diğer sayfalarda krem zemin,
-         koyu yazı
-     Böylece menü hiçbir noktada kaybolmuyor ama hero görselini
-     de kapatmıyor. */
+         koyu yazı */
   const [scrolledPast, setScrolledPast] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -77,8 +86,6 @@ export default function StickyNav({
 
   /* ---------- Masaüstü açılır menüler ---------- */
 
-  /* Açık menüler: 1. seviye (Ameliyatlar) ve 2. seviye (Yüz Estetiği).
-     Aynı anda her seviyeden tek menü açık olur. */
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [openSub, setOpenSub] = useState<string | null>(null);
 
@@ -114,8 +121,6 @@ export default function StickyNav({
 
   /* ---------- Mobil çekmece ---------- */
 
-  /* Masaüstü menüsünden ayrı tutuluyor: ikisi aynı anda görünmüyor,
-     durumlarının karışması gereksiz hatalara yol açıyordu. */
   const [mobileSection, setMobileSection] = useState<string | null>(null);
   const [mobileSub, setMobileSub] = useState<string | null>(null);
 
@@ -150,9 +155,10 @@ export default function StickyNav({
   }, [mobileOpen]);
 
   /* Ekran masaüstü genişliğine çıkarsa çekmece açık kalmasın:
-     yoksa gizlenir ama gövde kilidi üzerinde kalırdı. */
+     yoksa gizlenir ama gövde kilidi üzerinde kalırdı.
+     Değer CSS'teki 1150px eşiğiyle aynı olmalı. */
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 901px)");
+    const query = window.matchMedia("(min-width: 1151px)");
 
     function onChange(event: MediaQueryListEvent) {
       if (event.matches) closeMobile();
@@ -166,7 +172,7 @@ export default function StickyNav({
   useEffect(() => {
     closeAll();
     closeMobile();
-  }, [pathname]);
+  }, [rawPathname]);
 
   function isActive(href: string) {
     return (
@@ -179,7 +185,7 @@ export default function StickyNav({
 
     return isRoute(item.href) ? (
       <Link
-        href={item.href}
+        href={withLocale(item.href, locale)}
         className={className}
         aria-current={active ? "page" : undefined}
       >
@@ -192,6 +198,26 @@ export default function StickyNav({
     );
   }
 
+  /* Çekmecede alt menüsü olan başlığın kendi sayfasına giden satır.
+     Başlığın kendisi artık gezinmediği için bu satır şart. */
+  function renderOverview(item: NavItem, className: string) {
+    if (!isRoute(item.href)) return null;
+
+    return (
+      <li>
+        <Link
+          href={withLocale(item.href, locale)}
+          className={`${className} ${styles.drawerOverview} ${
+            pathname === item.href ? styles.drawerLinkActive : ""
+          }`}
+          aria-current={pathname === item.href ? "page" : undefined}
+        >
+          {overviewLabel}
+        </Link>
+      </li>
+    );
+  }
+
   return (
     <>
       {/* Hero'nun bittiği noktayı işaretler; bar burayı geçince
@@ -200,11 +226,9 @@ export default function StickyNav({
         <div ref={sentinelRef} className={styles.sentinel} aria-hidden="true" />
       ) : null}
 
-      {/* inert YOK: bar her zaman görünür ve her zaman erişilebilir. */}
       <div className={`${styles.bar} ${solid ? styles.solid : ""}`}>
-        <Link href="/" className={styles.brand}>
-          {/* Logo dekoratif: erişilebilir ad zaten yandaki isimden gelir,
-              bu yüzden alt="" bırakıldı. */}
+        <Link href={`/${locale}`} className={styles.brand}>
+          {/* Logo dekoratif: erişilebilir ad zaten yandaki isimden gelir. */}
           <span className={styles.monogram}>
             <Image
               src={logoSrc}
@@ -240,10 +264,8 @@ export default function StickyNav({
               <div
                 key={item.href}
                 className={styles.navItem}
-                /* Masaüstü: fare ile aç/kapat. */
                 onMouseEnter={() => setOpenMenu(item.href)}
                 onMouseLeave={() => closeAll()}
-                /* Klavye: odak gruptan çıkınca kapat. */
                 onFocus={() => setOpenMenu(item.href)}
                 onBlur={(event) => {
                   if (!event.currentTarget.contains(event.relatedTarget)) {
@@ -254,8 +276,6 @@ export default function StickyNav({
                 <span className={styles.navItemRow}>
                   {renderLink(item, linkClass)}
 
-                  {/* Dokunmatik ve klavye için ayrı aç/kapat düğmesi.
-                      Böylece etiketin kendisi sayfaya gitmeye devam eder. */}
                   <button
                     type="button"
                     className={styles.caretButton}
@@ -349,7 +369,7 @@ export default function StickyNav({
 
         <div className={styles.actions}>
           {isRoute(ctaHref) ? (
-            <Link href={ctaHref} className={styles.cta}>
+            <Link href={withLocale(ctaHref, locale)} className={styles.cta}>
               {ctaLabel}
             </Link>
           ) : (
@@ -372,8 +392,8 @@ export default function StickyNav({
       </div>
 
       {/* ============ MOBİL ÇEKMECE ============
-          900px altında hamburger'ın açtığı tam ekran panel.
-          Masaüstünde CSS ile tamamen gizli. */}
+          Alt menüsü OLAN başlıklar bağlantı değil, düğmedir:
+          dokununca yalnızca akordeon açılır. */}
       <div
         id="mobil-menu"
         className={`${styles.drawer} ${mobileOpen ? styles.drawerOpen : ""}`}
@@ -382,7 +402,7 @@ export default function StickyNav({
         <nav className={styles.drawerNav} aria-label="Mobil menü">
           <ul className={styles.drawerList}>
             {items.map((item) => {
-              /* Alt menüsü olmayan basit öğe: doğrudan bağlantı. */
+              /* Alt menüsü yok: doğrudan bağlantı. */
               if (!item.children?.length) {
                 return (
                   <li key={item.href} className={styles.drawerItem}>
@@ -400,39 +420,33 @@ export default function StickyNav({
 
               return (
                 <li key={item.href} className={styles.drawerItem}>
-                  <div className={styles.drawerRow}>
-                    {renderLink(
-                      item,
-                      `${styles.drawerLink} ${
-                        isActive(item.href) ? styles.drawerLinkActive : ""
-                      }`,
-                    )}
+                  <button
+                    type="button"
+                    className={`${styles.drawerToggle} ${
+                      isActive(item.href) ? styles.drawerLinkActive : ""
+                    }`}
+                    aria-expanded={sectionOpen}
+                    onClick={() => {
+                      setMobileSub(null);
+                      setMobileSection(sectionOpen ? null : item.href);
+                    }}
+                  >
+                    <span>{item.label}</span>
 
-                    {/* Etiket sayfaya gider, düğme akordeonu açar. */}
-                    <button
-                      type="button"
-                      className={styles.drawerCaret}
-                      aria-expanded={sectionOpen}
-                      aria-label={`${item.label} alt menüsünü ${
-                        sectionOpen ? "kapat" : "aç"
-                      }`}
-                      onClick={() => {
-                        setMobileSub(null);
-                        setMobileSection(sectionOpen ? null : item.href);
-                      }}
-                    >
+                    <span className={styles.drawerCaret} aria-hidden="true">
                       <CaretIcon />
-                    </button>
-                  </div>
+                    </span>
+                  </button>
 
                   {sectionOpen ? (
                     <ul className={styles.drawerSubList}>
-                      {item.children.map((category) => {
-                        const catOpen = mobileSub === category.href;
+                      {renderOverview(item, styles.drawerSubLink)}
 
-                        return (
-                          <li key={category.href}>
-                            <div className={styles.drawerRow}>
+                      {item.children.map((category) => {
+                        /* Kategorinin alt işlemi yoksa doğrudan bağlantı. */
+                        if (!category.children?.length) {
+                          return (
+                            <li key={category.href}>
                               {renderLink(
                                 category,
                                 `${styles.drawerSubLink} ${
@@ -441,26 +455,43 @@ export default function StickyNav({
                                     : ""
                                 }`,
                               )}
+                            </li>
+                          );
+                        }
 
-                              {category.children?.length ? (
-                                <button
-                                  type="button"
-                                  className={styles.drawerCaret}
-                                  aria-expanded={catOpen}
-                                  aria-label={`${category.label} işlemlerini ${
-                                    catOpen ? "kapat" : "aç"
-                                  }`}
-                                  onClick={() =>
-                                    setMobileSub(catOpen ? null : category.href)
-                                  }
-                                >
-                                  <CaretIcon />
-                                </button>
-                              ) : null}
-                            </div>
+                        const catOpen = mobileSub === category.href;
 
-                            {catOpen && category.children?.length ? (
+                        return (
+                          <li key={category.href}>
+                            <button
+                              type="button"
+                              className={`${styles.drawerSubToggle} ${
+                                isActive(category.href)
+                                  ? styles.drawerLinkActive
+                                  : ""
+                              }`}
+                              aria-expanded={catOpen}
+                              onClick={() =>
+                                setMobileSub(catOpen ? null : category.href)
+                              }
+                            >
+                              <span>{category.label}</span>
+
+                              <span
+                                className={styles.drawerCaret}
+                                aria-hidden="true"
+                              >
+                                <CaretIcon />
+                              </span>
+                            </button>
+
+                            {catOpen ? (
                               <ul className={styles.drawerLeafList}>
+                                {renderOverview(
+                                  category,
+                                  styles.drawerLeafLink,
+                                )}
+
                                 {category.children.map((leaf) => (
                                   <li key={`${category.href}-${leaf.href}`}>
                                     {renderLink(
@@ -489,7 +520,10 @@ export default function StickyNav({
         {/* CTA masaüstünde barda, mobilde çekmecenin dibinde. */}
         <div className={styles.drawerFooter}>
           {isRoute(ctaHref) ? (
-            <Link href={ctaHref} className={styles.drawerCta}>
+            <Link
+              href={withLocale(ctaHref, locale)}
+              className={styles.drawerCta}
+            >
               {ctaLabel}
             </Link>
           ) : (

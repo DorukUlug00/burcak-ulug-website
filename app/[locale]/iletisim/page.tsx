@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { BRAND, CONTACT, MAPS_URL } from "../../lib/site";
+import { BRAND, CONTACT, MAPS_URL } from "../../../lib/site";
 import OpenStatus from "./OpenStatus";
 import styles from "./page.module.css";
 

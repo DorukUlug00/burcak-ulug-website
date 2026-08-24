@@ -27,7 +27,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "../app/ameliyatlar/ameliyatlar.module.css";
+import styles from "../app/[locale]/ameliyatlar/ameliyatlar.module.css";
 
 /* ===============================================================
    1. İÇERİK — kategoriler ve ameliyatlar

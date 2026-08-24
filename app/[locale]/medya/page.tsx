@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 /* İçerik ve galeri tek dosyada: lib/media.tsx
    Video ve fotoğraf eklemek için o dosyanın üst yarısını düzenle. */
-import MediaGallery from "../../lib/media";
+import MediaGallery from "../../../lib/media";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {

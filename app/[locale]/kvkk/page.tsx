@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { KVKK_META, KVKK_SECTIONS } from "../../lib/kvkk";
+import { KVKK_META, KVKK_SECTIONS } from "../../../lib/kvkk";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { groupedProcedures } from "../../lib/ameliyatlar";
+import { groupedProcedures } from "../../../lib/ameliyatlar";
 import styles from "./ameliyatlar.module.css";
 
 export const metadata: Metadata = {
