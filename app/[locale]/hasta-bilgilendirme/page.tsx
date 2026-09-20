@@ -6,6 +6,9 @@ import { getHasta } from "@/lib/hasta";
 import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./page.module.css";
 
+/* public/ kökünden servis edilir; yol "public" öneki olmadan yazılır. */
+const HERO_IMAGE = "/general/hasta-muayene.png";
+
 /* Sayfaya özel sabit metinler; içerik lib/hasta.ts'ten gelir. */
 type PageStrings = {
   contactBefore: string;
@@ -71,7 +74,7 @@ export default async function HastaBilgilendirmePage({ params }: Props) {
           <figure className={styles.heroFigure}>
             <Image
               className={styles.heroImage}
-              src={meta.image}
+              src={HERO_IMAGE}
               alt={meta.imageAlt}
               fill
               sizes="(max-width: 820px) 100vw, 38vw"
