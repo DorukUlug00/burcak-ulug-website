@@ -9,6 +9,7 @@ import Contact from "@/components/Contact/Contact";
 import { CONTACT } from "@/lib/site";
 import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./page.module.css";
+import Certificate from "@/components/Certificate/Certificate";
 
 type HeroCopy = {
   eyebrow: string;
@@ -114,6 +115,7 @@ export default async function Home({ params }: Props) {
       <Procedures locale={locale}/>
       <Cv locale={locale}/>
       <Media locale={locale}/>
+      <Certificate locale={locale} />
       <Contact locale={locale} />
     </main>
   );
