@@ -29,7 +29,7 @@ const CONTENT: Record<Locale, Copy> = {
   },
 };
 
-const IMAGE_SRC = "/doctor/white-shirt.png";
+const IMAGE_SRC = "/doctor/burcak-ulug-white-shirt.png";
 const CTA_HREF = "/ozgecmis";
 
 type Props = {

@@ -156,8 +156,15 @@
   }
 
   .media {
-    aspect-ratio: 3 / 2;
-    max-width: 26rem;
+    /* Fotoğraf dikey: mobilde de dikey kutu, yoksa gövde kırpılıyor. */
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+
+  .image {
+    object-position: center 20%;
   }
 }
 

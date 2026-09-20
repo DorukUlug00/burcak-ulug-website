@@ -46,7 +46,7 @@ const tr: CvBundle = {
     displayFirst: "Prof. Dr. Z. Burçak",
     displayLast: "Tümerdem Uluğ",
     specialty: "Plastik, Rekonstrüktif ve Estetik Cerrahi",
-    portrait: "/doctor/white-shirt.png",
+    portrait: "/doctor/burcak-ulug-white-shirt.png",
     portraitAlt: "Prof. Dr. Burçak Tümerdem Uluğ portre fotoğrafı",
     intro:
       "Prof. Dr. Z. Burçak Tümerdem Uluğ, Plastik Rekonstrüktif ve Estetik Cerrahi uzmanıdır.",
@@ -92,7 +92,7 @@ const en: CvBundle = {
     displayFirst: "Prof. Dr. Z. Burçak",
     displayLast: "Tümerdem Uluğ",
     specialty: "Plastic, Reconstructive and Aesthetic Surgery",
-    portrait: "/doctor/white-shirt.png",
+    portrait: "/doctor/burcak-ulug-white-shirt.png",
     portraitAlt: "Portrait of Prof. Dr. Burçak Tümerdem Uluğ",
     intro:
       "Prof. Dr. Z. Burçak Tümerdem Uluğ is a specialist in Plastic, Reconstructive and Aesthetic Surgery.",
