@@ -10,6 +10,7 @@ import { CONTACT } from "@/lib/site";
 import { withLocale, type Locale } from "@/lib/i18n";
 import styles from "./page.module.css";
 import Certificate from "@/components/Certificate/Certificate";
+import Hero from "@/components/Hero/Hero";
 
 type HeroCopy = {
   eyebrow: string;
@@ -57,61 +58,7 @@ export default async function Home({ params }: Props) {
 
   return (
     <main className={styles.page}>
-      {/* Navbar artık hero'nun DIŞINDA: sayfa boyunca sabit kalır
-          ve hiçbir bölüm üzerine binemez. */}
-
-      <section className={styles.hero}>
-        <div className={styles.media}>
-          <Image
-            src="/hero.png"
-            alt={hero.imageAlt}
-            fill
-            priority
-            quality={90}
-            sizes="100vw"
-            className={styles.heroImage}
-          />
-        </div>
-
-        <div className={styles.scrim} aria-hidden="true" />
-
-        <div className={styles.heroBody}>
-          <p className={styles.eyebrow}>{hero.eyebrow}</p>
-
-          <h1 className={styles.name}>
-            <span className={styles.namePrefix}>{hero.prefix}</span>
-
-            <span className={styles.nameLine}>{hero.givenName}</span>
-
-            <span className={`${styles.nameLine} ${styles.nameLineHeavy}`}>
-              {hero.familyName}
-            </span>
-          </h1>
-
-          <div className={styles.actions}>
-            <a
-              href={CONTACT.whatsappUrl}
-              className={styles.primaryAction}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>{hero.whatsapp}</span>
-              <LongArrow />
-            </a>
-
-            {/* Sayfa içi geçiş olduğu için <a> değil <Link>:
-                tam yeniden yükleme yapmaz. */}
-            <Link
-              href={withLocale("/iletisim", locale)}
-              className={styles.secondaryAction}
-            >
-              <WhatsAppIcon />
-              {hero.contact}
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      <Hero locale={locale}/>
       <Procedures locale={locale}/>
       <Cv locale={locale}/>
       <Media locale={locale}/>
