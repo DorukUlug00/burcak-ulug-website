@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Abril_Fatface, Archivo } from "next/font/google";
+import Script from "next/script";
 
 import "../globals.css";
 import StickyNav from "@/components/StickyNav/StickyNav";
@@ -55,6 +56,21 @@ export default async function RootLayout({
         {children}
 
         <Footer locale={locale as Locale} />
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TK3ZSVHC2N"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-TK3ZSVHC2N');
+          `}
+        </Script>
       </body>
     </html>
   );
