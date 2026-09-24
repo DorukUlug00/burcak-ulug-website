@@ -53,6 +53,8 @@ export default function LocaleSwitch({ locale, variant = "bar" }: Props) {
             <img
               src={FLAGS[code]}
               alt=""
+              width={22}
+              height={15}
               className={styles.flag}
             />
           </Link>
