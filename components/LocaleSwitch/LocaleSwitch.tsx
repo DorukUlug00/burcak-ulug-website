@@ -7,8 +7,8 @@ import { LOCALES, stripLocale, type Locale } from "@/lib/i18n";
 import styles from "./LocaleSwitch.module.css";
 
 const LABELS: Record<Locale, string> = {
-  tr: "TR",
-  en: "EN",
+  tr: "🇹🇷",
+  en: "🇬🇧",
 };
 
 type Props = {
@@ -47,6 +47,7 @@ export default function LocaleSwitch({ locale, variant = "bar" }: Props) {
             hrefLang={code}
             className={`${styles.option} ${active ? styles.active : ""}`}
             aria-current={active ? "true" : undefined}
+            aria-label={code === "tr" ? "Türkçe" : "English"}
             onClick={() => remember(code)}
           >
             {LABELS[code]}
