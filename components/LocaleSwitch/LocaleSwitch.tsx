@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { LOCALES, stripLocale, type Locale } from "@/lib/i18n";
 import styles from "./LocaleSwitch.module.css";
 
-const LABELS: Record<Locale, string> = {
-  tr: "🇹🇷",
-  en: "🇬🇧",
+const FLAGS: Record<Locale, string> = {
+  tr: "/flags/tr-flag.png",
+  en: "/flags/en-flag.png",
 };
 
 type Props = {
@@ -50,7 +50,11 @@ export default function LocaleSwitch({ locale, variant = "bar" }: Props) {
             aria-label={code === "tr" ? "Türkçe" : "English"}
             onClick={() => remember(code)}
           >
-            {LABELS[code]}
+            <img
+              src={FLAGS[code]}
+              alt=""
+              className={styles.flag}
+            />
           </Link>
         );
       })}
