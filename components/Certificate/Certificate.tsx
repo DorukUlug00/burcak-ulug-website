@@ -41,6 +41,8 @@ const CONTENT: Record<Locale, Copy> = {
   },
 };
 
+const LOGO_SRC = "/general/health-turkiye-logo.jpg";
+
 const IMAGE_SRC = "/general/health-turkiye-sertifika.jpg";
 
 type Props = {
@@ -79,7 +81,18 @@ export default function Certificate({ locale }: Props) {
                 {item}
               </li>
             ))}
-          </ul>
+                    </ul>
+
+          <div className={styles.seal}>
+            <Image
+              src={LOGO_SRC}
+              alt="Health Türkiye"
+              width={720}
+              height={425}
+              sizes="152px"
+              className={styles.sealImage}
+            />
+          </div>
         </div>
       </div>
     </section>

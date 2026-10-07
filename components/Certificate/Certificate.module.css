@@ -129,6 +129,18 @@
   object-fit: contain;
 }
 
+.seal {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.sealImage {
+  display: block;
+  width: clamp(7.5rem, 12vw, 9.5rem);
+  height: auto;
+}
+
 /* ---------------- Uyarlama ---------------- */
 
 @media (max-width: 900px) {
